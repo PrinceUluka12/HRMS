@@ -1,0 +1,11 @@
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/bin/Debug/net9.0/HRMS.Domain.deps.json
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/bin/Debug/net9.0/HRMS.Domain.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/bin/Debug/net9.0/HRMS.Domain.pdb
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/Debug/net9.0/HRMS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/Debug/net9.0/HRMS.Domain.AssemblyInfoInputs.cache
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/Debug/net9.0/HRMS.Domain.AssemblyInfo.cs
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/Debug/net9.0/HRMS.Domain.csproj.CoreCompileInputs.cache
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/Debug/net9.0/HRMS.Domain.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/Debug/net9.0/refint/HRMS.Domain.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/Debug/net9.0/HRMS.Domain.pdb
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/Debug/net9.0/ref/HRMS.Domain.dll

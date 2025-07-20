@@ -1,0 +1,15 @@
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/bin/Debug/net9.0/HRMS.Application.deps.json
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/bin/Debug/net9.0/HRMS.Application.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/bin/Debug/net9.0/HRMS.Application.pdb
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/bin/Debug/net9.0/HRMS.Domain.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/bin/Debug/net9.0/HRMS.Domain.pdb
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/HRMS.Application.csproj.AssemblyReference.cache
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/HRMS.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/HRMS.Application.AssemblyInfoInputs.cache
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/HRMS.Application.AssemblyInfo.cs
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/HRMS.Application.csproj.CoreCompileInputs.cache
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/HRMS.App.83A5D7FA.Up2Date
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/HRMS.Application.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/refint/HRMS.Application.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/HRMS.Application.pdb
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/ref/HRMS.Application.dll
