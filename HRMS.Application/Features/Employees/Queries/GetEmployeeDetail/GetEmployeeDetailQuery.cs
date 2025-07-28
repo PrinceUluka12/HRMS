@@ -9,40 +9,34 @@ using MediatR;
 
 namespace HRMS.Application.Features.Employees.Queries.GetEmployeeDetail;
 
-public record GetEmployeeDetailQuery(Guid Id) : IRequest<EmployeeDetailDto>;
+public record GetEmployeeDetailQuery(Guid Id) : IRequest<Employee>;
 
-public class GetEmployeeDetailQueryHandler : IRequestHandler<GetEmployeeDetailQuery, EmployeeDetailDto>
+public class GetEmployeeDetailQueryHandler(
+    IEmployeeRepository employeeRepository,
+    IMapper mapper,
+    ICurrentUserService currentUserService)
+    : IRequestHandler<GetEmployeeDetailQuery, Employee>
 {
-    private readonly IEmployeeRepository _employeeRepository;
-    private readonly IMapper _mapper;
-    private readonly ICurrentUserService _currentUserService;
+    private readonly IMapper _mapper = mapper;
+    private readonly ICurrentUserService _currentUserService = currentUserService;
 
-    public GetEmployeeDetailQueryHandler(
-        IEmployeeRepository employeeRepository,
-        IMapper mapper,
-        ICurrentUserService currentUserService)
+    public async Task<Employee> Handle(GetEmployeeDetailQuery request, CancellationToken cancellationToken)
     {
-        _employeeRepository = employeeRepository;
-        _mapper = mapper;
-        _currentUserService = currentUserService;
-    }
-
-    public async Task<EmployeeDetailDto> Handle(GetEmployeeDetailQuery request, CancellationToken cancellationToken)
-    {
-        var employee = await _employeeRepository.GetByIdAsync(request.Id, cancellationToken);
+        var employee = await employeeRepository.GetByIdAsync(request.Id, cancellationToken);
         
         if (employee == null)
         {
             throw new NotFoundException(nameof(Employee), request.Id);
         }
 
-        // Check authorization
+        /*// Check authorization
         if (!_currentUserService.IsInRole("HR.Admin") && 
             employee.AzureAdId != _currentUserService.UserId)
         {
             throw new ForbiddenAccessException();
-        }
+        }*/
 
-        return _mapper.Map<EmployeeDetailDto>(employee);
+        //return _mapper.Map<EmployeeDetailDto>(employee);
+        return employee;
     }
 }

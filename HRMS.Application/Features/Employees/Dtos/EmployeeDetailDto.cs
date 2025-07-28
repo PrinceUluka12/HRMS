@@ -1,5 +1,7 @@
 using HRMS.Application.Features.Leave.Dtos;
 using HRMS.Application.Features.Performance.Dtos;
+using HRMS.Domain.Aggregates.EmployeeAggregate;
+using HRMS.Domain.Enums;
 
 namespace HRMS.Application.Features.Employees.Dtos;
 
@@ -23,7 +25,6 @@ public record EmployeeDetailDto
     public string WorkPhone { get; init; }
     public string PersonalPhone { get; init; }
     public AddressDto PrimaryAddress { get; init; }
-    public AddressDto? SecondaryAddress { get; init; }
 
     // Employment Details
     public DateTime HireDate { get; init; }
@@ -42,7 +43,7 @@ public record EmployeeDetailDto
     public Guid? ManagerId { get; init; }
     public string? ManagerName { get; init; }
     public string JobTitle { get; init; }
-    public string? CostCenter { get; init; }
+    
 
     // Compensation
     public decimal BaseSalary { get; init; }
@@ -50,7 +51,7 @@ public record EmployeeDetailDto
     public BankDetailsDto BankDetails { get; init; }
 
     // Collections
-    public IEnumerable<EmergencyContactDto> EmergencyContacts { get; init; }
+    public IEnumerable<EmergencyContactDto>? EmergencyContacts { get; init; }
     public IEnumerable<DependentDto> Dependents { get; init; }
     public IEnumerable<SkillDto> Skills { get; init; }
     public IEnumerable<CertificationDto> Certifications { get; init; }

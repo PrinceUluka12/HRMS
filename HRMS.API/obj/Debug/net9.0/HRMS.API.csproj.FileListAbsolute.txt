@@ -1,5 +1,4 @@
 /Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/appsettings.Development.json
-/Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/appsettings.Production.json
 /Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/HRMS.API.staticwebassets.endpoints.json
 /Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/HRMS.API
 /Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/HRMS.API.deps.json
@@ -227,3 +226,6 @@
 /Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/Microsoft.AspNetCore.Mvc.Versioning.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.API/obj/Debug/net9.0/HRMS.API.sourcelink.json

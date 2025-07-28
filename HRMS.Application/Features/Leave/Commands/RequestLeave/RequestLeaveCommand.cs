@@ -22,6 +22,7 @@ public record RequestLeaveCommand(
 public class RequestLeaveCommandHandler(
     IEmployeeRepository employeeRepository,
     ILeavePolicyService leavePolicyService,
+    ILeaveRequestRepository leaveRequestRepository,
     IUnitOfWork unitOfWork,
     IMapper mapper)
     : IRequestHandler<RequestLeaveCommand, LeaveRequestDto>
@@ -49,7 +50,7 @@ public class RequestLeaveCommandHandler(
             request.Reason,
             LeaveStatus.Pending);
 
-        employee.RequestLeave(leaveRequest);
+        await leaveRequestRepository.AddAsync(leaveRequest);
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
         return mapper.Map<LeaveRequestDto>(leaveRequest);

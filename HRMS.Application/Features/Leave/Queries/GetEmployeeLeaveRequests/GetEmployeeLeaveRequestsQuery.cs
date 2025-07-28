@@ -10,28 +10,39 @@ using Microsoft.EntityFrameworkCore;
 namespace HRMS.Application.Features.Leave.Queries.GetEmployeeLeaveRequests;
 
 public record GetEmployeeLeaveRequestsQuery(
-    Guid EmployeeId) : IRequest<List<LeaveRequestDto>>;
+    Guid EmployeeId) : IRequest<IEnumerable<LeaveRequestDto>>;
 
 public class GetEmployeeLeaveRequestsQueryHandler(
     ILeaveRequestRepository leaveRequestRepository,
     IMapper mapper,
     ICurrentUserService currentUserService)
-    : IRequestHandler<GetEmployeeLeaveRequestsQuery, List<LeaveRequestDto>>
+    : IRequestHandler<GetEmployeeLeaveRequestsQuery, IEnumerable<LeaveRequestDto>>
 {
-    public async Task<List<LeaveRequestDto>> Handle(
+    public async Task<IEnumerable<LeaveRequestDto>> Handle(
         GetEmployeeLeaveRequestsQuery request,
         CancellationToken cancellationToken)
     {
-        // Authorization check
-        if (!currentUserService.IsInRole("HR.Admin") && 
-            !currentUserService.IsInRole("Department.Manager") &&
-            currentUserService.UserId != request.EmployeeId.ToString())
-        {
-            throw new ForbiddenAccessException();
-        }
-
         var leaveRequests = await leaveRequestRepository.GetByEmployeeIdAsync(request.EmployeeId);
 
-        return mapper.Map<List<LeaveRequestDto>>(leaveRequests);
+        if (leaveRequests.Count != 0)
+        {
+            var data = leaveRequests.Select(lea => new LeaveRequestDto(
+                lea.Id,
+                lea.EmployeeId,
+                "",
+                lea.StartDate,
+                lea.EndDate,
+                lea.Type,
+                lea.Reason,
+                lea.Status,
+                lea.RequestDate,
+                lea.ApprovedBy,
+                lea.ApprovedDate,
+                lea.RejectionReason
+            ));
+            return data;
+        }
+
+        return new  List<LeaveRequestDto>();
     }
 }

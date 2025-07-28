@@ -8,23 +8,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HRMS.API.Controllers;
 
-[Authorize(Roles = "Admin,Department.Manager")]
+
 [ApiController]
 [Route("api/[controller]")]
-public class DepartmentsController : ControllerBase
+public class DepartmentsController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public DepartmentsController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
     [HttpGet]
+    [Authorize(Roles = "Employee")]
     public async Task<ActionResult<List<DepartmentDto>>> GetAll()
     {
         var query = new GetAllDepartmentsQuery();
-        var result = await _mediator.Send(query);
+        var result = await mediator.Send(query);
         return Ok(result);
     }
 
@@ -32,7 +26,7 @@ public class DepartmentsController : ControllerBase
     [Authorize(Roles = "Admin")]
     public async Task<ActionResult<DepartmentDto>> Create(CreateDepartmentCommand command)
     {
-        var result = await _mediator.Send(command);
+        var result = await mediator.Send(command);
         return Ok(result.Id);
     }
 }

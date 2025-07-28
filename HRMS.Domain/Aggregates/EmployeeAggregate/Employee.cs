@@ -13,7 +13,7 @@ namespace HRMS.Domain.Aggregates.EmployeeAggregate;
 public class Employee : Entity<Guid>, IAggregateRoot
 {
     // Identification
-    public string AzureAdId { get; private set; }
+    public Guid AzureAdId { get; private set; }
     public string EmployeeNumber { get; private set; }
     public string GovernmentId { get; private set; } // SSN/National ID
     public string TaxIdentificationNumber { get; private set; }
@@ -26,8 +26,8 @@ public class Employee : Entity<Guid>, IAggregateRoot
 
     // Contact Information
     public Email Email { get; private set; }
-    public PhoneNumber WorkPhone { get; private set; }
-    public PhoneNumber PersonalPhone { get; private set; }
+    public string WorkPhone { get; private set; }
+    public string PersonalPhone { get; private set; }
     public Address PrimaryAddress { get; private set; }
 
     // Employment Details
@@ -92,7 +92,7 @@ public class Employee : Entity<Guid>, IAggregateRoot
     private Employee() { }
 
     public Employee(
-        string azureAdId,
+        Guid azureAdId,
         string employeeNumber,
         string governmentId,
         string taxIdentificationNumber,
@@ -101,8 +101,8 @@ public class Employee : Entity<Guid>, IAggregateRoot
         Gender gender,
         MaritalStatus maritalStatus,
         Email email,
-        PhoneNumber workPhone,
-        PhoneNumber personalPhone,
+        string workPhone,
+        string personalPhone,
         Address primaryAddress,
         DateTime hireDate,
         EmploymentType employmentType,
@@ -114,7 +114,7 @@ public class Employee : Entity<Guid>, IAggregateRoot
         PayFrequency payFrequency,
         BankDetails bankDetails)
     {
-        AzureAdId = azureAdId ?? throw new ArgumentNullException(nameof(azureAdId));
+        AzureAdId = azureAdId;
         EmployeeNumber = employeeNumber ?? throw new ArgumentNullException(nameof(employeeNumber));
         GovernmentId = governmentId ?? throw new ArgumentNullException(nameof(governmentId));
         TaxIdentificationNumber = taxIdentificationNumber ?? throw new ArgumentNullException(nameof(taxIdentificationNumber));
@@ -154,8 +154,8 @@ public class Employee : Entity<Guid>, IAggregateRoot
 
     public void UpdateContactInformation(
         Email email,
-        PhoneNumber workPhone,
-        PhoneNumber personalPhone,
+        string workPhone,
+        string personalPhone,
         Address primaryAddress,
         Address? secondaryAddress)
     {
@@ -251,10 +251,7 @@ public class Employee : Entity<Guid>, IAggregateRoot
         _skills.Add(skill);
     }
 
-    public void RequestLeave(LeaveRequest leaveRequest)
-    {
-        
-    }
+    
 
     // Other collection management methods...
 }

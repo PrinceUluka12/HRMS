@@ -11,7 +11,7 @@ using MediatR;
 namespace HRMS.Application.Features.Employees.Commands.CreateEmployee;
 
 public record CreateEmployeeCommand(
-    string AzureAdId,
+    Guid AzureAdId,
     string EmployeeNumber,
     string FirstName,
     string LastName,
@@ -31,42 +31,53 @@ public class CreateEmployeeCommandHandler(
 {
     public async Task<EmployeeDto> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
     {
-        // Verify Azure AD user exists
-        await azureAdService.VerifyUserExistsAsync(request.AzureAdId);
-        
-        var name = new PersonName(request.FirstName, request.LastName);
-        var email = new Email(request.Email);
-        var phone  =  new PhoneNumber("",request.PhoneNumber);
-        var address = new Address("", "", "", "", "");
-        var bank = new BankDetails("", "", "");
-        
-        
-        var employee = new Employee(
-            request.AzureAdId,
-            request.EmployeeNumber,
-            "",
-            "",
-            name,
-            request.DateOfBirth,
-            Gender.Female,
-            MaritalStatus.Single,
-            email,
-            phone,
-            phone,
-            address,
-            DateTime.UtcNow, 
-            EmploymentType.Permanent,
-            true,
-            request.DepartmentId,
-            request.PositionId,
-            "",
-            0,
-            PayFrequency.SemiMonthly,
-            bank);
+        await unitOfWork.BeginTransactionAsync(cancellationToken);
+        try
+        {
+            if (await azureAdService.VerifyUserExistsAsync(request.AzureAdId))
+            {
+                // Verify Azure AD user exists
+                var name = new PersonName(request.FirstName, request.LastName);
+                var email = new Email(request.Email);
+                var phone = request.PhoneNumber;
+                var address = request.Address;
+                var bank = new BankDetails("", "", "");
 
-        await employeeRepository.AddAsync(employee);
-        await unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return mapper.Map<EmployeeDto>(employee);
+                var employee = new Employee(
+                    request.AzureAdId,
+                    request.EmployeeNumber,
+                    "",
+                    "",
+                    name,
+                    request.DateOfBirth,
+                    Gender.Female,
+                    MaritalStatus.Single,
+                    email,
+                    phone,
+                    phone,
+                    address,
+                    DateTime.UtcNow,
+                    EmploymentType.Permanent,
+                    true,
+                    request.DepartmentId,
+                    request.PositionId,
+                    "",
+                    0,
+                    PayFrequency.SemiMonthly,
+                    bank);
+
+                await employeeRepository.AddAsync(employee);
+                await unitOfWork.CommitTransactionAsync(cancellationToken);
+                return mapper.Map<EmployeeDto>(employee);
+            }
+
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
     }
 }

@@ -10,10 +10,6 @@ public class Position : Entity<Guid>, IAggregateRoot
     public decimal BaseSalary { get; private set; }
     public string Description { get; private set; }
     public Guid DepartmentId { get; private set; }
-    
-    private readonly List<Employee> _employees = new();
-    public IReadOnlyCollection<Employee> Employees => _employees.AsReadOnly();
-
     private Position() { }
 
     public Position(string title, string code, decimal baseSalary, string description, Guid departmentId)

@@ -5,20 +5,25 @@ public enum OnboardingTaskStatus
     NotStarted,
     InProgress,
     Completed,
-    OnHold,
-    Cancelled
+}
+
+public enum OnboardingStage
+{
+    PreOnboarding,
+    Day1,
+    Week1To2,
+    Day30To90,
+    Completed
 }
 
 public enum OnboardingTaskCategory
 {
     Documentation,
+    ITSetup,
+    HRSession,
     Training,
-    Equipment,
-    Access,
-    Compliance,
-    Orientation,
-    HRPaperwork,
-    ITSetup
+    ManagerMeeting,
+    Compliance
 }
 
 public enum DocumentStatus

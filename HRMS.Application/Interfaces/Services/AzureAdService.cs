@@ -17,26 +17,30 @@ public class AzureAdService(GraphServiceClient graphServiceClient, ILogger<Azure
     /// <summary>
     /// Verifies if a user exists in Azure AD.
     /// </summary>
-    public async Task VerifyUserExistsAsync(string userId)
+    public async Task<bool> VerifyUserExistsAsync(Guid userId)
     {
         try
         {
-            var user = await _graphServiceClient.Users[userId]
-                .GetAsync(requestConfig =>
-                {
-                    requestConfig.QueryParameters.Select = new[] { "id" };
-                });
+            var user = await _graphServiceClient.Users[userId.ToString()].GetAsync(requestConfig =>
+            {
+                requestConfig.QueryParameters.Select = new[] { "id" };
+            });
+
 
             if (user == null)
             {
                 throw new AzureAdException($"Azure AD user '{userId}' not found.");
+                return false;
             }
+
+            return true;
         }
         
         catch (Microsoft.Graph.Models.ODataErrors.ODataError ex)
         {
             _logger.LogError(ex, "Failed to verify Azure AD user '{UserId}'.", userId);
             throw new AzureAdException($"Failed to verify Azure AD user '{userId}'.", ex);
+            return false;
         }
     }
 
@@ -88,11 +92,11 @@ public class AzureAdService(GraphServiceClient graphServiceClient, ILogger<Azure
     /// <summary>
     /// Retrieves the email address of a user.
     /// </summary>
-    public async Task<string?> GetUserEmailAsync(string userId)
+    public async Task<string?> GetUserEmailAsync(Guid userId)
     {
         try
         {
-            var user = await _graphServiceClient.Users[userId]
+            var user = await _graphServiceClient.Users[userId.ToString()]
                 .GetAsync(requestConfig =>
                 {
                     requestConfig.QueryParameters.Select = new[] { "mail" };

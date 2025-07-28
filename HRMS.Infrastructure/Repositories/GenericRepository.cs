@@ -25,7 +25,7 @@ namespace HRMS.Infrastructure.Repositories;
         {
 
             // Start with the base query
-            var query = dbContext.Set<T>().AsQueryable();
+            var query = dbContext.Set<T>().AsQueryable().AsNoTracking();
 
             // Apply the include expressions
             // Include related data if specified

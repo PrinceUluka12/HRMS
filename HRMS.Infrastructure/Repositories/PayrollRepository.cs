@@ -13,13 +13,14 @@ public class PayrollRepository(ApplicationDbContext context): GenericRepository<
 
     public async Task<List<Payroll>> GetByEmployeeIdAsync(Guid employeeId, CancellationToken cancellationToken = default)
     {
-       var data = await context.Payrolls.AsNoTracking().Where(p => p.EmployeeId == employeeId).ToListAsync(cancellationToken);
+       var data = await context.Payrolls.AsNoTracking().Include(e => e.Employee).Where(p => p.EmployeeId == employeeId).ToListAsync(cancellationToken);
        return data;
     }
 
     public async Task<List<Payroll>> GetByPeriodAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var data =  await context.Payrolls.AsNoTracking().Include(e => e.Employee).Where(e => e.PayPeriodStart ==  startDate && e.PayPeriodEnd == endDate).ToListAsync(cancellationToken);
+        return data;
     }
 
     public async Task<List<Payroll>> GetPayrollFromDateAsync(

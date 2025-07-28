@@ -4,7 +4,7 @@ public class EmergencyContact
 {
     public EmergencyContact() { }
 
-    public EmergencyContact(string name, string relationship, PhoneNumber phoneNumber, string email)
+    public EmergencyContact(string name, string relationship, string phoneNumber, string email)
     {
         Name = name;
         Relationship = relationship;
@@ -14,6 +14,6 @@ public class EmergencyContact
 
     public string Name { get; private set; }
     public string Relationship { get; private set; }
-    public PhoneNumber PhoneNumber { get; private set; }
+    public string PhoneNumber { get; private set; }
     public string Email { get; private set; }
 }

@@ -15,7 +15,14 @@ public class GetAllPositionsQueryHandler(IPositionRepository positionRepository,
     {
         var positions = await positionRepository.GetAllAsync();
         
-         var data = mapper.Map<List<PositionDto>>(positions);
+        var data = positions.Select(position => new PositionDto(
+            position.Id,
+            position.Title,
+            position.Code,
+            position.BaseSalary,
+            position.Description,
+            position.DepartmentId
+        )).ToList();
 
          return data;
     }

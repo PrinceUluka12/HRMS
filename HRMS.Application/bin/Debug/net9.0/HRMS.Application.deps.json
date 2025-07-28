@@ -761,6 +761,9 @@
       "System.Text.Json/8.0.5": {},
       "System.Threading.Tasks.Extensions/4.5.4": {},
       "HRMS.Domain/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "9.0.7"
+        },
         "runtime": {
           "HRMS.Domain.dll": {
             "assemblyVersion": "1.0.0.0",

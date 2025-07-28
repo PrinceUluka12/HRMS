@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "cDGPRob90BE=",
+  "dgSpecHash": "A2L32/P3I5Y=",
   "success": true,
   "projectFilePath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/HRMS.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/kosalachi/.nuget/packages/microsoft.entityframeworkcore.abstractions/9.0.7/microsoft.entityframeworkcore.abstractions.9.0.7.nupkg.sha512"
+  ],
   "logs": []
 }

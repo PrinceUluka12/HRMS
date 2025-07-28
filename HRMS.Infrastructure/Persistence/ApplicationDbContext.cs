@@ -4,6 +4,8 @@ using HRMS.Domain.Aggregates.EmployeeAggregate;
 using HRMS.Domain.Aggregates.LeaveAggregate;
 using HRMS.Domain.Aggregates.PayrollAggregate;
 using HRMS.Domain.Aggregates.PositionAggregate;
+using HRMS.Domain.Aggregates.TimeTrackingAggregate;
+//using HRMS.Domain.Aggregates.TimeTrackingAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace HRMS.Infrastructure.Persistence;
@@ -16,12 +18,12 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Position> Positions { get; set; }
     public DbSet<Payroll> Payrolls { get; set; }
     public DbSet<LeaveRequest> LeaveRequests { get; set; }
+    
+    public DbSet<TimeEntry> TimeEntries { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Owned<PhoneNumber>();
-
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 

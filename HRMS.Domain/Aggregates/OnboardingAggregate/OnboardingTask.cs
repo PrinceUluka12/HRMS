@@ -14,7 +14,7 @@ public class OnboardingTask : Entity<Guid>, IAggregateRoot
     public OnboardingTaskStatus Status { get; private set; }
     public OnboardingTaskCategory Category { get; private set; }
     public int Priority { get; private set; }
-
+        
     // Task completion tracking
     public DateTime? CompletedDate { get; private set; }
     public string? CompletedBy { get; private set; }
@@ -53,7 +53,7 @@ public class OnboardingTask : Entity<Guid>, IAggregateRoot
         Category = category;
         Priority = priority;
         Status = OnboardingTaskStatus.NotStarted;
-        CreatedDate = DateTime.UtcNow;
+        CreatedDate = DateTime.Now;
         CreatedBy = createdBy ?? throw new ArgumentNullException(nameof(createdBy));
 
         Validate();
@@ -65,8 +65,9 @@ public class OnboardingTask : Entity<Guid>, IAggregateRoot
         if (Status != OnboardingTaskStatus.NotStarted)
             throw new DomainException("Only tasks that are not started can be started");
 
+        
         Status = OnboardingTaskStatus.InProgress;
-        ModifiedDate = DateTime.UtcNow;
+        ModifiedDate = DateTime.Now;
         ModifiedBy = startedBy ?? throw new ArgumentNullException(nameof(startedBy));
     }
 
@@ -79,10 +80,10 @@ public class OnboardingTask : Entity<Guid>, IAggregateRoot
             throw new DomainException("Cannot complete task with uncompleted dependencies");
 
         Status = OnboardingTaskStatus.Completed;
-        CompletedDate = DateTime.UtcNow;
+        CompletedDate = DateTime.Now;
         CompletedBy = completedBy ?? throw new ArgumentNullException(nameof(completedBy));
         CompletionNotes = notes;
-        ModifiedDate = DateTime.UtcNow;
+        ModifiedDate = DateTime.Now;
         ModifiedBy = completedBy;
     }
 

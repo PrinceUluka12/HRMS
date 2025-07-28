@@ -23,6 +23,7 @@ public static class ServiceRegistration
         services.AddScoped<IBenefitsService, BenefitsService>();
         services.AddSingleton<IDateTime, DateTimeService>();
         services.AddScoped<IEmailService, EmailService>();
+        services.AddScoped<ITimeTrackingService, TimeTrackingService>();
         services.AddSingleton<GraphServiceClient>(sp =>
         {
             var factory = sp.GetRequiredService<GraphServiceClientFactory>();

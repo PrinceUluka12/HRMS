@@ -22,7 +22,7 @@ public class AccountController(
     [Authorize]
     public async Task<ActionResult<EmployeeProfileDto>> GetProfile()
     {
-        var userId = User.FindFirstValue(ClaimTypes.Email);    
+        var userId = User.FindFirstValue(ClaimTypes.PrimarySid);    
         if (string.IsNullOrWhiteSpace(userId))
         {
             return Unauthorized("User ID not found in token.");
@@ -30,7 +30,7 @@ public class AccountController(
 
         try
         {
-            var employee = await employeeRepository.GetByAzureAdIdAsync(userId);
+            var employee = await employeeRepository.GetByAzureAdIdAsync(Guid.Parse(userId));
             if (employee is null)
             {
                 return NotFound($"Employee with Azure AD ID '{userId}' not found.");

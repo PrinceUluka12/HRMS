@@ -17,3 +17,4 @@
 /Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure/obj/Debug/net9.0/HRMS.Infrastructure.pdb
 /Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure/obj/Debug/net9.0/HRMS.Infrastructure.genruntimeconfig.cache
 /Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure/obj/Debug/net9.0/ref/HRMS.Infrastructure.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure/obj/Debug/net9.0/HRMS.Infrastructure.sourcelink.json

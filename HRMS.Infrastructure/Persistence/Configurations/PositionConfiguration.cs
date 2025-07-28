@@ -31,9 +31,5 @@ public class PositionConfiguration : IEntityTypeConfiguration<Position>
         builder.HasOne<Department>()
             .WithMany()
             .HasForeignKey(p => p.DepartmentId);
-            
-        builder.HasMany(p => p.Employees)
-            .WithOne()
-            .HasForeignKey(e => e.PositionId);
     }
 }

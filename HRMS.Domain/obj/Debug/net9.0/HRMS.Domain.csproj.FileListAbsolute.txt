@@ -9,3 +9,5 @@
 /Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/Debug/net9.0/refint/HRMS.Domain.dll
 /Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/Debug/net9.0/HRMS.Domain.pdb
 /Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/Debug/net9.0/ref/HRMS.Domain.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/Debug/net9.0/HRMS.Domain.sourcelink.json
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/Debug/net9.0/HRMS.Domain.csproj.AssemblyReference.cache

@@ -9,7 +9,6 @@ namespace HRMS.Infrastructure.Repositories;
 
 public class PositionRepository(ApplicationDbContext context, IUnitOfWork unitOfWork) : GenericRepository<Position>(context),IPositionRepository
 {
-    
     public async Task<Position?> GetByTitleAsync(string title, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();

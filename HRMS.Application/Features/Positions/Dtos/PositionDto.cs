@@ -6,5 +6,4 @@ public record PositionDto(
     string Code,
     decimal BaseSalary,
     string Description,
-    Guid DepartmentId,
-    string DepartmentName);
+    Guid DepartmentId);

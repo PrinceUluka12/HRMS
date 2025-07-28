@@ -59,10 +59,8 @@ namespace HRMS.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AzureAdId")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                    b.Property<Guid>("AzureAdId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("BaseSalary")
                         .HasPrecision(18, 2)
@@ -118,10 +116,12 @@ namespace HRMS.Infrastructure.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<Guid>("PositionId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("PersonalPhone")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid>("PositionId1")
+                    b.Property<Guid>("PositionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Status")
@@ -141,6 +141,11 @@ namespace HRMS.Infrastructure.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("WorkPhone")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AzureAdId")
@@ -152,8 +157,6 @@ namespace HRMS.Infrastructure.Migrations
                         .IsUnique();
 
                     b.HasIndex("PositionId");
-
-                    b.HasIndex("PositionId1");
 
                     b.ToTable("Employees", (string)null);
                 });
@@ -766,6 +769,95 @@ namespace HRMS.Infrastructure.Migrations
                     b.ToTable("Positions", (string)null);
                 });
 
+            modelBuilder.Entity("HRMS.Domain.Aggregates.TimeTrackingAggregate.TimeEntry", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("BreakTimeMinutes")
+                        .HasColumnType("int");
+
+                    b.Property<TimeOnly>("ClockIn")
+                        .HasColumnType("time");
+
+                    b.Property<TimeOnly?>("ClockOut")
+                        .HasColumnType("time");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Project")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)")
+                        .HasDefaultValue("Active");
+
+                    b.Property<decimal>("TotalHours")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("decimal(4,2)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Date")
+                        .HasDatabaseName("idx_date_range");
+
+                    b.HasIndex("Status")
+                        .HasDatabaseName("idx_status");
+
+                    b.HasIndex("EmployeeId", "Date")
+                        .HasDatabaseName("idx_employee_date");
+
+                    b.ToTable("time_entries", (string)null);
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.TimeTrackingAggregate.TimeTrackingLocation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ActionType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Latitude")
+                        .HasPrecision(10, 8)
+                        .HasColumnType("decimal(10,8)");
+
+                    b.Property<decimal?>("Longitude")
+                        .HasPrecision(11, 8)
+                        .HasColumnType("decimal(11,8)");
+
+                    b.Property<Guid>("TimeEntryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TimeEntryId");
+
+                    b.ToTable("time_tracking_locations", (string)null);
+                });
+
             modelBuilder.Entity("HRMS.Domain.Aggregates.DepartmentAggregate.Department", b =>
                 {
                     b.HasOne("HRMS.Domain.Aggregates.EmployeeAggregate.Employee", "Manager")
@@ -784,16 +876,10 @@ namespace HRMS.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("HRMS.Domain.Aggregates.PositionAggregate.Position", null)
-                        .WithMany("Employees")
-                        .HasForeignKey("PositionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("HRMS.Domain.Aggregates.PositionAggregate.Position", "Position")
                         .WithMany()
-                        .HasForeignKey("PositionId1")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.OwnsOne("HRMS.Domain.Aggregates.EmployeeAggregate.Address", "PrimaryAddress", b1 =>
@@ -1043,6 +1129,11 @@ namespace HRMS.Infrastructure.Migrations
                                 .HasMaxLength(100)
                                 .HasColumnType("nvarchar(100)");
 
+                            b1.Property<string>("PhoneNumber")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
+
                             b1.Property<string>("Relationship")
                                 .IsRequired()
                                 .HasMaxLength(50)
@@ -1053,78 +1144,6 @@ namespace HRMS.Infrastructure.Migrations
                             b1.HasIndex("EmployeeId");
 
                             b1.ToTable("EmployeeEmergencyContacts", (string)null);
-
-                            b1.WithOwner()
-                                .HasForeignKey("EmployeeId");
-
-                            b1.OwnsOne("HRMS.Domain.Aggregates.EmployeeAggregate.PhoneNumber", "PhoneNumber", b2 =>
-                                {
-                                    b2.Property<Guid>("EmergencyContactId")
-                                        .HasColumnType("uniqueidentifier");
-
-                                    b2.Property<string>("CountryCode")
-                                        .IsRequired()
-                                        .HasMaxLength(5)
-                                        .HasColumnType("nvarchar(5)");
-
-                                    b2.Property<string>("Number")
-                                        .IsRequired()
-                                        .HasMaxLength(20)
-                                        .HasColumnType("nvarchar(20)");
-
-                                    b2.HasKey("EmergencyContactId");
-
-                                    b2.ToTable("EmployeeEmergencyContacts");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("EmergencyContactId");
-                                });
-
-                            b1.Navigation("PhoneNumber")
-                                .IsRequired();
-                        });
-
-                    b.OwnsOne("HRMS.Domain.Aggregates.EmployeeAggregate.PhoneNumber", "PersonalPhone", b1 =>
-                        {
-                            b1.Property<Guid>("EmployeeId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<string>("CountryCode")
-                                .IsRequired()
-                                .HasMaxLength(5)
-                                .HasColumnType("nvarchar(5)");
-
-                            b1.Property<string>("Number")
-                                .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("nvarchar(20)");
-
-                            b1.HasKey("EmployeeId");
-
-                            b1.ToTable("Employees");
-
-                            b1.WithOwner()
-                                .HasForeignKey("EmployeeId");
-                        });
-
-                    b.OwnsOne("HRMS.Domain.Aggregates.EmployeeAggregate.PhoneNumber", "WorkPhone", b1 =>
-                        {
-                            b1.Property<Guid>("EmployeeId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<string>("CountryCode")
-                                .IsRequired()
-                                .HasMaxLength(5)
-                                .HasColumnType("nvarchar(5)");
-
-                            b1.Property<string>("Number")
-                                .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("nvarchar(20)");
-
-                            b1.HasKey("EmployeeId");
-
-                            b1.ToTable("Employees");
 
                             b1.WithOwner()
                                 .HasForeignKey("EmployeeId");
@@ -1206,18 +1225,12 @@ namespace HRMS.Infrastructure.Migrations
                     b.Navigation("Name")
                         .IsRequired();
 
-                    b.Navigation("PersonalPhone")
-                        .IsRequired();
-
                     b.Navigation("Position");
 
                     b.Navigation("PrimaryAddress")
                         .IsRequired();
 
                     b.Navigation("Skills");
-
-                    b.Navigation("WorkPhone")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("HRMS.Domain.Aggregates.LeaveAggregate.LeaveRequest", b =>
@@ -1350,6 +1363,15 @@ namespace HRMS.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("HRMS.Domain.Aggregates.TimeTrackingAggregate.TimeTrackingLocation", b =>
+                {
+                    b.HasOne("HRMS.Domain.Aggregates.TimeTrackingAggregate.TimeEntry", null)
+                        .WithMany("Locations")
+                        .HasForeignKey("TimeEntryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("HRMS.Domain.Aggregates.EmployeeAggregate.Employee", b =>
                 {
                     b.Navigation("LeaveRequests");
@@ -1389,9 +1411,9 @@ namespace HRMS.Infrastructure.Migrations
                     b.Navigation("Metrics");
                 });
 
-            modelBuilder.Entity("HRMS.Domain.Aggregates.PositionAggregate.Position", b =>
+            modelBuilder.Entity("HRMS.Domain.Aggregates.TimeTrackingAggregate.TimeEntry", b =>
                 {
-                    b.Navigation("Employees");
+                    b.Navigation("Locations");
                 });
 #pragma warning restore 612, 618
         }

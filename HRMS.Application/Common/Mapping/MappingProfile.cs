@@ -2,10 +2,12 @@ using AutoMapper;
 using HRMS.Application.Features.Departments.Dtos;
 using HRMS.Application.Features.Employees.Commands.CreateEmployee;
 using HRMS.Application.Features.Employees.Dtos;
+using HRMS.Application.Features.Leave.Dtos;
 using HRMS.Application.Features.Payroll.Dtos;
 using HRMS.Application.Features.Positions.Dtos;
 using HRMS.Domain.Aggregates.DepartmentAggregate;
 using HRMS.Domain.Aggregates.EmployeeAggregate;
+using HRMS.Domain.Aggregates.LeaveAggregate;
 using HRMS.Domain.Aggregates.PayrollAggregate;
 using HRMS.Domain.Aggregates.PositionAggregate;
 using HRMS.Domain.Enums;
@@ -21,6 +23,7 @@ public class MappingProfile : Profile
         CreateMap<Payroll, PayrollDto>();
         CreateMap<Department, DepartmentDto>();
         CreateMap<Position, PositionDto>();
+        CreateMap<LeaveRequest, LeaveRequestDto>();
         
         CreateMap<CreateEmployeeCommand, Employee>()
             .ForMember(dest => dest.Id, opt => opt.Ignore())

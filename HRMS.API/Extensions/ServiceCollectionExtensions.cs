@@ -19,88 +19,29 @@ using Microsoft.Graph;
 using Microsoft.Identity.Web;
 
 
-
 namespace HRMS.API.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    /*public static IServiceCollection AddApplicationServices(this IServiceCollection services)
-    {
-        // Register MediatR
-        services.AddMediatR(cfg =>
-        {
-            cfg.RegisterServicesFromAssemblies(
-                typeof(CreateEmployeeCommand).Assembly,
-                typeof(EmployeeRepository).Assembly,
-                typeof(GetAllPositionsQuery).Assembly);
-            
-            // Add behaviors in order of execution
-            cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
-            cfg.AddOpenBehavior(typeof(PerformanceBehavior<,>));
-            cfg.AddOpenBehavior(typeof(TransactionBehavior<,>));
-        });
-        
-        // Register AutoMapper
-        services.AddAutoMapper(typeof(MappingProfile).Assembly);
-        
-        // Register repositories
-        services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-        services.AddScoped<IPayrollRepository, PayrollRepository>();
-        services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-        services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
-        services.AddScoped<IPositionRepository, PositionRepository>();
-        
-        
-        
-        // Register services
-        services.AddScoped<IAzureAdService, AzureAdService>();
-        services.AddScoped<IBenefitsService, BenefitsService>();
-        services.AddSingleton<IDateTime, DateTimeService>();
-        services.AddScoped<IEmailService, EmailService>();
-        services.AddSingleton<GraphServiceClient>(sp =>
-        {
-            var factory = sp.GetRequiredService<GraphServiceClientFactory>();
-            return factory.CreateClient();
-        });
-        services.AddScoped<ILeavePolicyService, LeavePolicyService>();
-        services.AddScoped<IPayrollService, PayrollService>();
-        services.AddHostedService<PayrollProcessingService>();
-        services.AddScoped<ITaxCalculationService, TaxCalculationService>();
-        services.AddScoped<ITaxRuleProvider, TaxRuleProvider>();
-        services.AddScoped<ITeamsIntegrationService, TeamsIntegrationService>();
-        
-        // Register current user service
-        services.AddScoped<ICurrentUserService, CurrentUserService>();
-        
-        
-        
-        return services;
-    }*/
-
-    /*public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
-    {
-        services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-        return services;
-    }
-    */
-    
-    public static IServiceCollection AddAzureAdAuthentication(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddAzureAdAuthentication(this IServiceCollection services,
+        IConfiguration configuration)   
     {
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddMicrosoftIdentityWebApi(configuration.GetSection("AzureAd"))
-                .EnableTokenAcquisitionToCallDownstreamApi()
-                .AddMicrosoftGraph(configuration.GetSection("MicrosoftGraph"))
-                .AddInMemoryTokenCaches();
-        
-        
-        services.AddMicrosoftGraph(opt =>
-        {
-            configuration.Bind("AzureAd", opt); 
-        });
+            .AddJwtBearer(options =>
+            {
+                // Bind JwtSettings from configuration
+                configuration.Bind("JwtSettings", options);
+
+                // Set authority and audience for Azure AD authentication
+                options.Authority = configuration["JwtSettings:Authority"];
+                options.Audience = configuration["JwtSettings:Audience"];
+
+                // Configure token validation parameters (valid issuers)
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidIssuers = configuration.GetSection("JwtSettings:ValidIssuers").Get<string[]>()
+                };
+            });
 
         return services;
     }
@@ -109,13 +50,13 @@ public static class ServiceCollectionExtensions
     {
         services.AddAuthorization(options =>
         {
-            options.AddPolicy("Admin", policy => 
+            options.AddPolicy("Admin", policy =>
                 policy.RequireRole("Admin"));
-            options.AddPolicy("Department.Manager", policy => 
+            options.AddPolicy("Department.Manager", policy =>
                 policy.RequireRole("Department.Manager"));
-            options.AddPolicy("Payroll.Specialist", policy => 
+            options.AddPolicy("Payroll.Specialist", policy =>
                 policy.RequireRole("Payroll.Specialist"));
-            options.AddPolicy("Employee", policy => 
+            options.AddPolicy("Employee", policy =>
                 policy.RequireRole("Employee"));
         });
 

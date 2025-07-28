@@ -3,7 +3,7 @@ using HRMS.Domain.SeedWork;
 
 namespace HRMS.Domain.Aggregates.OnboardingAggregate;
 
-public class TaskDocument : Entity<Guid>, IAggregateRoot
+public class TaskDocument : Entity<Guid>
 {
     public Guid OnboardingTaskId { get; private set; }
     public string Name { get; private set; }

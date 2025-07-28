@@ -17,7 +17,7 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
         builder.HasKey(e => e.Id);
 
         // Identification
-        builder.Property(e => e.AzureAdId).HasMaxLength(128).IsRequired();
+        builder.Property(e => e.AzureAdId);
         builder.Property(e => e.EmployeeNumber).HasMaxLength(20).IsRequired();
         builder.Property(e => e.GovernmentId).HasMaxLength(50).IsRequired();
         builder.Property(e => e.TaxIdentificationNumber).HasMaxLength(50).IsRequired();
@@ -39,17 +39,10 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
             email.Property(p => p.Value).HasColumnName("Email").HasMaxLength(100).IsRequired();
         });
 
-        builder.OwnsOne(e => e.WorkPhone, phone =>
-        {
-            phone.Property(p => p.CountryCode).HasMaxLength(5).IsRequired();
-            phone.Property(p => p.Number).HasMaxLength(20).IsRequired();
-        });
-
-        builder.OwnsOne(e => e.PersonalPhone, phone =>
-        {
-            phone.Property(p => p.CountryCode).HasMaxLength(5).IsRequired();
-            phone.Property(p => p.Number).HasMaxLength(20).IsRequired();
-        });
+        // WorkPhone
+        builder.Property(e => e.WorkPhone).HasMaxLength(12).IsRequired();
+        //  PersonalPhone
+        builder.Property(e => e.PersonalPhone).HasMaxLength(100).IsRequired();
 
         builder.OwnsOne(e => e.PrimaryAddress, address =>
         {
@@ -105,11 +98,7 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
             ec.Property(c => c.Relationship).IsRequired().HasMaxLength(50);
             ec.Property(c => c.Email).IsRequired().HasMaxLength(100);
 
-            ec.OwnsOne(c => c.PhoneNumber, pn =>
-            {
-                pn.Property(p => p.CountryCode).HasMaxLength(5).IsRequired();
-                pn.Property(p => p.Number).HasMaxLength(20).IsRequired();
-            });
+           ec.Property(c => c.PhoneNumber).HasMaxLength(50);
 
             ec.ToTable("EmployeeEmergencyContacts");
         });

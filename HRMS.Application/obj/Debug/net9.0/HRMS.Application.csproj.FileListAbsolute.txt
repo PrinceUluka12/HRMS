@@ -13,3 +13,4 @@
 /Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/refint/HRMS.Application.dll
 /Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/HRMS.Application.pdb
 /Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/ref/HRMS.Application.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/Debug/net9.0/HRMS.Application.sourcelink.json

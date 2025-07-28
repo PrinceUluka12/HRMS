@@ -10,6 +10,6 @@ public record PerformanceReviewDto(
     string ReviewerName,
     DateTime ReviewDate,
     DateTime? NextReviewDate,
-    PerformanceRating OverallRating,
+    decimal OverallRating,
     string Comments,
     List<PerformanceGoalDto> Goals);
