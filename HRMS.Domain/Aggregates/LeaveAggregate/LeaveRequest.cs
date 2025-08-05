@@ -47,7 +47,8 @@ public class LeaveRequest : Entity<Guid>, IAggregateRoot
 
         Status = LeaveStatus.Approved;
         ApprovedBy = approvedBy ?? throw new ArgumentNullException(nameof(approvedBy));
-        ApprovedDate = DateTime.UtcNow;
+        ApprovedDate = DateTime.Now;
+             
     }
 
     public void Reject(string rejectedBy, string reason)

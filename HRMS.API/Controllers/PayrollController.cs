@@ -13,20 +13,27 @@ namespace HRMS.API.Controllers;
 [Route("api/[controller]")]
 public class PayrollController(IMediator mediator) : ControllerBase
 {
-    [HttpGet("GetPayrollSummaryReport")]
+    /// <summary>
+    /// Gets a summary payroll report for a specific period.
+    /// </summary>
+    [HttpGet("summary-report")]
     [Authorize(Roles = "Payroll.Specialist")]
+    
     public async Task<IActionResult> GetPayrollSummaryReport([FromQuery] GetPayrollSummaryReportQuery request)
     {
-        var result  = await mediator.Send(request);
+        var result = await mediator.Send(request);
         return Ok(result);
     }
 
-    [HttpGet("GetPayrollSummaryByEmployeeId")]
+    /// <summary>
+    /// Gets payroll summary for an individual employee.
+    /// </summary>
+    [HttpGet("employee-summary")]
     [Authorize(Roles = "Employee")]
+    
     public async Task<IActionResult> GetPayrollSummaryByEmployeeId([FromQuery] GetPayrollSummaryByEmployeeIdQuery request)
     {
-        var result =  await mediator.Send(request);
+        var result = await mediator.Send(request);
         return Ok(result);
     }
-    // Other endpoints...
 }

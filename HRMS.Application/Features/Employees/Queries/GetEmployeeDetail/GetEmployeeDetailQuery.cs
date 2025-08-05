@@ -1,42 +1,50 @@
 using AutoMapper;
-using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Application.Features.Employees.Dtos;
+using HRMS.Application.Helpers;
+using HRMS.Application.Interfaces;
 using HRMS.Application.Interfaces.Repositories;
-using HRMS.Application.Interfaces.Services.Contracts;
+using HRMS.Application.Wrappers;
 using HRMS.Domain.Aggregates.EmployeeAggregate;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace HRMS.Application.Features.Employees.Queries.GetEmployeeDetail;
 
-public record GetEmployeeDetailQuery(Guid Id) : IRequest<Employee>;
+public record GetEmployeeDetailQuery(Guid Id) : IRequest<BaseResult<Employee>>;
 
 public class GetEmployeeDetailQueryHandler(
     IEmployeeRepository employeeRepository,
-    IMapper mapper,
-    ICurrentUserService currentUserService)
-    : IRequestHandler<GetEmployeeDetailQuery, Employee>
+    ITranslator translator,
+    ILogger<GetEmployeeDetailQueryHandler> logger)
+    : IRequestHandler<GetEmployeeDetailQuery, BaseResult<Employee>>
 {
-    private readonly IMapper _mapper = mapper;
-    private readonly ICurrentUserService _currentUserService = currentUserService;
-
-    public async Task<Employee> Handle(GetEmployeeDetailQuery request, CancellationToken cancellationToken)
+    public async Task<BaseResult<Employee>> Handle(GetEmployeeDetailQuery request, CancellationToken cancellationToken)
     {
-        var employee = await employeeRepository.GetByIdAsync(request.Id, cancellationToken);
-        
-        if (employee == null)
+        try
         {
-            throw new NotFoundException(nameof(Employee), request.Id);
+            var employee = await employeeRepository.GetByIdAsync(request.Id, cancellationToken);
+
+            if (employee is null)
+            {
+                return BaseResult<Employee>.Failure(new Error(
+                    ErrorCode.NotFound,
+                    translator.GetString(
+                        TranslatorMessages.EmployeeMessages.Employee_NotFound_with_id(request.Id)),
+                    nameof(request.Id)
+                ));
+            }
+
+            return BaseResult<Employee>.Ok(employee);
         }
-
-        /*// Check authorization
-        if (!_currentUserService.IsInRole("HR.Admin") && 
-            employee.AzureAdId != _currentUserService.UserId)
+        catch (Exception ex)
         {
-            throw new ForbiddenAccessException();
-        }*/
+            logger.LogError(ex, "Error occurred while retrieving employee with ID {EmployeeId}", request.Id);
 
-        //return _mapper.Map<EmployeeDetailDto>(employee);
-        return employee;
+            return BaseResult<Employee>.Failure(new Error(
+                ErrorCode.Exception,
+                translator.GetString(TranslatorMessages.GeneralMessages.Unexpected_Error(ex.Message))
+            ));
+        }
     }
 }

@@ -7,7 +7,12 @@ public interface ILeaveRequestRepository : IGenericRepository<LeaveRequest>
 {
    
     Task<List<LeaveRequest>> GetByEmployeeIdAsync(Guid employeeId, CancellationToken cancellationToken = default);
+    
     Task<List<LeaveRequest>> GetPendingByDepartmentAsync(Guid departmentId, CancellationToken cancellationToken = default);
+    
+    Task<List<LeaveRequest>> GetByDepartmentIdAsync(Guid departmentId, CancellationToken cancellationToken = default);
+    
     Task<List<LeaveRequest>> GetApprovedInPeriodAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken = default);
-    Task<List<LeaveRequest>> CheckOverlappingLeaveRequests(DateTime startDate, DateTime endDate,Guid employeeId, CancellationToken cancellationToken = default);
+    
+    Task<List<LeaveRequest>> CheckOverlappingLeaveRequests(DateTime startDate, DateTime endDate, Guid employeeId, CancellationToken cancellationToken = default);
 }

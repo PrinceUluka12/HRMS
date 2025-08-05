@@ -75,7 +75,7 @@ public class LeavePolicyService(
         // - Company policy
         // This is a simplified version
 
-        var employee = await employeeRepository.GetByIdAsyncIncludeRelationship(employeeId, lr=> lr.LeaveRequests);
+        var employee = await employeeRepository.GetByIdWithIncludesAsync(employeeId, lr=> lr.LeaveRequests);
         
         if (employee == null)
         {

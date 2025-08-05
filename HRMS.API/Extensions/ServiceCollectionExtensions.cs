@@ -39,7 +39,8 @@ public static class ServiceCollectionExtensions
                 // Configure token validation parameters (valid issuers)
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
-                    ValidIssuers = configuration.GetSection("JwtSettings:ValidIssuers").Get<string[]>()
+                    ValidIssuers = configuration.GetSection("JwtSettings:ValidIssuers").Get<string[]>(),
+                    ValidateIssuer = true
                 };
             });
 

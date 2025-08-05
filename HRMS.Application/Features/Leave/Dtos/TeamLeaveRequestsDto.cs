@@ -9,4 +9,6 @@ public class TeamLeaveRequestsDto
     public DateTime EndDate { get; set; }
     public string LeaveType { get; set; }
     public string Reason { get; set; }
+    
+    
 }

@@ -1,5 +1,6 @@
 using System.Reflection;
 using HRMS.Application.Common.Interfaces;
+using HRMS.Application.Interfaces;
 using HRMS.Application.Interfaces.Repositories;
 using HRMS.Domain.Interfaces;
 using HRMS.Infrastructure.Persistence;
@@ -32,6 +33,7 @@ public static class ServiceRegistration
 
         // Register repositories dynamically
         services.RegisterRepositories();
+        
 
         return services;
     }

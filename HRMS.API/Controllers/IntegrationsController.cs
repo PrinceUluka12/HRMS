@@ -8,33 +8,23 @@ namespace HRMS.API.Controllers;
 [Authorize(Roles = "HR.Admin")]
 [ApiController]
 [Route("api/integrations")]
-public class IntegrationsController : ControllerBase
+public class IntegrationsController(
+    IAzureAdService azureAdService,
+    ITeamsIntegrationService teamsService,
+    ILogger<IntegrationsController> logger)
+    : ControllerBase
 {
-    private readonly IAzureAdService _azureAdService;
-    private readonly ITeamsIntegrationService _teamsService;
-    private readonly ILogger<IntegrationsController> _logger;
-
-    public IntegrationsController(
-        IAzureAdService azureAdService,
-        ITeamsIntegrationService teamsService,
-        ILogger<IntegrationsController> logger)
-    {
-        _azureAdService = azureAdService;
-        _teamsService = teamsService;
-        _logger = logger;
-    }
-
     [HttpPost("sync-employees")]
     public async Task<IActionResult> SyncEmployeesFromAzureAd()
     {
         try
         {
-            await _azureAdService.SyncEmployeesFromAzureAdAsync();
+            await azureAdService.SyncEmployeesFromAzureAdAsync();
             return Ok(new { Message = "Employee sync completed successfully" });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error during employee sync from Azure AD");
+            logger.LogError(ex, "Error during employee sync from Azure AD");
             return StatusCode(500, new { Error = "Failed to sync employees" });
         }
     }
@@ -45,7 +35,7 @@ public class IntegrationsController : ControllerBase
     {
         try
         {
-            await _teamsService.SendTeamsNotificationAsync(
+            await teamsService.SendTeamsNotificationAsync(
                 request.TeamId,
                 request.ChannelId,
                 request.Message);
@@ -54,7 +44,7 @@ public class IntegrationsController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error sending Teams notification");
+            logger.LogError(ex, "Error sending Teams notification");
             return StatusCode(500, new { Error = "Failed to send notification" });
         }
     }

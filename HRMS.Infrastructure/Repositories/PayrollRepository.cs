@@ -19,8 +19,11 @@ public class PayrollRepository(ApplicationDbContext context): GenericRepository<
 
     public async Task<List<Payroll>> GetByPeriodAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken = default)
     {
-        var data =  await context.Payrolls.AsNoTracking().Include(e => e.Employee).Where(e => e.PayPeriodStart ==  startDate && e.PayPeriodEnd == endDate).ToListAsync(cancellationToken);
-        return data;
+        return await context.Payrolls
+            .Include(p => p.Employee)
+            .AsNoTracking()
+            .Where(p => p.PayPeriodStart <= endDate && p.PayPeriodEnd >= startDate)
+            .ToListAsync(cancellationToken);
     }
 
     public async Task<List<Payroll>> GetPayrollFromDateAsync(

@@ -1,33 +1,51 @@
 using HRMS.Application.Features.Employees.Dtos;
 using HRMS.Application.Features.Leave.Dtos;
 using HRMS.Application.Features.Performance.Dtos;
+using HRMS.Application.Helpers;
+using HRMS.Application.Interfaces;
 using HRMS.Application.Interfaces.Repositories;
+using HRMS.Application.Wrappers;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace HRMS.Application.Features.Employees.Queries.GetEmployeeById;
 
-public record GetEmployeeByIdQuery(Guid Id) : IRequest<EmployeeDetailDto>;
+public record GetEmployeeByIdQuery(Guid Id) : IRequest<BaseResult<EmployeeDetailDto>>;
 
 public class GetEmployeeByIdQueryHandler(
     IEmployeeRepository employeeRepository,
-    IDepartmentRepository departmentRepository,
-    IPositionRepository positionRepository) : IRequestHandler<GetEmployeeByIdQuery, EmployeeDetailDto>
+    ITranslator translator,
+    ILogger<GetEmployeeByIdQueryHandler> logger)
+    : IRequestHandler<GetEmployeeByIdQuery, BaseResult<EmployeeDetailDto>>
 {
-    public async Task<EmployeeDetailDto> Handle(GetEmployeeByIdQuery request, CancellationToken cancellationToken)
+    public async Task<BaseResult<EmployeeDetailDto>> Handle(GetEmployeeByIdQuery request, CancellationToken cancellationToken)
     {
         try
         {
-            var employee = await employeeRepository.GetByIdAsyncIncludeRelationship(
+            var employee = await employeeRepository.GetByIdWithIncludesAsync(
                 request.Id,
                 e => e.Department,
-                f => f.Position,
-                d => d.Dependents,
+                e => e.Position,
+                e => e.Dependents,
                 e => e.EmergencyContacts,
                 e => e.Certifications,
                 e => e.EducationHistory,
                 e => e.LeaveRequests,
                 e => e.PerformanceReviews);
-            EmployeeDetailDto data = new EmployeeDetailDto
+
+            if (employee is null)
+            {
+                return BaseResult<EmployeeDetailDto>.Failure(new Error(
+                    ErrorCode.NotFound,
+                    translator.GetString(TranslatorMessages.EmployeeMessages.Employee_NotFound_with_id(request.Id)),
+                    nameof(request.Id)
+                ));
+            }
+
+            var managerId = employee.Department?.ManagerId;
+            var managerName = managerId.HasValue ? await TryGetManagerName(managerId.Value) : "";
+
+            var dto = new EmployeeDetailDto
             {
                 Id = employee.Id,
                 EmployeeNumber = employee.EmployeeNumber,
@@ -41,8 +59,14 @@ public class GetEmployeeByIdQueryHandler(
                 Email = employee.Email.Value,
                 WorkPhone = employee.WorkPhone,
                 PersonalPhone = employee.PersonalPhone,
-                PrimaryAddress = new AddressDto(employee.PrimaryAddress.Street, employee.PrimaryAddress.City,
-                    employee.PrimaryAddress.State, employee.PrimaryAddress.PostalCode, employee.PrimaryAddress.Country),
+                PrimaryAddress = employee.PrimaryAddress is not null
+                    ? new AddressDto(
+                        employee.PrimaryAddress.Street,
+                        employee.PrimaryAddress.City,
+                        employee.PrimaryAddress.State,
+                        employee.PrimaryAddress.PostalCode,
+                        employee.PrimaryAddress.Country)
+                    : null,
                 HireDate = employee.HireDate,
                 TerminationDate = employee.TerminationDate,
                 Status = employee.Status.ToString(),
@@ -50,12 +74,12 @@ public class GetEmployeeByIdQueryHandler(
                 IsFullTime = employee.IsFullTime,
                 FullTimeEquivalent = employee.FullTimeEquivalent,
                 DepartmentId = employee.DepartmentId,
-                DepartmentName = employee.Department.Name,
+                DepartmentName = employee.Department?.Name ?? "",
                 PositionId = employee.PositionId,
-                PositionTitle = employee.Position.Title,
-                ManagerId = employee.Department.ManagerId,
-                ManagerName = await GetEmployeeNameById(employee.Department.ManagerId),
-                JobTitle = employee.Position.Title,
+                PositionTitle = employee.Position?.Title ?? "",
+                ManagerId = managerId,
+                ManagerName = managerName,
+                JobTitle = employee.Position?.Title ?? "",
                 BaseSalary = employee.BaseSalary,
                 PayFrequency = employee.PayFrequency.ToString(),
                 EmergencyContacts = employee.EmergencyContacts
@@ -75,13 +99,13 @@ public class GetEmployeeByIdQueryHandler(
                     .ToList(),
 
                 Certifications = employee.Certifications
-                    .Select(e => new CertificationDto(
-                        e.Id,
-                        e.Name,
-                        e.IssuingOrganization,
-                        e.IssueDate,
-                        e.ExpirationDate
-                    )).ToList(),
+                    .Select(cert => new CertificationDto(
+                        cert.Id,
+                        cert.Name,
+                        cert.IssuingOrganization,
+                        cert.IssueDate,
+                        cert.ExpirationDate))
+                    .ToList(),
 
                 EducationHistory = employee.EducationHistory
                     .Select(e => new EducationDto(
@@ -94,29 +118,30 @@ public class GetEmployeeByIdQueryHandler(
                     .ToList(),
 
                 LeaveRequests = employee.LeaveRequests
-                    .Select(l => new LeaveRequestDto(
-                        l.Id,
-                        l.EmployeeId,
-                        $"{employee.Name.FirstName} {employee.Name.LastName}", // Assuming employee name from current employee
-                        l.StartDate,
-                        l.EndDate,
-                        l.Type,
-                        l.Reason,
-                        l.Status,
-                        l.RequestDate,
-                        l.ApprovedBy,
-                        l.ApprovedDate,
-                        l.RejectionReason
-                    ))
+                    .Select(l => new LeaveRequestDto
+                    {
+                        Id = l.Id,
+                        EmployeeId = l.EmployeeId,
+                        EmployeeName = $"{employee.Name.FirstName} {employee.Name.LastName}",
+                        StartDate = l.StartDate,
+                        EndDate = l.EndDate,
+                        Type = l.Type,
+                        Reason = l.Reason,
+                        Status = l.Status,
+                        RequestDate = l.RequestDate,
+                        ApprovedBy = l.ApprovedBy,
+                        ApprovedDate = l.ApprovedDate,
+                        RejectionReason = l.RejectionReason
+                    })
                     .ToList(),
 
                 PerformanceReviews = employee.PerformanceReviews
                     .Select(r => new PerformanceReviewDto(
                         r.Id,
                         r.EmployeeId,
-                        $"{employee.Name.FirstName} {employee.Name.LastName}", // Assumes current employee's name
+                        $"{employee.Name.FirstName} {employee.Name.LastName}",
                         r.ReviewerId,
-                        r.EmployeeId.ToString(), // If this exists on the entity; otherwise you'll need to resolve it
+                        r.EmployeeId.ToString(), // Can be replaced with reviewer name
                         r.ReviewDate,
                         r.NextReviewDate,
                         r.OverallRating,
@@ -126,33 +151,34 @@ public class GetEmployeeByIdQueryHandler(
                             g.Description,
                             g.TargetDate,
                             g.Status,
-                            g.Comments
-                        )).ToList()
-                    ))
-                    .ToList(),
-
+                            g.Comments)).ToList()))
+                    .ToList()
             };
-            return data;
+
+            return BaseResult<EmployeeDetailDto>.Ok(dto);
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine(e);
-            throw;
+            logger.LogError(ex, "Error retrieving employee with ID: {EmployeeId}", request.Id);
+
+            return BaseResult<EmployeeDetailDto>.Failure(new Error(
+                ErrorCode.Exception,
+                translator.GetString(TranslatorMessages.GeneralMessages.Unexpected_Error(ex.Message))
+            ));
         }
     }
 
-    private async Task<string> GetEmployeeNameById(Guid? id)
+    private async Task<string> TryGetManagerName(Guid managerId)
     {
         try
         {
-            var data = await employeeRepository.GetByIdAsync(id.Value);
-            return $"{data.Name.FirstName} {data.Name.LastName}";
+            var manager = await employeeRepository.GetByIdAsync(managerId);
+            return manager is null ? "" : $"{manager.Name.FirstName} {manager.Name.LastName}";
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine(e);
-            throw;
+            logger.LogWarning(ex, "Failed to resolve manager name for ID: {ManagerId}", managerId);
+            return "";
         }
     }
-    
 }

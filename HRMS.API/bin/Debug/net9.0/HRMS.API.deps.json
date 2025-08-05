@@ -9,6 +9,7 @@
       "HRMS.API/1.0.0": {
         "dependencies": {
           "HRMS.Infrastructure": "1.0.0",
+          "HRMS.Infrastructure.Resources": "1.0.0",
           "Hellang.Middleware.ProblemDetails": "6.5.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.7",
           "Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer": "5.1.0",
@@ -1785,6 +1786,7 @@
       },
       "HRMS.Domain/1.0.0": {
         "dependencies": {
+          "MediatR": "13.0.0",
           "Microsoft.EntityFrameworkCore.Abstractions": "9.0.7"
         },
         "runtime": {
@@ -1813,6 +1815,23 @@
           "HRMS.Infrastructure.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "HRMS.Infrastructure.Resources/1.0.0": {
+        "dependencies": {
+          "HRMS.Application": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.7"
+        },
+        "runtime": {
+          "HRMS.Infrastructure.Resources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "fa/HRMS.Infrastructure.Resources.resources.dll": {
+            "locale": "fa"
           }
         }
       }
@@ -2829,6 +2848,11 @@
       "sha512": ""
     },
     "HRMS.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HRMS.Infrastructure.Resources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

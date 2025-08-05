@@ -8,9 +8,11 @@ namespace HRMS.Infrastructure.Repositories;
 public class TimeEntryRepository(ApplicationDbContext context)
     : GenericRepository<TimeEntry>(context), ITimeEntryRepository
 {
-    public async Task<IEnumerable<TimeEntry>> GetEntryByEmployeeId(Guid EmployeeId)
+    public async Task<IEnumerable<TimeEntry>> GetEntryByEmployeeId(Guid EmployeeId , CancellationToken cancellationToken = default)
     {
-        var data = await context.TimeEntries.Where(e => e.EmployeeId == EmployeeId).Include(loc => loc.Locations).ToListAsync();
-        return data;
+        return await context.TimeEntries
+            .Where(e => e.EmployeeId == EmployeeId)
+            .Include(e => e.Locations)
+            .ToListAsync(cancellationToken);
     }
 }

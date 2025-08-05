@@ -4,5 +4,5 @@ namespace HRMS.Application.Interfaces.Services;
 
 public class DateTimeService : IDateTime
 {
-    public DateTime Now => DateTime.UtcNow;
+    public DateTime Now => DateTime.Now;
 }

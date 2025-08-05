@@ -1,63 +1,80 @@
 using HRMS.Application.Features.Payroll.Dtos;
 using HRMS.Application.Interfaces.Repositories;
+using HRMS.Application.Wrappers;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace HRMS.Application.Features.Payroll.Queries.GetPayrollSummaryReport;
 
-public record GetPayrollSummaryReportQuery(DateTime StartDate, DateTime EndDate) : IRequest<PayrollSummaryReportDto>;
+public record GetPayrollSummaryReportQuery(DateTime StartDate, DateTime EndDate) 
+    : IRequest<BaseResult<PayrollSummaryReportDto>>;
 
 public class GetPayrollSummaryReportQueryHandler(
     IEmployeeRepository employeeRepository,
-    IPayrollRepository payrollRepository) : IRequestHandler<GetPayrollSummaryReportQuery, PayrollSummaryReportDto>
+    IPayrollRepository payrollRepository,
+    ILogger<GetPayrollSummaryReportQueryHandler> logger)
+    : IRequestHandler<GetPayrollSummaryReportQuery, BaseResult<PayrollSummaryReportDto>>
 {
-    public async Task<PayrollSummaryReportDto> Handle(GetPayrollSummaryReportQuery request,
-        CancellationToken cancellationToken)
+    public async Task<BaseResult<PayrollSummaryReportDto>> Handle(GetPayrollSummaryReportQuery request, CancellationToken cancellationToken)
     {
         try
         {
-            var payrolls =
-                await payrollRepository.GetByPeriodAsync(request.StartDate, request.EndDate, cancellationToken);
-            decimal TotalGrossPayroll = 0;
-            decimal TotalNetPayroll = 0;
-            decimal TotalTaxes = 0;
-            decimal TotalBenefits = 0;
-            int EmployeeCount = 0;
-            List<EmployeePayrollSummaryDto> employeePayroll = new();
-            foreach (var payroll in payrolls)
-            {
-                TotalGrossPayroll += payroll.GrossSalary;
-                TotalNetPayroll += payroll.NetSalary;
-                TotalTaxes += payroll.TaxDeductions;
-                TotalBenefits += payroll.BenefitsDeductions;
-                EmployeeCount++;
+            var payrolls = await payrollRepository.GetByPeriodAsync(request.StartDate, request.EndDate, cancellationToken);
 
-                var employee = new EmployeePayrollSummaryDto()
-                {
-                    EmployeeId = payroll.EmployeeId,
-                    EmployeeName = $"{payroll.Employee.Name.FirstName}  {payroll.Employee.Name.LastName}",
-                    TotalGross = payroll.GrossSalary,
-                    TotalNet = payroll.NetSalary
-                };
-                employeePayroll.Add(employee);
+            if (payrolls == null || !payrolls.Any())
+            {
+                return BaseResult<PayrollSummaryReportDto>.Failure(new Error(
+                    ErrorCode.NotFound,
+                    $"No payroll records found between {request.StartDate:yyyy-MM-dd} and {request.EndDate:yyyy-MM-dd}."));
             }
 
-            var data = new PayrollSummaryReportDto()
+            decimal totalGross = 0, totalNet = 0, totalTax = 0, totalBenefits = 0;
+            int employeeCount = 0;
+            var employeeSummaries = new List<EmployeePayrollSummaryDto>();
+
+            foreach (var payroll in payrolls)
             {
-                TotalNetPayroll = TotalNetPayroll,
-                TotalGrossPayroll = TotalGrossPayroll,
-                TotalBenefits = TotalBenefits,
-                TotalTaxes = TotalTaxes,
-                EmployeeCount = EmployeeCount,
-                Payrolls = employeePayroll,
+                totalGross += payroll.GrossSalary;
+                totalNet += payroll.NetSalary;
+                totalTax += payroll.TaxDeductions;
+                totalBenefits += payroll.BenefitsDeductions;
+                employeeCount++;
+
+                var employeeName = payroll.Employee != null
+                    ? $"{payroll.Employee.Name.FirstName} {payroll.Employee.Name.LastName}"
+                    : "Unknown";
+
+                employeeSummaries.Add(new EmployeePayrollSummaryDto
+                {
+                    EmployeeId = payroll.EmployeeId,
+                    EmployeeName = employeeName,
+                    TotalGross = payroll.GrossSalary,
+                    TotalNet = payroll.NetSalary
+                });
+            }
+
+            var summary = new PayrollSummaryReportDto
+            {
                 StartDate = request.StartDate,
-                EndDate = request.EndDate
+                EndDate = request.EndDate,
+                TotalGrossPayroll = totalGross,
+                TotalNetPayroll = totalNet,
+                TotalTaxes = totalTax,
+                TotalBenefits = totalBenefits,
+                EmployeeCount = employeeCount,
+                Payrolls = employeeSummaries
             };
-            return data;
+
+            return BaseResult<PayrollSummaryReportDto>.Ok(summary);
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine(e);
-            throw;
+            logger.LogError(ex, "Error generating payroll summary report for period {Start} to {End}", request.StartDate, request.EndDate);
+
+            return BaseResult<PayrollSummaryReportDto>.Failure(new Error(
+                ErrorCode.Exception,
+                "An unexpected error occurred while generating the payroll summary report."
+            ));
         }
     }
 }

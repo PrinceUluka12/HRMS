@@ -33,7 +33,7 @@ public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
             .OnDelete(DeleteBehavior.Restrict); // Prevent cascading deletes
 
         
-        
+       
         
     }
 }

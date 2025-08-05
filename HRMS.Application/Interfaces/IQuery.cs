@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace HRMS.Application.Common.Interfaces;
+namespace HRMS.Application.Interfaces;
 
 public interface IQuery<TResponse> : IRequest<TResponse>
 {

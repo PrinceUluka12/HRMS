@@ -11,6 +11,8 @@ public class PositionRepository(ApplicationDbContext context, IUnitOfWork unitOf
 {
     public async Task<Position?> GetByTitleAsync(string title, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await context.Positions
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Title == title, cancellationToken);
     }
 }

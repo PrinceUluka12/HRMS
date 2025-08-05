@@ -9,43 +9,41 @@ namespace HRMS.API.Controllers;
 [Authorize(Roles = "HR.Admin,Payroll.Specialist")]
 [ApiController]
 [Route("api/[controller]")]
-public class ReportsController : ControllerBase
+public class ReportsController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public ReportsController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
+    /// <summary>
+    /// Retrieves a summary of payroll between a date range.
+    /// </summary>
     [HttpGet("payroll-summary")]
-    public async Task<ActionResult<PayrollSummaryReportDto>> GetPayrollSummary(
-        [FromQuery] DateTime startDate,
-        [FromQuery] DateTime endDate)
+    public async Task<IActionResult> GetPayrollSummary([FromQuery] GetPayrollSummaryReportQuery query)
     {
-        var query = new GetPayrollSummaryReportQuery(startDate, endDate);
-        var result = await _mediator.Send(query);
+        var result = await mediator.Send(query);
         return Ok(result);
     }
 
-    /*[HttpGet("employee-turnover")]
-    public async Task<ActionResult<EmployeeTurnoverReportDto>> GetEmployeeTurnoverReport(
-        [FromQuery] int year)
+    /*
+    /// <summary>
+    /// Retrieves the employee turnover report for a given year.
+    /// </summary>
+    [HttpGet("employee-turnover")]
+    [ProducesResponseType(typeof(EmployeeTurnoverReportDto), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetEmployeeTurnoverReport([FromQuery] int year)
     {
         var query = new GetEmployeeTurnoverReportQuery(year);
-        var result = await _mediator.Send(query);
+        var result = await mediator.Send(query);
         return Ok(result);
     }
-    
+
+    /// <summary>
+    /// Retrieves leave utilization report optionally filtered by year and department.
+    /// </summary>
     [HttpGet("leave-utilization")]
-    public async Task<ActionResult<LeaveUtilizationReportDto>> GetLeaveUtilizationReport(
-        [FromQuery] int? year = null,
-        [FromQuery] Guid? departmentId = null)
+    [ProducesResponseType(typeof(LeaveUtilizationReportDto), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetLeaveUtilizationReport([FromQuery] int? year = null, [FromQuery] Guid? departmentId = null)
     {
-        var query = new GetLeaveUtilizationReportQuery(
-            year ?? DateTime.UtcNow.Year,
-            departmentId);
-        var result = await _mediator.Send(query);
+        var query = new GetLeaveUtilizationReportQuery(year ?? DateTime.UtcNow.Year, departmentId);
+        var result = await mediator.Send(query);
         return Ok(result);
-    }*/
+    }
+    */
 }

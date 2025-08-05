@@ -2,41 +2,56 @@ using System.Diagnostics;
 
 namespace HRMS.API.Middleware;
 
-public class PerformanceMiddleware(
-    RequestDelegate next,
-    ILogger<PerformanceMiddleware> logger,
-    IConfiguration configuration)
+public class PerformanceMiddleware
 {
-    private readonly int _warningThresholdMs = configuration.GetValue<int>("Performance:WarningThresholdMs", 500);
+    private readonly RequestDelegate _next;
+    private readonly ILogger<PerformanceMiddleware> _logger;
+    private readonly IConfiguration _configuration;
+    private readonly int _warningThresholdMs;
+    private readonly bool _logRequestQuery;
+
+    public PerformanceMiddleware(
+        RequestDelegate next,
+        ILogger<PerformanceMiddleware> logger,
+        IConfiguration configuration)
+    {
+        _next = next;
+        _logger = logger;
+        _configuration = configuration;
+
+        _warningThresholdMs = _configuration.GetValue<int>("Performance:WarningThresholdMs", 500);
+        _logRequestQuery = _configuration.GetValue<bool>("Performance:LogRequestQuery", false);
+    }
 
     public async Task InvokeAsync(HttpContext context)
     {
         var stopwatch = Stopwatch.StartNew();
-        
+
         try
         {
-            await next(context);
+            await _next(context);
         }
         finally
         {
             stopwatch.Stop();
-            var elapsedMs = stopwatch.ElapsedMilliseconds;
+            var elapsedMs = stopwatch.Elapsed.TotalMilliseconds;
+
+            var logMessage = new
+            {
+                Method = context.Request.Method,
+                Path = context.Request.Path,
+                StatusCode = context.Response.StatusCode,
+                DurationMs = elapsedMs,
+                Query = _logRequestQuery ? context.Request.QueryString.Value : null
+            };
 
             if (elapsedMs > _warningThresholdMs)
             {
-                logger.LogWarning(
-                    "Long running request: {Method} {Path} took {ElapsedMs}ms",
-                    context.Request.Method,
-                    context.Request.Path,
-                    elapsedMs);
+                _logger.LogWarning("Slow Request {@LogMessage}", logMessage);
             }
             else
             {
-                logger.LogInformation(
-                    "Request completed: {Method} {Path} took {ElapsedMs}ms",
-                    context.Request.Method,
-                    context.Request.Path,
-                    elapsedMs);
+                _logger.LogInformation("Request Completed {@LogMessage}", logMessage);
             }
         }
     }

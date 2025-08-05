@@ -5,8 +5,8 @@ using HRMS.Domain.Aggregates.LeaveAggregate;
 using HRMS.Domain.Aggregates.PayrollAggregate;
 using Microsoft.Extensions.Logging;
 using Microsoft.Graph;
-using Microsoft.Graph.Me.SendMail;
 using Microsoft.Graph.Models;
+using Microsoft.Graph.Me.SendMail;
 
 namespace HRMS.Application.Interfaces.Services;
 
@@ -30,12 +30,11 @@ public class EmailService(
                 Name = $"Payslip_{payroll.PayPeriodStart:yyyyMMdd}-{payroll.PayPeriodEnd:yyyyMMdd}.pdf",
                 ContentType = "application/pdf",
                 ContentBytes = GeneratePayslipPdf(payroll),
-                //ODataType = "#microsoft.graph.fileAttachment"
             };
 
             var message = new Message
             {
-                Subject = $"Your Payslip for {payroll.PayPeriodStart:yyyy-MM-dd} to {payroll.PayPeriodEnd:yyyy-MM-dd}",
+                Subject = $"Your Payslip: {payroll.PayPeriodStart:yyyy-MM-dd} to {payroll.PayPeriodEnd:yyyy-MM-dd}",
                 Body = new ItemBody
                 {
                     ContentType = BodyType.Html,
@@ -43,15 +42,12 @@ public class EmailService(
                 },
                 ToRecipients = new List<Recipient>
                 {
-                    new Recipient
+                    new()
                     {
-                        EmailAddress = new EmailAddress
-                        {
-                            Address = recipientEmail
-                        }
+                        EmailAddress = new EmailAddress { Address = recipientEmail }
                     }
                 },
-                Attachments = new List<Attachment> {pdfAttachment}
+                Attachments = new List<Attachment> { pdfAttachment }
             };
 
             var sendMailRequest = new SendMailPostRequestBody
@@ -60,10 +56,8 @@ public class EmailService(
                 SaveToSentItems = true
             };
 
-            await graphServiceClient.Me
-                .SendMail
-                .PostAsync(sendMailRequest)
-                .ConfigureAwait(false);
+            await graphServiceClient.Me.SendMail.PostAsync(sendMailRequest);
+            logger.LogInformation("Payslip email sent to {Email}", recipientEmail);
         }
         catch (ServiceException ex)
         {
@@ -72,40 +66,110 @@ public class EmailService(
         }
     }
 
-
     public async Task SendWelcomeEmailAsync(string recipientEmail, Employee employee)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrWhiteSpace(recipientEmail))
+            throw new ArgumentException("Recipient email cannot be null or empty.", nameof(recipientEmail));
+
+        if (employee == null)
+            throw new ArgumentNullException(nameof(employee));
+
+        try
+        {
+            var body = new StringBuilder();
+            body.AppendLine("<html><body>");
+            body.AppendLine($"<h2>Welcome to the Company, {employee.Name.FirstName}!</h2>");
+            body.AppendLine("<p>We are excited to have you on board.</p>");
+            body.AppendLine("</body></html>");
+
+            var message = new Message
+            {
+                Subject = "Welcome to the Team!",
+                Body = new ItemBody { ContentType = BodyType.Html, Content = body.ToString() },
+                ToRecipients = new List<Recipient>
+                {
+                    new() { EmailAddress = new EmailAddress { Address = recipientEmail } }
+                }
+            };
+
+            await graphServiceClient.Me.SendMail.PostAsync(new SendMailPostRequestBody
+            {
+                Message = message,
+                SaveToSentItems = true
+            });
+
+            logger.LogInformation("Welcome email sent to {Email}", recipientEmail);
+        }
+        catch (ServiceException ex)
+        {
+            logger.LogError(ex, "Error sending welcome email to {Email}", recipientEmail);
+            throw;
+        }
     }
 
     public async Task SendLeaveApprovalEmailAsync(string recipientEmail, LeaveRequest leaveRequest)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrWhiteSpace(recipientEmail))
+            throw new ArgumentException("Recipient email cannot be null or empty.", nameof(recipientEmail));
+
+        if (leaveRequest == null)
+            throw new ArgumentNullException(nameof(leaveRequest));
+
+        try
+        {
+            var content = new StringBuilder();
+            content.AppendLine("<html><body>");
+            content.AppendLine($"<h2>Leave Approved</h2>");
+            content.AppendLine($"<p>Your leave request from <b>{leaveRequest.StartDate:yyyy-MM-dd}</b> to <b>{leaveRequest.EndDate:yyyy-MM-dd}</b> has been <strong>approved</strong>.</p>");
+            content.AppendLine($"<p>Type: {leaveRequest.Type}</p>");
+            content.AppendLine("</body></html>");
+
+            var message = new Message
+            {
+                Subject = "Leave Approval Notification",
+                Body = new ItemBody { ContentType = BodyType.Html, Content = content.ToString() },
+                ToRecipients = new List<Recipient>
+                {
+                    new() { EmailAddress = new EmailAddress { Address = recipientEmail } }
+                }
+            };
+
+            await graphServiceClient.Me.SendMail.PostAsync(new SendMailPostRequestBody
+            {
+                Message = message,
+                SaveToSentItems = true
+            });
+
+            logger.LogInformation("Leave approval email sent to {Email}", recipientEmail);
+        }
+        catch (ServiceException ex)
+        {
+            logger.LogError(ex, "Error sending leave approval email to {Email}", recipientEmail);
+            throw;
+        }
     }
-    
+
     private string GeneratePayslipHtml(Payroll payroll)
     {
-        var html = new StringBuilder();
-        html.AppendLine("<html>");
-        html.AppendLine("<head><style>body { font-family: Arial, sans-serif; }</style></head>");
-        html.AppendLine("<body>");
-        html.AppendLine("<h1>Payslip</h1>");
-        html.AppendLine($"<p>Pay Period: {payroll.PayPeriodStart:yyyy-MM-dd} to {payroll.PayPeriodEnd:yyyy-MM-dd}</p>");
-        html.AppendLine($"<p>Gross Salary: {payroll.GrossSalary:C}</p>");
-        html.AppendLine($"<p>Tax Deductions: {payroll.TaxDeductions:C}</p>");
-        html.AppendLine($"<p>Benefits Deductions: {payroll.BenefitsDeductions:C}</p>");
-        html.AppendLine($"<h3>Net Salary: {payroll.NetSalary:C}</h3>");
-        html.AppendLine("<p>Please see attached PDF for detailed breakdown.</p>");
-        html.AppendLine("</body>");
-        html.AppendLine("</html>");
-        
-        return html.ToString();
+        return $"""
+        <html>
+            <body style="font-family: Arial, sans-serif;">
+            <body>
+                <h1>Payslip</h1>
+                <p>Pay Period: {payroll.PayPeriodStart:yyyy-MM-dd} to {payroll.PayPeriodEnd:yyyy-MM-dd}</p>
+                <p>Gross Salary: {payroll.GrossSalary:C}</p>
+                <p>Tax Deductions: {payroll.TaxDeductions:C}</p>
+                <p>Benefits Deductions: {payroll.BenefitsDeductions:C}</p>
+                <h3>Net Salary: {payroll.NetSalary:C}</h3>
+                <p>Please see attached PDF for detailed breakdown.</p>
+            </body>
+        </html>
+        """;
     }
 
     private byte[] GeneratePayslipPdf(Payroll payroll)
     {
-        // In a real implementation, use a PDF generation library like iTextSharp or QuestPDF
-        // This is a simplified placeholder
+        // Placeholder logic; consider using QuestPDF, DinkToPDF, or iTextSharp for real implementation
         using var stream = new MemoryStream();
         using var writer = new StreamWriter(stream);
         writer.WriteLine($"Payslip for {payroll.PayPeriodStart:yyyy-MM-dd} to {payroll.PayPeriodEnd:yyyy-MM-dd}");

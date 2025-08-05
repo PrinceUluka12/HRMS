@@ -6,7 +6,9 @@ using HRMS.Application.Features.Employees.Queries.GetEmployeeByAzureId;
 using HRMS.Application.Features.Employees.Queries.GetEmployeeById;
 using HRMS.Application.Features.Employees.Queries.GetEmployeeDetail;
 using HRMS.Application.Features.Employees.Queries.GetEmployeeList;
+using HRMS.Application.Features.Employees.Queries.GetOnboardingDetailsByEmployee;
 using HRMS.Application.Features.TimeTracking.Dtos;
+using HRMS.Application.Wrappers;
 using HRMS.Domain.Aggregates.EmployeeAggregate;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -14,46 +16,58 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HRMS.API.Controllers;
 
-//[Authorize]
+
 [ApiController]
-[Microsoft.AspNetCore.Components.Route("api/[controller]")]
+[Route("api/[controller]")]
 public class EmployeesController(IMediator mediator) : ControllerBase
 {
+    /// <summary>
+    /// Creates a new employee.
+    /// </summary>
     [HttpPost]
-    //[Authorize(Roles = "HR.Admin")]
-    [Route("api/[controller]")]
-    public async Task<ActionResult<EmployeeDto>> Create(CreateEmployeeCommand command)
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Create([FromBody] CreateEmployeeCommand command)
     {
         var result = await mediator.Send(command);
-        return Ok (result);
-    }
-
-    [HttpGet("api/[controller]/{Id}")]
-
-    public async Task<ActionResult<EmployeeDetailDto>> GetEmployeeDetails([FromRoute]GetEmployeeByIdQuery request)
-    {
-       
-        var result = await mediator.Send(request);
         return Ok(result);
     }
 
-    [HttpGet]
-    [Route("api/[controller]")]
-    public async Task<ActionResult<List<EmployeeListDto>>> GetAllEmployees()
+    /// <summary>
+    /// Gets employee details by ID.
+    /// </summary>
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetEmployeeDetails(Guid id)
     {
-        var query = new GetEmployeeListQuery();
-        
+        var result = await mediator.Send(new GetEmployeeByIdQuery(id));
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Gets all employees.
+    /// </summary>
+    [HttpGet]
+    public async Task<IActionResult> GetAllEmployees([FromQuery] GetEmployeeListQuery query)
+    {
         var result = await mediator.Send(query);
         return Ok(result);
     }
 
-    [HttpGet("by-azure-id")]
+    /// <summary>
+    /// Gets employee details by Azure AD ID.
+    /// </summary>
+    [HttpGet("azure")]
     public async Task<IActionResult> GetEmployeeByAzureId([FromQuery] GetEmployeeByAzureIdQuery request)
     {
         var result = await mediator.Send(request);
         return Ok(result);
     }
-
     
-    // Other endpoints...
+    
+    
+    [HttpGet("onboarding-details")]
+    public async Task<IActionResult> GetOnboardingDetails([FromQuery]GetOnboardingDetailsQuery request)
+    {
+        var  result =  await mediator.Send(request);
+        return Ok(result);
+    }
 }

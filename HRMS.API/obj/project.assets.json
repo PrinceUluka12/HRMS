@@ -2775,6 +2775,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
+          "MediatR": "13.0.0",
           "Microsoft.EntityFrameworkCore.Abstractions": "9.0.7"
         },
         "compile": {
@@ -2806,6 +2807,20 @@
         },
         "runtime": {
           "bin/placeholder/HRMS.Infrastructure.dll": {}
+        }
+      },
+      "HRMS.Infrastructure.Resources/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "HRMS.Application": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.7"
+        },
+        "compile": {
+          "bin/placeholder/HRMS.Infrastructure.Resources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HRMS.Infrastructure.Resources.dll": {}
         }
       }
     }
@@ -7387,11 +7402,17 @@
       "type": "project",
       "path": "../HRMS.Infrastructure/HRMS.Infrastructure.csproj",
       "msbuildProject": "../HRMS.Infrastructure/HRMS.Infrastructure.csproj"
+    },
+    "HRMS.Infrastructure.Resources/1.0.0": {
+      "type": "project",
+      "path": "../HRMS.Infrastructure.Resources/HRMS.Infrastructure.Resources.csproj",
+      "msbuildProject": "../HRMS.Infrastructure.Resources/HRMS.Infrastructure.Resources.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
       "HRMS.Infrastructure >= 1.0.0",
+      "HRMS.Infrastructure.Resources >= 1.0.0",
       "Hellang.Middleware.ProblemDetails >= 6.5.1",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 9.0.7",
       "Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer >= 5.1.0",
@@ -7432,6 +7453,9 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
+            "/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure.Resources/HRMS.Infrastructure.Resources.csproj": {
+              "projectPath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure.Resources/HRMS.Infrastructure.Resources.csproj"
+            },
             "/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure/HRMS.Infrastructure.csproj": {
               "projectPath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure/HRMS.Infrastructure.csproj"
             }

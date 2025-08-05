@@ -1,6 +1,7 @@
 using HRMS.Application.Features.TimeTracking.Dtos;
 using HRMS.Application.Interfaces.Repositories;
 using HRMS.Application.Interfaces.Services.Contracts;
+using HRMS.Application.Wrappers;
 using HRMS.Domain.Aggregates.TimeTrackingAggregate;
 //using HRMS.Domain.Aggregates.TimeTrackingAggregate;
 using HRMS.Domain.Enums;
@@ -41,7 +42,7 @@ public class TimeTrackingService(ITimeEntryRepository repository, IUnitOfWork un
         await unitOfWork.BeginTransactionAsync(CancellationToken.None);
         try
         {
-            var entry = await repository.GetByIdAsyncIncludeRelationship(timeEntryId);
+            var entry = await repository.GetByIdWithIncludesAsync(timeEntryId);
             if (entry == null) throw new Exception("Time entry not found");
 
             entry.SetClockOut(time);
@@ -62,7 +63,7 @@ public class TimeTrackingService(ITimeEntryRepository repository, IUnitOfWork un
     public async Task AddLocationAsync(Guid timeEntryId, ClockActionType actionType, decimal latitude,
         decimal longitude, DateTime timestamp)
     {
-        var entry = await repository.GetByIdAsyncIncludeRelationship(timeEntryId);
+        var entry = await repository.GetByIdWithIncludesAsync(timeEntryId);
         if (entry == null) throw new Exception("Time entry not found");
 
         entry.AddLocation(new TimeTrackingLocation(Guid.NewGuid(), timeEntryId, actionType, timestamp, latitude,
@@ -72,7 +73,7 @@ public class TimeTrackingService(ITimeEntryRepository repository, IUnitOfWork un
 
     public async Task CompleteEntryAsync(Guid timeEntryId)
     {
-        var entry = await repository.GetByIdAsyncIncludeRelationship(timeEntryId);
+        var entry = await repository.GetByIdWithIncludesAsync(timeEntryId);
         if (entry == null) throw new Exception("Time entry not found");
 
         entry.MarkCompleted();
@@ -82,6 +83,7 @@ public class TimeTrackingService(ITimeEntryRepository repository, IUnitOfWork un
     public async Task<IEnumerable<TimeEntry>> GetByEmployeeIdAsync(Guid id)
     {
         var entry = await repository.GetEntryByEmployeeId(id);
+        
         if (entry == null) throw new Exception("Time entry not found");
         return entry;
     }

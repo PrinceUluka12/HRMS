@@ -1,4 +1,5 @@
 using HRMS.Domain.Aggregates.DepartmentAggregate;
+using HRMS.Domain.Aggregates.EmployeeAggregate.Events;
 using HRMS.Domain.Aggregates.LeaveAggregate;
 using HRMS.Domain.Aggregates.OffboardingAggregate;
 using HRMS.Domain.Aggregates.OnboardingAggregate;
@@ -40,10 +41,11 @@ public class Employee : Entity<Guid>, IAggregateRoot
     public decimal FullTimeEquivalent { get; private set; } // For part-time employees
 
     // Organizational Structure
+    public Guid? ManagerId { get; private set; }
     public Guid DepartmentId { get; private set; }
-    public Department  Department { get; private set; }
+    public Department Department { get; private set; }
     public Guid PositionId { get; private set; }
-    public Position  Position { get; private set; }
+    public Position Position { get; private set; }
     public string JobTitle { get; private set; }
 
 
@@ -89,7 +91,9 @@ public class Employee : Entity<Guid>, IAggregateRoot
     public IReadOnlyCollection<OffboardingChecklist> OffboardingChecklists => _offboardingChecklists.AsReadOnly();
 
     // Private constructor for EF Core
-    private Employee() { }
+    private Employee()
+    {
+    }
 
     public Employee(
         Guid azureAdId,
@@ -109,6 +113,7 @@ public class Employee : Entity<Guid>, IAggregateRoot
         bool isFullTime,
         Guid departmentId,
         Guid positionId,
+        Guid? managerId,
         string jobTitle,
         decimal baseSalary,
         PayFrequency payFrequency,
@@ -117,7 +122,8 @@ public class Employee : Entity<Guid>, IAggregateRoot
         AzureAdId = azureAdId;
         EmployeeNumber = employeeNumber ?? throw new ArgumentNullException(nameof(employeeNumber));
         GovernmentId = governmentId ?? throw new ArgumentNullException(nameof(governmentId));
-        TaxIdentificationNumber = taxIdentificationNumber ?? throw new ArgumentNullException(nameof(taxIdentificationNumber));
+        TaxIdentificationNumber =
+            taxIdentificationNumber ?? throw new ArgumentNullException(nameof(taxIdentificationNumber));
         Name = name ?? throw new ArgumentNullException(nameof(name));
         DateOfBirth = dateOfBirth;
         Gender = gender;
@@ -132,11 +138,44 @@ public class Employee : Entity<Guid>, IAggregateRoot
         FullTimeEquivalent = isFullTime ? 1.0m : 0.5m; // Default for part-time
         DepartmentId = departmentId;
         PositionId = positionId;
+        ManagerId = managerId;
         JobTitle = jobTitle ?? throw new ArgumentNullException(nameof(jobTitle));
         BaseSalary = baseSalary;
         PayFrequency = payFrequency;
         BankDetails = bankDetails ?? throw new ArgumentNullException(nameof(bankDetails));
         Status = EmploymentStatus.Active;
+    }
+
+    public static Employee Create(Guid azureAdId,
+        string employeeNumber,
+        string governmentId,
+        string taxIdentificationNumber,
+        PersonName name,
+        DateTime dateOfBirth,
+        Gender gender,
+        MaritalStatus maritalStatus,
+        Email email,
+        string workPhone,
+        string personalPhone,
+        Address primaryAddress,
+        DateTime hireDate,
+        EmploymentType employmentType,
+        bool isFullTime,
+        Guid departmentId,
+        Guid positionId,
+        Guid? managerId,
+        string jobTitle,
+        decimal baseSalary,
+        PayFrequency payFrequency,
+        BankDetails bankDetails)
+    {
+        var employee = new Employee(azureAdId, employeeNumber, governmentId, taxIdentificationNumber, name, dateOfBirth,
+            gender, maritalStatus, email, workPhone, personalPhone, primaryAddress, hireDate, employmentType,
+            isFullTime, departmentId, positionId, managerId, jobTitle, baseSalary, payFrequency, bankDetails);
+        employee.Id = Guid.NewGuid();
+        //employee.RaiseDomainEvent(new EmployeeCreatedDomainEvent(employee.Id));
+        
+        return employee;
     }
 
     // Domain Methods
@@ -163,7 +202,6 @@ public class Employee : Entity<Guid>, IAggregateRoot
         WorkPhone = workPhone ?? throw new ArgumentNullException(nameof(workPhone));
         PersonalPhone = personalPhone ?? throw new ArgumentNullException(nameof(personalPhone));
         PrimaryAddress = primaryAddress ?? throw new ArgumentNullException(nameof(primaryAddress));
-        
     }
 
     public void UpdateEmploymentDetails(
@@ -251,7 +289,6 @@ public class Employee : Entity<Guid>, IAggregateRoot
         _skills.Add(skill);
     }
 
-    
 
     // Other collection management methods...
 }

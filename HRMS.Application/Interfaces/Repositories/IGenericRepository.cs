@@ -1,43 +1,55 @@
 using System.Linq.Expressions;
 
-namespace HRMS.Application.Interfaces.Repositories;
+namespace HRMS.Application.Common.Interfaces;
 
 /// <summary>
-/// Represents a generic repository interface for performing CRUD operations on entities of type <typeparamref name="T"/>.
+/// Generic repository interface for basic CRUD and query operations.
 /// </summary>
-/// <typeparam name="T">The type of entity managed by the repository.</typeparam>
+/// <typeparam name="T">Entity type.</typeparam>
 public interface IGenericRepository<T> where T : class
 {
     /// <summary>
-    /// Retrieves an entity by its ID, including related entities specified by the include expressions.
+    /// Retrieves an entity by its primary key.
     /// </summary>
-    /// <param name="id">The unique identifier of the entity to retrieve.</param>
-    /// <param name="includes">The related entities to include in the query.</param>
-    /// <returns>A task representing the asynchronous operation, returning the entity if found; otherwise, <c>null</c>.</returns>
-    Task<T> GetByIdAsyncIncludeRelationship(object id, params Expression<Func<T, object>>[] includes);
+    Task<T?> GetByIdAsync(object id);
 
     /// <summary>
-    /// Retrieves all entities of type <typeparamref name="T"/>.
+    /// Retrieves an entity by its primary key with optional related entities included.
     /// </summary>
-    /// <returns>A task representing the asynchronous operation, returning a read-only list of entities.</returns>
+    Task<T?> GetByIdWithIncludesAsync(object id, params Expression<Func<T, object>>[] includes);
+
+    /// <summary>
+    /// Retrieves all entities of type T.
+    /// </summary>
     Task<IReadOnlyList<T>> GetAllAsync();
 
     /// <summary>
-    /// Adds a new entity to the repository.
+    /// Adds a new entity to the database.
     /// </summary>
-    /// <param name="entity">The entity to add.</param>
-    /// <returns>A task representing the asynchronous operation, returning the added entity.</returns>
     Task<T> AddAsync(T entity);
 
     /// <summary>
-    /// Updates an existing entity in the repository.
+    /// Updates an existing entity in the database.
     /// </summary>
-    /// <param name="entity">The entity to update.</param>
-    void Update(T entity);
+    Task Update(T entity);
 
     /// <summary>
-    /// Deletes an entity from the repository.
+    /// Deletes an existing entity from the database.
     /// </summary>
-    /// <param name="entity">The entity to delete.</param>
-    void Delete(T entity);
+    Task Delete(T entity);
+
+    /// <summary>
+    /// Checks whether any entity matches the given predicate.
+    /// </summary>
+    Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
+
+    /// <summary>
+    /// Finds the first entity that matches the given predicate.
+    /// </summary>
+    Task<T?> FindAsync(Expression<Func<T, bool>> predicate);
+
+    /// <summary>
+    /// Retrieves all entities matching the given predicate.
+    /// </summary>
+    Task<List<T>> WhereAsync(Expression<Func<T, bool>> predicate);
 }

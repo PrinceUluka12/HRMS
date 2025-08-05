@@ -17,10 +17,9 @@ public static class CorsExtensions
         {
             options.AddPolicy(CorsPolicyName, builder =>
             {
-                builder.WithOrigins("http://localhost:8080")
+                builder.WithOrigins("https://localhost:8080")
                     .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials(); // Only use this if explicit origins are defined
+                    .AllowAnyMethod(); // Only use this if explicit origins are defined
             });
         });
     }

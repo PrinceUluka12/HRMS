@@ -17,6 +17,7 @@ public class LeaveRequestRepository(ApplicationDbContext context, IUnitOfWork un
         CancellationToken cancellationToken = default)
     {
         return await context.LeaveRequests
+            .Include(e => e.Employee)
             .Where(lr => lr.EmployeeId == employeeId)
             .OrderByDescending(lr => lr.StartDate)
             .ToListAsync(cancellationToken);
@@ -33,9 +34,23 @@ public class LeaveRequestRepository(ApplicationDbContext context, IUnitOfWork un
             .OrderBy(lr => lr.StartDate)
             .ToListAsync(cancellationToken);
     }
+    public async Task<List<LeaveRequest>> GetByDepartmentIdAsync(Guid departmentId, CancellationToken cancellationToken = default)
+    {
+        return await context.LeaveRequests
+            .Include(lr => lr.Employee)
+            .Where(lr => lr.Employee.DepartmentId == departmentId)
+            .OrderByDescending(lr => lr.StartDate)
+            .ToListAsync(cancellationToken);
+    }
     public async Task<List<LeaveRequest>> GetApprovedInPeriodAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await context.LeaveRequests
+            .Include(lr => lr.Employee)
+            .Where(lr => lr.Status == LeaveStatus.Approved &&
+                         lr.StartDate <= endDate &&
+                         lr.EndDate >= startDate)
+            .OrderByDescending(lr => lr.StartDate)
+            .ToListAsync(cancellationToken);
     }
 
     public async Task<List<LeaveRequest>> CheckOverlappingLeaveRequests(DateTime startDate, DateTime endDate, Guid employeeId,
@@ -48,5 +63,7 @@ public class LeaveRequestRepository(ApplicationDbContext context, IUnitOfWork un
             .ToListAsync();
         return overlappingRequests;
     }
+
+    
 }
 

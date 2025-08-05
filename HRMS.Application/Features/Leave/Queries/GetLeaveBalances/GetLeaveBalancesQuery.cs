@@ -1,58 +1,64 @@
 using AutoMapper;
-using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Application.Features.Leave.Dtos;
+using HRMS.Application.Helpers;
+using HRMS.Application.Interfaces;
 using HRMS.Application.Interfaces.Repositories;
 using HRMS.Application.Interfaces.Services.Contracts;
+using HRMS.Application.Wrappers;
 using HRMS.Domain.Aggregates.EmployeeAggregate;
 using HRMS.Domain.Enums;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace HRMS.Application.Features.Leave.Queries.GetLeaveBalances;
 
-public record GetLeaveBalancesQuery(Guid EmployeeId) : IRequest<EmployeeLeaveSummaryDto>;
+public record GetLeaveBalancesQuery(Guid EmployeeId) : IRequest<BaseResult<EmployeeLeaveSummaryDto>>;
 
 public class GetLeaveBalancesQueryHandler(
     IEmployeeRepository employeeRepository,
     ILeavePolicyService leavePolicyService,
-    IMapper mapper)
-    : IRequestHandler<GetLeaveBalancesQuery, EmployeeLeaveSummaryDto>
+    ITranslator translator,
+    ILogger<GetLeaveBalancesQueryHandler> logger)
+    : IRequestHandler<GetLeaveBalancesQuery, BaseResult<EmployeeLeaveSummaryDto>>
 {
-    private readonly IMapper _mapper = mapper;
-
-    public async Task<EmployeeLeaveSummaryDto> Handle(
+    public async Task<BaseResult<EmployeeLeaveSummaryDto>> Handle(
         GetLeaveBalancesQuery request,
         CancellationToken cancellationToken)
     {
         var employee = await employeeRepository.GetByIdAsync(request.EmployeeId, cancellationToken);
-        if (employee == null)
+        if (employee is null)
         {
-            throw new NotFoundException(nameof(Employee), request.EmployeeId);
+            return BaseResult<EmployeeLeaveSummaryDto>.Ok(new EmployeeLeaveSummaryDto());
         }
 
         var balances = new List<LeaveBalanceDto>();
-        
-        // Get balances for each leave type
+
         foreach (LeaveType leaveType in Enum.GetValues(typeof(LeaveType)))
         {
             try
             {
                 var balance = await leavePolicyService.GetLeaveBalanceAsync(request.EmployeeId);
-                balances.Add(balance);
+                if (balance != null)
+                {
+                    balances.Add(balance);
+                }
             }
             catch (Exception ex)
             {
-                // Log error but continue with other leave types
-                Console.WriteLine($"Error getting balance for {leaveType}: {ex.Message}");
+                logger.LogWarning(ex, "Could not retrieve balance for LeaveType {LeaveType} for employee {EmployeeId}", leaveType, request.EmployeeId);
+                // Continue gracefully to collect other leave types
             }
         }
 
-        return new EmployeeLeaveSummaryDto
+        var summary = new EmployeeLeaveSummaryDto
         {
             EmployeeId = employee.Id,
             EmployeeName = $"{employee.Name.FirstName} {employee.Name.LastName}",
             AsOfDate = DateTime.UtcNow,
             Balances = balances
         };
+
+        return BaseResult<EmployeeLeaveSummaryDto>.Ok(summary);
     }
 }

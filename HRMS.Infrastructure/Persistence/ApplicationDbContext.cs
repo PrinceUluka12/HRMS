@@ -1,7 +1,10 @@
 using HRMS.Application.Common.Interfaces;
+using HRMS.Application.Features.Departments.Dtos;
 using HRMS.Domain.Aggregates.DepartmentAggregate;
 using HRMS.Domain.Aggregates.EmployeeAggregate;
 using HRMS.Domain.Aggregates.LeaveAggregate;
+using HRMS.Domain.Aggregates.NotificationAggregate;
+using HRMS.Domain.Aggregates.OnboardingAggregate;
 using HRMS.Domain.Aggregates.PayrollAggregate;
 using HRMS.Domain.Aggregates.PositionAggregate;
 using HRMS.Domain.Aggregates.TimeTrackingAggregate;
@@ -18,12 +21,21 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Position> Positions { get; set; }
     public DbSet<Payroll> Payrolls { get; set; }
     public DbSet<LeaveRequest> LeaveRequests { get; set; }
-    
+    public DbSet<Onboarding> Onboardings { get; set; }
     public DbSet<TimeEntry> TimeEntries { get; set; }
+    
+    public DbSet<Notification> Notifications { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
+        modelBuilder
+            .Entity<DepartmentWithManagerView>(builder =>
+            {
+                builder.HasNoKey(); // Views usually don’t have a PK
+                builder.ToView("vw_DepartmentsWithManagers"); // Map to the SQL view name
+            });
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 

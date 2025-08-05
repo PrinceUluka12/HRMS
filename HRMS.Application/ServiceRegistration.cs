@@ -5,6 +5,7 @@ using HRMS.Application.Common.Mapping;
 using HRMS.Application.Interfaces;
 using HRMS.Application.Interfaces.Services;
 using HRMS.Application.Interfaces.Services.Contracts;
+using HRMS.Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Graph;
 
@@ -14,37 +15,38 @@ public static class ServiceRegistration
 {
     public static IServiceCollection AddApplicationLayer(this IServiceCollection services)
     {
-        // Register current user service
-        services.AddScoped<ICurrentUserService, CurrentUserService>();
+        // Singleton services
+        services.AddSingleton<IDateTime, DateTimeService>();
         
-        // Registers  services implementation.
+
+        // Scoped services
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IAzureAdService, AzureAdService>();
         services.AddScoped<IBenefitsService, BenefitsService>();
-        services.AddSingleton<IDateTime, DateTimeService>();
-        services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<ITimeTrackingService, TimeTrackingService>();
-        services.AddSingleton<GraphServiceClient>(sp =>
-        {
-            var factory = sp.GetRequiredService<GraphServiceClientFactory>();
-            return factory.CreateClient();
-        });
         services.AddScoped<ILeavePolicyService, LeavePolicyService>();
         services.AddScoped<IPayrollService, PayrollService>();
-        services.AddHostedService<PayrollProcessingService>();
         services.AddScoped<ITaxRuleProvider, TaxRuleProvider>();
         services.AddScoped<ITeamsIntegrationService, TeamsIntegrationService>();
+        services.AddScoped<IDefaultStageFactory, DefaultStageFactory>();
+        services.AddScoped<IOnboardingService, OnboardingService>();
+        services.AddScoped<INotificationService, NotificationService>();
+    
 
-        // Registers all FluentValidation validators from the executing assembly.
+
+        // Background/hosted services
+        services.AddHostedService<PayrollProcessingService>();
+
+        // FluentValidation
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-        
-        // Register AutoMapper
+
+        // AutoMapper
         services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
-        // Registers MediatR and automatically discovers handlers from the current assembly.
+        // MediatR
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ServiceRegistration).Assembly));
-            
-            
+
         return services;
     }
 }

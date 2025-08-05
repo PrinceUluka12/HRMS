@@ -1,7 +1,32 @@
+using HRMS.Domain.Interfaces;
+using MediatR;
+
 namespace HRMS.Domain.SeedWork;
 
-public abstract class Entity<TId>
+public abstract class Entity<TId>: IHasDomainEvents
 {
+    
+    private readonly List<IDomainEvent> _domainEvents = new();
+    public List<IDomainEvent> DomainEvents => _domainEvents;
+    public void ClearDomainEvents()
+    {
+        _domainEvents.Clear();
+    }
+    protected void RaiseDomainEvent(IDomainEvent domainEvent)
+    {
+        _domainEvents.Add(domainEvent);
+    }
+    public async Task PublishDomainEventsAsync(IMediator mediator, CancellationToken cancellationToken = default)
+    {
+        var events = _domainEvents;
+        foreach (var domainEvent in events)
+        {
+            await mediator.Publish(domainEvent, cancellationToken);
+        }
+        ClearDomainEvents();
+    }
+    
+    
     public TId Id { get; protected set; }
 
     protected Entity(TId id)

@@ -762,6 +762,7 @@
       "System.Threading.Tasks.Extensions/4.5.4": {},
       "HRMS.Domain/1.0.0": {
         "dependencies": {
+          "MediatR": "13.0.0",
           "Microsoft.EntityFrameworkCore.Abstractions": "9.0.7"
         },
         "runtime": {

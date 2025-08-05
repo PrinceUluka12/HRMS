@@ -1,5 +1,4 @@
 using HRMS.Application.Common.Exceptions;
-using HRMS.Application.Common.Interfaces;
 using HRMS.Application.Features.Benefits.Dtos;
 using HRMS.Application.Interfaces.Repositories;
 using HRMS.Application.Interfaces.Services.Contracts;
@@ -13,9 +12,11 @@ public class BenefitsService(
     ILogger<BenefitsService> logger)
     : IBenefitsService
 {
+    private const decimal DefaultBenefitsRate = 0.12m; // 12% of base salary
+
     public async Task<decimal> CalculateBenefitsDeductionsAsync(Guid employeeId)
     {
-        var employee = await employeeRepository.GetByIdAsyncIncludeRelationship(employeeId, e => e.Position);
+        var employee = await employeeRepository.GetByIdWithIncludesAsync(employeeId, e => e.Position);
         
         if (employee == null)
         {
@@ -23,18 +24,28 @@ public class BenefitsService(
             throw new NotFoundException(nameof(Employee), employeeId);
         }
 
-        // Simplified calculation - in a real system this would consider multiple factors
-        decimal benefitsRate = 0.12m; // 12% of base salary
-        return employee.Position.BaseSalary * benefitsRate;
+        if (employee.Position == null)
+        {
+            logger.LogWarning("Employee {EmployeeId} does not have an associated position", employeeId);
+            throw new InvalidOperationException("Employee does not have an assigned position.");
+        }
+
+        var deduction = employee.Position.BaseSalary * DefaultBenefitsRate;
+
+        logger.LogInformation("Calculated benefit deduction of {Deduction:C} for employee {EmployeeId}", deduction, employeeId);
+
+        return deduction;
     }
 
-    public async Task<BenefitsEnrollmentResult> EnrollEmployeeAsync(Guid employeeId, IEnumerable<Guid> benefitPlanIds)
+    public Task<BenefitsEnrollmentResult> EnrollEmployeeAsync(Guid employeeId, IEnumerable<Guid> benefitPlanIds)
     {
-        throw new NotImplementedException();
+        logger.LogInformation("EnrollEmployeeAsync not yet implemented for employee {EmployeeId}", employeeId);
+        throw new NotImplementedException("Enrollment logic will handle adding benefit plan relations and validations.");
     }
 
-    public async Task<BenefitsSummaryDto> GetBenefitsSummaryAsync(Guid employeeId)
+    public Task<BenefitsSummaryDto> GetBenefitsSummaryAsync(Guid employeeId)
     {
-        throw new NotImplementedException();
+        logger.LogInformation("GetBenefitsSummaryAsync not yet implemented for employee {EmployeeId}", employeeId);
+        throw new NotImplementedException("Benefits summary will aggregate plan data, usage, deductions, etc.");
     }
 }

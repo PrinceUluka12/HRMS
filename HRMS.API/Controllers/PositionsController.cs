@@ -7,23 +7,31 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HRMS.API.Controllers;
 
-//[Authorize(Roles = "HR.Admin")]
 [ApiController]
 [Route("api/[controller]")]
 public class PositionsController(IMediator mediator) : ControllerBase
 {
+    /// <summary>
+    /// Get all positions.
+    /// </summary>
     [HttpGet]
-    public async Task<ActionResult<List<PositionDto>>> GetAll()
+    [Authorize(Roles = "Admin, HR.Manager")]
+    
+    public async Task<IActionResult> GetAll([FromQuery] GetAllPositionsQuery query)
     {
-        var query = new GetAllPositionsQuery();
         var result = await mediator.Send(query);
         return Ok(result);
     }
 
+    /// <summary>
+    /// Create a new position.
+    /// </summary>
     [HttpPost]
-    public async Task<ActionResult<PositionDto>> Create(CreatePositionCommand command)
+    [Authorize(Roles = "HR.Admin")]
+    
+    public async Task<IActionResult> Create([FromBody] CreatePositionCommand command)
     {
         var result = await mediator.Send(command);
-        return CreatedAtAction(nameof(GetAll), new { id = result.Id }, result);
+        return Ok(result);
     }
 }

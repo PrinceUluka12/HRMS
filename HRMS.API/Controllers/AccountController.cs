@@ -9,11 +9,9 @@ using Microsoft.Extensions.Logging;
 
 namespace HRMS.API.Controllers;
 
-[AllowAnonymous]
 [ApiController]
 [Route("api/[controller]")]
 public class AccountController(
-    //IAzureAdService azureAdService,
     IEmployeeRepository employeeRepository,
     ILogger<AccountController> logger)
     : ControllerBase
@@ -22,38 +20,41 @@ public class AccountController(
     [Authorize]
     public async Task<ActionResult<EmployeeProfileDto>> GetProfile()
     {
-        var userId = User.FindFirstValue(ClaimTypes.PrimarySid);    
-        if (string.IsNullOrWhiteSpace(userId))
-        {
-            return Unauthorized("User ID not found in token.");
-        }
+        var azureAdId = GetAzureAdUserId();
+        if (azureAdId == null)
+            return Unauthorized("User ID not found or invalid in token.");
 
         try
         {
-            var employee = await employeeRepository.GetByAzureAdIdAsync(Guid.Parse(userId));
-            if (employee is null)
-            {
-                return NotFound($"Employee with Azure AD ID '{userId}' not found.");
-            }
+            var employee = await employeeRepository.GetByAzureAdIdAsync(azureAdId.Value);
+            if (employee == null)
+                return NotFound($"Employee with Azure AD ID '{azureAdId}' not found.");
 
             var profile = new EmployeeProfileDto
             {
                 EmployeeId = employee.Id,
                 Name = $"{employee.Name.FirstName} {employee.Name.LastName}",
                 Email = employee.Email.Value,
-                Department = employee.Department?.Name,
-                Position = employee.Position?.Title
+                Department = employee.Department?.Name ?? string.Empty,
+                Position = employee.Position?.Title ?? string.Empty
             };
 
             return Ok(profile);
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error retrieving profile for user {UserId}", userId);
+            logger.LogError(ex, "Error retrieving profile for Azure AD ID {AzureAdId}", azureAdId);
             return StatusCode(500, "An unexpected error occurred while retrieving the profile.");
         }
     }
 
+    private Guid? GetAzureAdUserId()
+    {
+        var userIdStr = User.FindFirstValue("http://schemas.microsoft.com/identity/claims/objectidentifier")
+                        ?? User.FindFirstValue("oid");
+
+        return Guid.TryParse(userIdStr, out var id) ? id : null;
+    }
 }
 
 public record EmployeeProfileDto

@@ -9,9 +9,7 @@ public class ExceptionHandlingMiddleware
     private readonly RequestDelegate _next;
     private readonly ILogger<ExceptionHandlingMiddleware> _logger;
 
-    public ExceptionHandlingMiddleware(
-        RequestDelegate next,
-        ILogger<ExceptionHandlingMiddleware> logger)
+    public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
     {
         _next = next;
         _logger = logger;
@@ -26,40 +24,61 @@ public class ExceptionHandlingMiddleware
         catch (Exception ex)
         {
             _logger.LogError(ex, "An unhandled exception has occurred");
-            await HandleExceptionAsync(context, ex);
+            await HandleExceptionAsync(context, ex, context.Request.Path);
         }
     }
 
-    private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
+    private static async Task HandleExceptionAsync(HttpContext context, Exception exception, string path)
     {
-        var statusCode = GetStatusCode(exception);
-        var response = new ProblemDetails
-        {
-            Title = GetTitle(exception),
-            Status = statusCode,
-            Detail = exception.Message,
-            Instance = context.Request.Path
-        };
-
-        context.Response.StatusCode = statusCode;
         context.Response.ContentType = "application/problem+json";
 
-        await context.Response.WriteAsJsonAsync(response);
+        switch (exception)
+        {
+            case ValidationException validationException:
+                var validationProblem = new ValidationProblemDetails(
+                    validationException.Errors
+                        .GroupBy(e => e.PropertyName)
+                        .ToDictionary(
+                            g => g.Key,
+                            g => g.Select(e => e.ErrorMessage).ToArray()))
+                {
+                    Status = StatusCodes.Status400BadRequest,
+                    Title = "Validation Failed",
+                    Instance = path
+                };
+
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                await context.Response.WriteAsJsonAsync(validationProblem);
+                break;
+
+            case NotFoundException:
+                await WriteProblemDetailsAsync(context, StatusCodes.Status404NotFound, "Not Found", exception.Message, path);
+                break;
+
+            case ForbiddenAccessException:
+                await WriteProblemDetailsAsync(context, StatusCodes.Status403Forbidden, "Forbidden", exception.Message, path);
+                break;
+
+            case ApplicationException:
+                await WriteProblemDetailsAsync(context, StatusCodes.Status400BadRequest, "Application Error", exception.Message, path);
+                break;
+
+            default:
+                await WriteProblemDetailsAsync(context, StatusCodes.Status500InternalServerError, "Server Error", exception.Message, path);
+                break;
+        }
     }
 
-    private static int GetStatusCode(Exception exception) =>
-        exception switch
+    private static Task WriteProblemDetailsAsync(HttpContext context, int statusCode, string title, string detail, string instance)
+    {
+        context.Response.StatusCode = statusCode;
+        var problem = new ProblemDetails
         {
-            ValidationException => StatusCodes.Status400BadRequest,
-            NotFoundException => StatusCodes.Status404NotFound,
-            ForbiddenAccessException => StatusCodes.Status403Forbidden,
-            _ => StatusCodes.Status500InternalServerError
+            Status = statusCode,
+            Title = title,
+            Detail = detail,
+            Instance = instance
         };
-
-    private static string GetTitle(Exception exception) =>
-        exception switch
-        {
-            ApplicationException applicationException => applicationException.Message,
-            _ => "Server Error"
-        };
+        return context.Response.WriteAsJsonAsync(problem);
+    }
 }
