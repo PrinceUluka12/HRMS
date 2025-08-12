@@ -11,7 +11,7 @@ public class LeaveRequestDto
     public DateTime EndDate { get; set; }
     public LeaveType Type { get; set; }
     public string Reason { get; set; }
-    public LeaveStatus Status { get; set; }
+    public RequestStatus Status { get; set; }
     public DateTime RequestDate { get; set; }
     public string? ApprovedBy { get; set; }
     public DateTime? ApprovedDate { get; set; }

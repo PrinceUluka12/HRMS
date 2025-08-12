@@ -28,8 +28,6 @@ public class CreateEmployeeCommandHandler(
         await unitOfWork.BeginTransactionAsync(cancellationToken);
         try
         {
-            // Verify Azure AD user exists
-
             // Check Azure AD existence
             if (!await azureAdService.VerifyUserExistsAsync(request.AzureAdId))
             {

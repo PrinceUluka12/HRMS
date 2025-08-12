@@ -189,6 +189,108 @@ namespace HRMS.Infrastructure.Migrations
                     b.ToTable("Employees", (string)null);
                 });
 
+            modelBuilder.Entity("HRMS.Domain.Aggregates.LeaveAggregate.ApprovalHistory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Action")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ApproverId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ApproverName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("ApproverType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Comments")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<Guid?>("LeaveRequestId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("NewStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PreviousStatus")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("RequestId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LeaveRequestId");
+
+                    b.ToTable("ApprovalHistories", (string)null);
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.LeaveAggregate.LeavePolicy", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AccrualMethod")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("AccrualRate")
+                        .HasColumnType("decimal(10, 4)");
+
+                    b.Property<int>("AnnualAllocation")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DepartmentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EffectiveDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LeaveType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaxCarryOver")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaxConsecutiveDays")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinRequestDays")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("PositionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("RequiresApproval")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("RequiresHRApproval")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LeavePolicies", (string)null);
+                });
+
             modelBuilder.Entity("HRMS.Domain.Aggregates.LeaveAggregate.LeaveRequest", b =>
                 {
                     b.Property<Guid>("Id")
@@ -196,12 +298,19 @@ namespace HRMS.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ApprovedBy")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("ApprovedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Attachments")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("EmployeeId1")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("EndDate")
@@ -212,19 +321,34 @@ namespace HRMS.Infrastructure.Migrations
 
                     b.Property<string>("Reason")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("RejectionReason")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime>("RequestDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ReviewComments")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime?>("ReviewedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReviewedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
@@ -233,7 +357,53 @@ namespace HRMS.Infrastructure.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("LeaveRequests");
+                    b.HasIndex("EmployeeId1");
+
+                    b.ToTable("LeaveRequests", (string)null);
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.LeaveAggregate.TimeOffBalance", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("AccrualRate")
+                        .HasColumnType("decimal(10, 4)");
+
+                    b.Property<decimal>("CarryOver")
+                        .HasColumnType("decimal(10, 2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("LastAccrualDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("LeaveType")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Pending")
+                        .HasColumnType("decimal(10, 2)");
+
+                    b.Property<int>("PolicyYear")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalAllowed")
+                        .HasColumnType("decimal(10, 2)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Used")
+                        .HasColumnType("decimal(10, 2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TimeOffBalances", (string)null);
                 });
 
             modelBuilder.Entity("HRMS.Domain.Aggregates.NotificationAggregate.Notification", b =>
@@ -447,6 +617,181 @@ namespace HRMS.Infrastructure.Migrations
                     b.ToTable("OffboardingTask");
                 });
 
+            modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.BuddyCheckIn", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BuddyPairId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CheckInDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MenteeNotes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MentorNotes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NextCheckInDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("Rating")
+                        .HasColumnType("int");
+
+                    b.PrimitiveCollection<string>("Topics")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BuddyPairId");
+
+                    b.ToTable("BuddyCheckIns");
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.BuddyPair", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AssignedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("MenteeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("MentorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BuddyPairs");
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.Equipment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AssetTag")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Condition")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SerialNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("WarrantyExpiry")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Equipments");
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.EquipmentAssignment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AssignedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("AssignedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("EquipmentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("ReturnCondition")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReturnNotes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ReturnedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ReturnedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EquipmentId");
+
+                    b.ToTable("EquipmentAssignments");
+                });
+
             modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.Onboarding", b =>
                 {
                     b.Property<Guid>("Id")
@@ -547,6 +892,62 @@ namespace HRMS.Infrastructure.Migrations
                     b.ToTable("OnboardingStages", (string)null);
                 });
 
+            modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.OnboardingStep", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AssignedRole")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("AutoComplete")
+                        .HasColumnType("bit");
+
+                    b.PrimitiveCollection<string>("Dependencies")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.PrimitiveCollection<string>("DocumentIds")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.PrimitiveCollection<string>("EquipmentTypes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EstimatedHours")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("OnboardingWorkflowId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.PrimitiveCollection<string>("ReminderDays")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StepNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StepType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("WorkflowId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OnboardingWorkflowId");
+
+                    b.ToTable("OnboardingSteps");
+                });
+
             modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.OnboardingTask", b =>
                 {
                     b.Property<Guid>("Id")
@@ -595,6 +996,42 @@ namespace HRMS.Infrastructure.Migrations
                     b.HasIndex("StageId");
 
                     b.ToTable("OnboardingTasks", (string)null);
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.OnboardingWorkflow", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("DepartmentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EstimatedDays")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OnboardingWorkflows");
                 });
 
             modelBuilder.Entity("HRMS.Domain.Aggregates.PayrollAggregate.Payroll", b =>
@@ -1320,13 +1757,24 @@ namespace HRMS.Infrastructure.Migrations
                     b.Navigation("Skills");
                 });
 
+            modelBuilder.Entity("HRMS.Domain.Aggregates.LeaveAggregate.ApprovalHistory", b =>
+                {
+                    b.HasOne("HRMS.Domain.Aggregates.LeaveAggregate.LeaveRequest", null)
+                        .WithMany("ApprovalHistories")
+                        .HasForeignKey("LeaveRequestId");
+                });
+
             modelBuilder.Entity("HRMS.Domain.Aggregates.LeaveAggregate.LeaveRequest", b =>
                 {
                     b.HasOne("HRMS.Domain.Aggregates.EmployeeAggregate.Employee", "Employee")
-                        .WithMany("LeaveRequests")
+                        .WithMany()
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("HRMS.Domain.Aggregates.EmployeeAggregate.Employee", null)
+                        .WithMany("LeaveRequests")
+                        .HasForeignKey("EmployeeId1");
 
                     b.Navigation("Employee");
                 });
@@ -1367,6 +1815,24 @@ namespace HRMS.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.BuddyCheckIn", b =>
+                {
+                    b.HasOne("HRMS.Domain.Aggregates.OnboardingAggregate.BuddyPair", null)
+                        .WithMany("CheckIns")
+                        .HasForeignKey("BuddyPairId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.EquipmentAssignment", b =>
+                {
+                    b.HasOne("HRMS.Domain.Aggregates.OnboardingAggregate.Equipment", null)
+                        .WithMany("Assignments")
+                        .HasForeignKey("EquipmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.OnboardingDocument", b =>
                 {
                     b.HasOne("HRMS.Domain.Aggregates.OnboardingAggregate.Onboarding", null)
@@ -1381,6 +1847,13 @@ namespace HRMS.Infrastructure.Migrations
                         .WithMany("Stages")
                         .HasForeignKey("OnboardingId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.OnboardingStep", b =>
+                {
+                    b.HasOne("HRMS.Domain.Aggregates.OnboardingAggregate.OnboardingWorkflow", null)
+                        .WithMany("Steps")
+                        .HasForeignKey("OnboardingWorkflowId");
                 });
 
             modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.OnboardingTask", b =>
@@ -1481,6 +1954,11 @@ namespace HRMS.Infrastructure.Migrations
                     b.Navigation("PerformanceReviews");
                 });
 
+            modelBuilder.Entity("HRMS.Domain.Aggregates.LeaveAggregate.LeaveRequest", b =>
+                {
+                    b.Navigation("ApprovalHistories");
+                });
+
             modelBuilder.Entity("HRMS.Domain.Aggregates.OffboardingAggregate.OffboardingChecklist", b =>
                 {
                     b.Navigation("AccessRevocations");
@@ -1488,6 +1966,16 @@ namespace HRMS.Infrastructure.Migrations
                     b.Navigation("ReturnedAssets");
 
                     b.Navigation("Tasks");
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.BuddyPair", b =>
+                {
+                    b.Navigation("CheckIns");
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.Equipment", b =>
+                {
+                    b.Navigation("Assignments");
                 });
 
             modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.Onboarding", b =>
@@ -1500,6 +1988,11 @@ namespace HRMS.Infrastructure.Migrations
             modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.OnboardingStage", b =>
                 {
                     b.Navigation("Tasks");
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.OnboardingAggregate.OnboardingWorkflow", b =>
+                {
+                    b.Navigation("Steps");
                 });
 
             modelBuilder.Entity("HRMS.Domain.Aggregates.PayrollAggregate.Payroll", b =>

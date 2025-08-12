@@ -1,7 +1,9 @@
 using AutoMapper;
+using HRMS.Application.Features.BuddyPair.Dtos;
 using HRMS.Application.Features.Departments.Dtos;
 using HRMS.Application.Features.Employees.Commands.CreateEmployee;
 using HRMS.Application.Features.Employees.Dtos;
+using HRMS.Application.Features.Equipments.Dtos;
 using HRMS.Application.Features.Leave.Dtos;
 using HRMS.Application.Features.Onboarding.Dtos;
 using HRMS.Application.Features.Payroll.Dtos;
@@ -36,6 +38,15 @@ public class MappingProfile : Profile
         
         CreateMap<OnboardingDocument, OnboardingDocumentDto>();
         CreateMap<OnboardingDocumentDto, OnboardingDocument>();
+        
+        CreateMap<Equipment, EquipmentDto>();
+        CreateMap<EquipmentDto,  Equipment>();
+        
+        CreateMap<EquipmentAssignmentDto , EquipmentAssignment>();
+        CreateMap<EquipmentAssignment, EquipmentAssignmentDto>();
+
+        CreateMap<BuddyCheckInDto, BuddyCheckIn>();
+        CreateMap<BuddyCheckIn, BuddyCheckInDto>();
         
         // Map OnboardingStage → OnboardingStageDto
         CreateMap<OnboardingStage, OnboardingStageDto>()

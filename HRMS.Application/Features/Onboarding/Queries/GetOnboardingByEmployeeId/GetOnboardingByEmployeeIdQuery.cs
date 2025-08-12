@@ -29,6 +29,10 @@ public class GetOnboardingByEmployeeIdQueryHandler(
             var departments = await departmentRepository.GetWithManagerViewAsync(cancellationToken);
             var employees = await employeeRepository.GetAllAsync();
             var data = await onboardingRepository.GetByEmployeeIdAsync(request.EmployeeId);
+            if (data == null)
+            {
+                return BaseResult<OnboardingDto>.Ok(new OnboardingDto());
+            }
 
             var onboardingData = new OnboardingDto();
             var onboardingStageDtos = new List<OnboardingStageDto>();
@@ -70,11 +74,8 @@ public class GetOnboardingByEmployeeIdQueryHandler(
 
                 stageDtos.Add(stageDto);
             }
-
-
             onboardingData.Stages = stageDtos;
-
-
+            
             return BaseResult<OnboardingDto>.Ok(onboardingData);
         }
         catch (Exception ex)

@@ -29,7 +29,7 @@ public class LeaveRequestRepository(ApplicationDbContext context, IUnitOfWork un
     {
         return await context.LeaveRequests
             .Include(lr => lr.Employee)
-            .Where(lr => lr.Status == LeaveStatus.Pending && 
+            .Where(lr => lr.Status == RequestStatus.PendingManager && 
                          lr.Employee.DepartmentId == departmentId)
             .OrderBy(lr => lr.StartDate)
             .ToListAsync(cancellationToken);
@@ -46,7 +46,7 @@ public class LeaveRequestRepository(ApplicationDbContext context, IUnitOfWork un
     {
         return await context.LeaveRequests
             .Include(lr => lr.Employee)
-            .Where(lr => lr.Status == LeaveStatus.Approved &&
+            .Where(lr => lr.Status == RequestStatus.Approved &&
                          lr.StartDate <= endDate &&
                          lr.EndDate >= startDate)
             .OrderByDescending(lr => lr.StartDate)
@@ -58,7 +58,7 @@ public class LeaveRequestRepository(ApplicationDbContext context, IUnitOfWork un
     {
         var overlappingRequests = await context.LeaveRequests
             .Where(lr => lr.EmployeeId == employeeId)
-            .Where(lr => lr.Status == LeaveStatus.Approved)
+            .Where(lr => lr.Status == RequestStatus.Approved)
             .Where(lr => (startDate <= lr.EndDate && endDate >= lr.StartDate))
             .ToListAsync();
         return overlappingRequests;

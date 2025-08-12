@@ -24,10 +24,7 @@ public class GetEmployeeListQueryHandler(
 
             if (employees == null || employees.Count == 0)
             {
-                return BaseResult<List<EmployeeListDto>>.Failure(new Error(
-                    ErrorCode.NotFound,
-                    translator.GetString(TranslatorMessages.EmployeeMessages.No_Employees_Found("None Found"))
-                ));
+                return BaseResult<List<EmployeeListDto>>.Ok(new List<EmployeeListDto>());
             }
 
             var data = employees.Select(emp => new EmployeeListDto(

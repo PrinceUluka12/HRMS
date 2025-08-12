@@ -6,12 +6,13 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using HRMS.Application.Helpers;
 using HRMS.Application.Interfaces;
+using HRMS.Domain.Enums;
 
 namespace HRMS.Application.Features.Leave.Commands.ApproveLeave;
 
 public record ApproveLeaveCommand(
     Guid LeaveRequestId,
-    Guid ManagerId) : IRequest<BaseResult<Guid>>;
+    Guid ManagerId, string comments) : IRequest<BaseResult<Guid>>;
 
 public class ApproveLeaveCommandHandler(
     IEmployeeRepository employeeRepository,
@@ -54,7 +55,7 @@ public class ApproveLeaveCommandHandler(
             }
 
             // Approve the leave request
-            leaveRequest.Approve($"{manager.Name.FirstName} {manager.Name.LastName}");
+            leaveRequest.Approve(ApproverType.Manager,manager.Id,$"{manager.Name.FirstName} {manager.Name.LastName}", request.comments);
             leaveRequestRepository.Update(leaveRequest);
 
             await unitOfWork.CommitTransactionAsync(cancellationToken);

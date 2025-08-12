@@ -83,7 +83,7 @@ public class LeavePolicyService(
         }
 
         var takenDays = employee.LeaveRequests
-            .Where(lr => lr.Type == type && lr.Status == LeaveStatus.Approved)
+            .Where(lr => lr.Type == type && lr.Status == RequestStatus.Approved)
             .Sum(lr => (lr.EndDate - lr.StartDate).Days + 1);
 
         // Default policy: 20 vacation days per year

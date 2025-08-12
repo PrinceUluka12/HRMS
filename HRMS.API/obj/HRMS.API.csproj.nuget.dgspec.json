@@ -51,6 +51,14 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Azure.Identity": {
+              "target": "Package",
+              "version": "[1.15.0, )"
+            },
+            "Azure.Security.KeyVault.Certificates": {
+              "target": "Package",
+              "version": "[4.8.0, )"
+            },
             "Hellang.Middleware.ProblemDetails": {
               "target": "Package",
               "version": "[6.5.1, )"

@@ -1,18 +1,13 @@
 using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using HRMS.API.Extensions;
-using HRMS.API.Filters;
 using HRMS.API.Middleware;
 using HRMS.Application;
-using HRMS.Application.Common.Interfaces;
 using HRMS.Application.Hubs;
-using HRMS.Domain.Interfaces;
 using HRMS.Infrastructure;
-using HRMS.Infrastructure.Persistence;
 using HRMS.Infrastructure.Resources;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Graph;
-using Microsoft.Identity.Web;
-using Microsoft.Identity.Web.TokenCacheProviders.InMemory;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // Add application services
-builder.Services.AddApplicationLayer();
+builder.Services.AddApplicationLayer(builder.Configuration);
 
 // Add database context
 builder.Services.AddPersistenceInfrastructure(builder.Configuration);
@@ -33,17 +28,34 @@ builder.Services.AddAzureAdAuthentication(builder.Configuration);
 // SignalR
 builder.Services.AddSignalR();
 
+// Your Key Vault URI
+string keyVaultUrl = "https://hrmscred.vault.azure.net/";
+
+// Create a secret client with DefaultAzureCredential
+var client = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential());
+
+// Fetch the secrets
+
+KeyVaultSecret clientIdSecret = await client.GetSecretAsync("HrmsClientId");
+KeyVaultSecret tenantIdSecret = await client.GetSecretAsync("HrmsTenantId");
+KeyVaultSecret clientSecret = await client.GetSecretAsync("HrmsClientSecret");
+
+string clientId = clientIdSecret.Value;
+string tenantId = tenantIdSecret.Value;
+string clientSecretString =  clientSecret.Value;
+
+
 builder.Services.AddSingleton<GraphServiceClient>(sp =>
 {
     var config = sp.GetRequiredService<IConfiguration>();
     
-    var tenantId = config["AzureAd:TenantId"];
-    var clientId = config["AzureAd:ClientId"];
-    var clientSecret = config["AzureAd:ClientSecret"];
+    var tenantId = tenantIdSecret.Value;
+    var clientId = clientIdSecret.Value;
+    var clientSecretString = clientSecret.Value;
 
     var scopes = new[] { "https://graph.microsoft.com/.default" };
 
-    var credential = new ClientSecretCredential(tenantId, clientId, clientSecret);
+    var credential = new ClientSecretCredential(tenantId, clientId, clientSecretString);
     return new GraphServiceClient(credential, scopes);
 });
 

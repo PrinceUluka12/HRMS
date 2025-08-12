@@ -23,10 +23,7 @@ public class GetAllDepartmentsQueryHandler(
 
             if (departments is null || !departments.Any())
             {
-                return BaseResult<List<DepartmentWithManagerView>>.Failure(new Error(
-                    ErrorCode.NotFound,
-                    "No departments were found."
-                ));
+                return BaseResult<List<DepartmentWithManagerView>>.Ok(new List<DepartmentWithManagerView>());
             }
 
             //var data = mapper.Map<List<DepartmentDto>>(departments);

@@ -23,6 +23,14 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<LeaveRequest> LeaveRequests { get; set; }
     public DbSet<Onboarding> Onboardings { get; set; }
     public DbSet<TimeEntry> TimeEntries { get; set; }
+    public DbSet<TimeOffBalance> TimeOffBalances { get; set; }
+    public DbSet<Equipment> Equipments { get; set; }
+    public DbSet<EquipmentAssignment> EquipmentAssignments { get; set; }
+    public DbSet<BuddyPair> BuddyPairs { get; set; }
+    public DbSet<BuddyCheckIn> BuddyCheckIns { get; set; }
+    public DbSet<OnboardingWorkflow> OnboardingWorkflows { get; set; }
+    public DbSet<OnboardingStep> OnboardingSteps { get; set; }
+    
     
     public DbSet<Notification> Notifications { get; set; }
 
