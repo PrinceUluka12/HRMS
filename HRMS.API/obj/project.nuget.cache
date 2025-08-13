@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "B7+m//NNvf8=",
+  "dgSpecHash": "Aw4nATtmv+c=",
   "success": true,
   "projectFilePath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.API/HRMS.API.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "/Users/kosalachi/.nuget/packages/azure.security.keyvault.certificates/4.8.0/azure.security.keyvault.certificates.4.8.0.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/azure.security.keyvault.secrets/4.6.0/azure.security.keyvault.secrets.4.6.0.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/fluentvalidation/12.0.0/fluentvalidation.12.0.0.nupkg.sha512",
+    "/Users/kosalachi/.nuget/packages/fluentvalidation.aspnetcore/11.3.1/fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/fluentvalidation.dependencyinjectionextensions/12.0.0/fluentvalidation.dependencyinjectionextensions.12.0.0.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/hellang.middleware.problemdetails/6.5.1/hellang.middleware.problemdetails.6.5.1.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",

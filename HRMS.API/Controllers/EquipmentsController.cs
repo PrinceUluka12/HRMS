@@ -1,12 +1,16 @@
 using HRMS.Application.Features.Equipments.Commands.AddEquipment;
 using HRMS.Application.Features.Equipments.Commands.AssignEquipment;
 using HRMS.Application.Features.Equipments.Commands.ReturnEquipment;
+using HRMS.Application.Features.Equipments.Commands.UpdateEquipment;
+using HRMS.Application.Features.Equipments.Commands.DeleteEquipment;
 using HRMS.Application.Features.Equipments.Queries.GetActiveEquipmentAssignments;
 using HRMS.Application.Features.Equipments.Queries.GetAllEquipments;
 using HRMS.Application.Features.Equipments.Queries.GetEquipmentsByEmployee;
 using HRMS.Application.Features.Equipments.Queries.GetEquipmentsByType;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using HRMS.Application.Wrappers;
+using System;
 
 namespace HRMS.API.Controllers;
 
@@ -33,6 +37,36 @@ public class EquipmentsController(IMediator mediator): ControllerBase
     public async Task<IActionResult> AddEquipment(AddEquipmentCommand command)
     {
         var  result =  await mediator.Send(command);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Updates an existing equipment record.
+    /// </summary>
+    [HttpPut("{id:guid}")]
+    [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin")]
+    public async Task<IActionResult> UpdateEquipment(Guid id, [FromBody] UpdateEquipmentCommand command)
+    {
+        if (id != command.Id)
+        {
+            return BadRequest(BaseResult<Guid>.Failure(new Error(
+                ErrorCode.ModelStateNotValid,
+                "Route ID does not match request body ID.",
+                nameof(command.Id)
+            )));
+        }
+        var result = await mediator.Send(command);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Deletes an equipment record by ID.
+    /// </summary>
+    [HttpDelete("{id:guid}")]
+    [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin")]
+    public async Task<IActionResult> DeleteEquipment(Guid id)
+    {
+        var result = await mediator.Send(new DeleteEquipmentCommand(id));
         return Ok(result);
     }
 

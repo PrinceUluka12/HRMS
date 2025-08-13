@@ -63,6 +63,32 @@ public class Equipment: Entity<Guid>, IAggregateRoot
         return currentAssignment;
     }
     
+    
+    public void UpdateDetails(
+        string serialNumber,
+        string assetTag,
+        EquipmentType type,
+        string brand,
+        string model,
+        EquipmentCondition condition,
+        DateTime purchaseDate,
+        DateTime warrantyExpiry,
+        string? notes = null)
+    {
+        // validate required string parameters
+        SerialNumber = serialNumber ?? throw new ArgumentNullException(nameof(serialNumber));
+        AssetTag = assetTag ?? throw new ArgumentNullException(nameof(assetTag));
+        Brand = brand ?? throw new ArgumentNullException(nameof(brand));
+        Model = model ?? throw new ArgumentNullException(nameof(model));
+
+        Type = type;
+        Condition = condition;
+        PurchaseDate = purchaseDate;
+        WarrantyExpiry = warrantyExpiry;
+        Notes = notes;
+        UpdatedAt = DateTime.Now;
+    }
+    
     private EquipmentAssignment? GetCurrentAssignment() =>
         _assignments.FindLast(a => !a.ReturnedAt.HasValue);
 }

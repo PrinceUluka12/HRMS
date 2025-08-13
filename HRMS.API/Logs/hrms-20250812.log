@@ -1,0 +1,9 @@
+2025-08-12 23:48:44.171 -04:00 [INF] User profile is available. Using '/Users/kosalachi/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-12 23:48:44.218 -04:00 [INF] Payroll Processing Service is starting.
+2025-08-12 23:48:44.219 -04:00 [INF] Initial delay until first payroll run: "20:11:15.7811960"
+2025-08-12 23:48:44.482 -04:00 [INF] Now listening on: https://localhost:5002
+2025-08-12 23:48:44.482 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-12 23:48:44.482 -04:00 [INF] Hosting environment: Development
+2025-08-12 23:48:44.482 -04:00 [INF] Content root path: /Users/kosalachi/Public/Prince/HRMS/HRMS.API
+2025-08-12 23:48:45.988 -04:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/v1/swagger.json - null null
+2025-08-12 23:48:46.132 -04:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 144.3601ms

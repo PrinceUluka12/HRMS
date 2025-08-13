@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using HRMS.Application.Features.Employees.Commands.CreateEmployee;
+using HRMS.Application.Features.Employees.Commands.DeleteEmployee;
+using HRMS.Application.Features.Employees.Commands.UpdateEmployee;
 using HRMS.Application.Features.Employees.Dtos;
 using HRMS.Application.Features.Employees.Queries.GetEmployeeByAzureId;
 using HRMS.Application.Features.Employees.Queries.GetEmployeeById;
@@ -61,7 +63,36 @@ public class EmployeesController(IMediator mediator) : ControllerBase
         var result = await mediator.Send(request);
         return Ok(result);
     }
-    
+    /// <summary>
+    /// Updates an existing employee. The ID in the route must match the ID in the request body.
+    /// Only users with the Admin role can update employees.
+    /// </summary>
+    [HttpPut("{id:guid}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateEmployeeCommand command)
+    {
+        if (id != command.Id)
+        {
+            return BadRequest(BaseResult<Guid>.Failure(new Error(
+                ErrorCode.ModelStateNotValid,
+                "Route ID does not match request body ID.",
+                nameof(command.Id)
+            )));
+        }
+        var result = await mediator.Send(command);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Deletes an existing employee by ID. Only Admins are allowed.
+    /// </summary>
+    [HttpDelete("{id:guid}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var result = await mediator.Send(new DeleteEmployeeCommand(id));
+        return Ok(result);
+    }
     
     
     [HttpGet("onboarding-details")]
