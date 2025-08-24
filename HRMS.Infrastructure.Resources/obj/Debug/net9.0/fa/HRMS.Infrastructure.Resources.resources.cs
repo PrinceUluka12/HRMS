@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HRMS.Infrastructure.Resources")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute(" ")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+252fc95ac5e390890bd8a24686c81ddcfb9b0e15")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7aa1471293efbe70718ba3ac2456dc7b00b7d435")]
 [assembly: System.Reflection.AssemblyProductAttribute("HRMS.Infrastructure.Resources")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HRMS.Infrastructure.Resources")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

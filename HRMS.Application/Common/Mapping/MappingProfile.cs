@@ -8,12 +8,14 @@ using HRMS.Application.Features.Leave.Dtos;
 using HRMS.Application.Features.Onboarding.Dtos;
 using HRMS.Application.Features.Payroll.Dtos;
 using HRMS.Application.Features.Positions.Dtos;
+using HRMS.Application.Features.Recruitment.Dtos;
 using HRMS.Domain.Aggregates.DepartmentAggregate;
 using HRMS.Domain.Aggregates.EmployeeAggregate;
 using HRMS.Domain.Aggregates.LeaveAggregate;
 using HRMS.Domain.Aggregates.OnboardingAggregate;
 using HRMS.Domain.Aggregates.PayrollAggregate;
 using HRMS.Domain.Aggregates.PositionAggregate;
+using HRMS.Domain.Aggregates.RecruitmentAggregates;
 using HRMS.Domain.Enums;
 using OnboardingStageDto = HRMS.Application.Features.Employees.Dtos.OnboardingStageDto;
 using OnboardingTaskDto = HRMS.Application.Features.Employees.Dtos.OnboardingTaskDto;
@@ -47,6 +49,17 @@ public class MappingProfile : Profile
 
         CreateMap<BuddyCheckInDto, BuddyCheckIn>();
         CreateMap<BuddyCheckIn, BuddyCheckInDto>();
+        
+        CreateMap<CandidateDto, Candidate>();
+        CreateMap<Candidate,CandidateDto >();
+        
+        CreateMap<JobVacancy,JobVacancyDto >();
+        CreateMap<JobVacancyDto,JobVacancy >();
+        
+        
+
+        CreateMap<ApplicationDto, Domain.Aggregates.RecruitmentAggregates.Application>();
+        CreateMap<Domain.Aggregates.RecruitmentAggregates.Application,ApplicationDto >();
         
         // Map OnboardingStage → OnboardingStageDto
         CreateMap<OnboardingStage, OnboardingStageDto>()

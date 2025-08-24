@@ -7,6 +7,7 @@ using HRMS.Domain.Aggregates.NotificationAggregate;
 using HRMS.Domain.Aggregates.OnboardingAggregate;
 using HRMS.Domain.Aggregates.PayrollAggregate;
 using HRMS.Domain.Aggregates.PositionAggregate;
+using HRMS.Domain.Aggregates.RecruitmentAggregates;
 using HRMS.Domain.Aggregates.TimeTrackingAggregate;
 //using HRMS.Domain.Aggregates.TimeTrackingAggregate;
 using Microsoft.EntityFrameworkCore;
@@ -29,15 +30,22 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<BuddyPair> BuddyPairs { get; set; }
     public DbSet<BuddyCheckIn> BuddyCheckIns { get; set; }
     public DbSet<OnboardingWorkflow> OnboardingWorkflows { get; set; }
+
     public DbSet<OnboardingStep> OnboardingSteps { get; set; }
-    
-    
     public DbSet<Notification> Notifications { get; set; }
+    public DbSet<JobVacancy> JobVacancies { get; set; }
+    
+    public DbSet<Attachment> Attachments { get; set; }
+    public DbSet<Candidate> Candidates { get; set; }
+    
+    public DbSet<HRMS.Domain.Aggregates.RecruitmentAggregates.Application> Applications { get; set; }
+    
+    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        
+
         modelBuilder
             .Entity<DepartmentWithManagerView>(builder =>
             {

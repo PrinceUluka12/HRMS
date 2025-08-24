@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zl68jNEGWHc=",
+  "dgSpecHash": "6hVjkoSRJ+g=",
   "success": true,
   "projectFilePath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure.Resources/HRMS.Infrastructure.Resources.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,10 @@
     "/Users/kosalachi/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/azure.security.keyvault.certificates/4.6.0/azure.security.keyvault.certificates.4.6.0.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/azure.security.keyvault.secrets/4.6.0/azure.security.keyvault.secrets.4.6.0.nupkg.sha512",
+    "/Users/kosalachi/.nuget/packages/azure.storage.blobs/12.25.0/azure.storage.blobs.12.25.0.nupkg.sha512",
+    "/Users/kosalachi/.nuget/packages/azure.storage.common/12.24.0/azure.storage.common.12.24.0.nupkg.sha512",
+    "/Users/kosalachi/.nuget/packages/bcrypt/1.0.0/bcrypt.1.0.0.nupkg.sha512",
+    "/Users/kosalachi/.nuget/packages/bcrypt.net-core/1.6.0/bcrypt.net-core.1.6.0.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/fluentvalidation/12.0.0/fluentvalidation.12.0.0.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/fluentvalidation.dependencyinjectionextensions/12.0.0/fluentvalidation.dependencyinjectionextensions.12.0.0.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/mediatr/13.0.0/mediatr.13.0.0.nupkg.sha512",
@@ -67,6 +71,7 @@
     "/Users/kosalachi/.nuget/packages/system.diagnostics.diagnosticsource/6.0.1/system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/system.formats.asn1/9.0.0/system.formats.asn1.9.0.0.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/system.identitymodel.tokens.jwt/8.12.1/system.identitymodel.tokens.jwt.8.12.1.nupkg.sha512",
+    "/Users/kosalachi/.nuget/packages/system.io.hashing/8.0.0/system.io.hashing.8.0.0.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/system.memory.data/6.0.0/system.memory.data.6.0.0.nupkg.sha512",
     "/Users/kosalachi/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
@@ -87,6 +92,18 @@
       "warningLevel": 1,
       "filePath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure.Resources/HRMS.Infrastructure.Resources.csproj",
       "libraryId": "MediatR",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'BCrypt 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0'. This package may not be fully compatible with your project.",
+      "projectPath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure.Resources/HRMS.Infrastructure.Resources.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure.Resources/HRMS.Infrastructure.Resources.csproj",
+      "libraryId": "BCrypt",
       "targetGraphs": [
         "net9.0"
       ]

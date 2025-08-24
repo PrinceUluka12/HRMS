@@ -1,6 +1,7 @@
 using AutoMapper;
 using HRMS.Application.Features.Onboarding.Dtos;
 using HRMS.Application.Interfaces;
+using HRMS.Application.Interfaces.Repositories;
 using HRMS.Application.Wrappers;
 using HRMS.Domain.Aggregates.OnboardingAggregate;
 using HRMS.Domain.Interfaces;

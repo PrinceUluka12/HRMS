@@ -2,7 +2,7 @@ using HRMS.Application.Common.Interfaces;
 using HRMS.Domain.Aggregates.OnboardingAggregate;
 using HRMS.Domain.Enums;
 
-namespace HRMS.Application.Interfaces;
+namespace HRMS.Application.Interfaces.Repositories;
 
 public interface IEquipmentRepository : IGenericRepository<Equipment>
 {

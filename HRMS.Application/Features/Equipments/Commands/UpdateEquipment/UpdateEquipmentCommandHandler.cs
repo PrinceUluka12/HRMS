@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using HRMS.Application.Interfaces.Repositories;
 
 namespace HRMS.Application.Features.Equipments.Commands.UpdateEquipment;
 

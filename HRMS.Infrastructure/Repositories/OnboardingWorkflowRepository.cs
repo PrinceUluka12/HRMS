@@ -1,4 +1,5 @@
 using HRMS.Application.Interfaces;
+using HRMS.Application.Interfaces.Repositories;
 using HRMS.Domain.Aggregates.OnboardingAggregate;
 using HRMS.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;

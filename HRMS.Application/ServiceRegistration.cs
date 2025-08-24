@@ -37,6 +37,7 @@ public static class ServiceRegistration
         services.AddScoped<IDefaultStageFactory, DefaultStageFactory>();
         services.AddScoped<IOnboardingService, OnboardingService>();
         services.AddScoped<INotificationService, NotificationService>();
+        services.AddScoped<IAzureBlobStorageService, AzureBlobStorageService>();
         services.AddHttpClient<IPayPalAuthService, PayPalAuthService>(client =>
             {
                 client.BaseAddress = new Uri("https://api-m.sandbox.paypal.com/");

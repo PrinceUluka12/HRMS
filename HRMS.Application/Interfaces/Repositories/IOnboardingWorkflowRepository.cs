@@ -1,7 +1,7 @@
 using HRMS.Application.Common.Interfaces;
 using HRMS.Domain.Aggregates.OnboardingAggregate;
 
-namespace HRMS.Application.Interfaces;
+namespace HRMS.Application.Interfaces.Repositories;
 
 public interface IOnboardingWorkflowRepository : IGenericRepository<OnboardingWorkflow>
 {

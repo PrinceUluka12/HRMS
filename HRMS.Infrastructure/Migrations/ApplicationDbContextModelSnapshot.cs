@@ -1293,6 +1293,99 @@ namespace HRMS.Infrastructure.Migrations
                     b.ToTable("Positions", (string)null);
                 });
 
+            modelBuilder.Entity("HRMS.Domain.Aggregates.RecruitmentAggregates.Application", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AppliedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("JobVacancyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JobVacancyId");
+
+                    b.ToTable("Applications", (string)null);
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.RecruitmentAggregates.Attachment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ApplicationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FileType")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FileUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationId");
+
+                    b.ToTable("Attachments", (string)null);
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.RecruitmentAggregates.JobVacancy", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ClosingOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("EmploymentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("PostedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("JobVacancies", (string)null);
+                });
+
             modelBuilder.Entity("HRMS.Domain.Aggregates.TimeTrackingAggregate.TimeEntry", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1934,6 +2027,116 @@ namespace HRMS.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("HRMS.Domain.Aggregates.RecruitmentAggregates.Application", b =>
+                {
+                    b.HasOne("HRMS.Domain.Aggregates.RecruitmentAggregates.JobVacancy", null)
+                        .WithMany("Applications")
+                        .HasForeignKey("JobVacancyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.OwnsMany("HRMS.Domain.Aggregates.RecruitmentAggregates.ApplicationNote", "Notes", b1 =>
+                        {
+                            b1.Property<Guid>("ApplicationId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("ApplicationId", "Id");
+
+                            b1.ToTable("ApplicationNotes", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("ApplicationId");
+                        });
+
+                    b.OwnsOne("HRMS.Domain.Aggregates.RecruitmentAggregates.Candidate", "CandidateInfo", b1 =>
+                        {
+                            b1.Property<Guid>("ApplicationId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<DateTime>("AppliedOn")
+                                .HasColumnType("datetime2");
+
+                            b1.Property<string>("Email")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)");
+
+                            b1.Property<Guid>("Id")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<Guid>("JobVacancyId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("PhoneNumber")
+                                .IsRequired()
+                                .HasMaxLength(20)
+                                .HasColumnType("nvarchar(20)");
+
+                            b1.Property<string>("ResumeUrl")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<int>("Status")
+                                .HasColumnType("int");
+
+                            b1.HasKey("ApplicationId");
+
+                            b1.ToTable("Candidates");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ApplicationId");
+
+                            b1.OwnsOne("HRMS.Domain.Aggregates.EmployeeAggregate.PersonName", "Name", b2 =>
+                                {
+                                    b2.Property<Guid>("CandidateApplicationId")
+                                        .HasColumnType("uniqueidentifier");
+
+                                    b2.Property<string>("FirstName")
+                                        .IsRequired()
+                                        .HasMaxLength(50)
+                                        .HasColumnType("nvarchar(50)");
+
+                                    b2.Property<string>("LastName")
+                                        .IsRequired()
+                                        .HasMaxLength(50)
+                                        .HasColumnType("nvarchar(50)");
+
+                                    b2.HasKey("CandidateApplicationId");
+
+                                    b2.ToTable("Candidates");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("CandidateApplicationId");
+                                });
+
+                            b1.Navigation("Name")
+                                .IsRequired();
+                        });
+
+                    b.Navigation("CandidateInfo")
+                        .IsRequired();
+
+                    b.Navigation("Notes");
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.RecruitmentAggregates.Attachment", b =>
+                {
+                    b.HasOne("HRMS.Domain.Aggregates.RecruitmentAggregates.Application", null)
+                        .WithMany("Attachments")
+                        .HasForeignKey("ApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("HRMS.Domain.Aggregates.TimeTrackingAggregate.TimeTrackingLocation", b =>
                 {
                     b.HasOne("HRMS.Domain.Aggregates.TimeTrackingAggregate.TimeEntry", null)
@@ -2007,6 +2210,16 @@ namespace HRMS.Infrastructure.Migrations
                     b.Navigation("Goals");
 
                     b.Navigation("Metrics");
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.RecruitmentAggregates.Application", b =>
+                {
+                    b.Navigation("Attachments");
+                });
+
+            modelBuilder.Entity("HRMS.Domain.Aggregates.RecruitmentAggregates.JobVacancy", b =>
+                {
+                    b.Navigation("Applications");
                 });
 
             modelBuilder.Entity("HRMS.Domain.Aggregates.TimeTrackingAggregate.TimeEntry", b =>

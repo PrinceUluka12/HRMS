@@ -2,6 +2,7 @@ using AutoMapper;
 using HRMS.Application.Features.Equipments.Dtos;
 using HRMS.Application.Helpers;
 using HRMS.Application.Interfaces;
+using HRMS.Application.Interfaces.Repositories;
 using HRMS.Application.Wrappers;
 using MediatR;
 using Microsoft.Extensions.Logging;
