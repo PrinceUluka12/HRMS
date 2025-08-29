@@ -11,6 +11,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using HRMS.Application.Wrappers;
 using System;
+using HRMS.Application.Features.Equipments.Queries.GetActiveEquipmentAssignmentsByEmployee;
 
 namespace HRMS.API.Controllers;
 
@@ -88,6 +89,13 @@ public class EquipmentsController(IMediator mediator): ControllerBase
     public async Task<IActionResult> GetActiveEquipments()
     {
         var result =  await mediator.Send(new GetActiveEquipmentAssignmentsQuery());
+        return Ok(result);
+    }
+    
+    [HttpGet("assignments/active/employee")]
+    public async Task<IActionResult> GetActiveEquipments([FromQuery]GetActiveEquipmentAssignmentsByEmployeeQuery query)
+    {
+        var result =  await mediator.Send(query);
         return Ok(result);
     }
     [HttpGet]

@@ -1,4 +1,5 @@
 using AutoMapper;
+using HRMS.Application.Features.Equipments.Dtos;
 using HRMS.Application.Interfaces.Repositories;
 using HRMS.Domain.Aggregates.OnboardingAggregate;
 using HRMS.Domain.Enums;
@@ -12,8 +13,9 @@ public class EquipmentAssignmentRepository(ApplicationDbContext context): Generi
     public async Task<List<EquipmentAssignment>> GetByEmployeeAsync(Guid employeeId, CancellationToken cancellationToken = default)
     {
         return await context.EquipmentAssignments.Where(e => e.EmployeeId == employeeId).ToListAsync();
-        
     }
+
+   
 
     public async Task<List<EquipmentAssignment>> GetActiveEquipmentAsync(CancellationToken cancellationToken = default)
     {

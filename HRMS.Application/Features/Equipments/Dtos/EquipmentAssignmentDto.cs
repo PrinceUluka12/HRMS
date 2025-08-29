@@ -7,13 +7,12 @@ public class EquipmentAssignmentDto
 {
     public Guid Id { get; set; }
     public Guid EquipmentId { get; set; }
-    public EquipmentDto Equipment { get; set; } = null!;
+    public EquipmentDto Equipment { get; set; }
     public Guid EmployeeId { get; set; }
-    public string EmployeeName { get; set; } = null!;
     public DateTime AssignedAt { get; set; }
-    public string AssignedBy { get; set; } = null!;
+    public Guid AssignedBy { get; set; } 
     public DateTime? ReturnedAt { get; set; }
-    public string? ReturnedBy { get; set; }
+    public Guid ReturnedBy { get; set; }
     public EquipmentCondition? ReturnCondition { get; set; }
     public string? ReturnNotes { get; set; }
     public EquipmentAssignmentStatus Status { get; set; }

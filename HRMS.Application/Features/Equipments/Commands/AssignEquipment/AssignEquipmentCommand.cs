@@ -39,6 +39,7 @@ public class AssignEquipmentCommandHandler(
             var assignment = equipment.AssignToEmployee(request.EmployeeId, request.AssignedById);
 
             await equipmentRepository.Update(equipment);
+            await equipmentRepository.AddAssignmentAsync(assignment, cancellationToken);
             await unitOfWork.CommitTransactionAsync(cancellationToken);
 
 

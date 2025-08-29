@@ -7,6 +7,7 @@ namespace HRMS.Application.Interfaces.Repositories;
 public interface IEquipmentRepository : IGenericRepository<Equipment>
 {
     Task<List<Equipment>> GetByTypeAsync(EquipmentType type, CancellationToken cancellationToken = default);
+    Task<EquipmentAssignment> AddAssignmentAsync(EquipmentAssignment equipmentAssignment, CancellationToken cancellationToken = default);
     
     
     

@@ -24,7 +24,7 @@ public class
     {
         try
         {
-            var data = await equipmentRepository.GetByEmployeeAsync(request.EmployeeId, cancellationToken);
+                var data = await equipmentRepository.GetByEmployeeAsync(request.EmployeeId, cancellationToken);
             if (data is null)
             {
                 return new BaseResult<IEnumerable<EquipmentAssignmentDto>>();

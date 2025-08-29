@@ -1,3 +1,4 @@
+using System.Text;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using FluentValidation;
@@ -11,6 +12,7 @@ using HRMS.Application.Hubs;
 using HRMS.Infrastructure;
 using HRMS.Infrastructure.Persistence;
 using HRMS.Infrastructure.Resources;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Graph;
 using Serilog;
 
@@ -111,10 +113,18 @@ builder.Services.AddCustomLocalization(builder.Configuration);
 builder.Services.AddHealthChecks()
     .AddDbContextCheck<ApplicationDbContext>("Database");
 
+// Allow large uploads (adjust for your needs)
+builder.Services.Configure<FormOptions>(o =>
+{
+    o.MultipartBodyLengthLimit = 1024L * 1024L * 200L; // 200 MB
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
 app.UseSwaggerWithVersioning();
+
+// Needed by PdfSharpCore for some encodings
+Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
 // Global Middleware
 app.UseMiddleware<PerformanceMiddleware>();  // Optional if using

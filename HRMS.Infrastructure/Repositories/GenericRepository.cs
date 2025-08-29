@@ -16,7 +16,9 @@ public class GenericRepository<T>(DbContext dbContext) : IGenericRepository<T> w
     /// <returns>The entity if found; otherwise, null.</returns>
     public virtual async Task<T?> GetByIdAsync(object id)
     {
-        return await dbContext.Set<T>().FindAsync(id);
+        return await dbContext.Set<T>()
+            .AsNoTracking()
+            .SingleOrDefaultAsync(e => EF.Property<object>(e, "Id") == id);
     }
 
     /// <summary>

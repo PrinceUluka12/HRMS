@@ -238,3 +238,8 @@
 /Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/Azure.Storage.Blobs.dll
 /Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/Azure.Storage.Common.dll
 /Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/System.IO.Hashing.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/PdfSharpCore.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/ICSharpCode.SharpZipLib.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/SixLabors.Fonts.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/SixLabors.ImageSharp.dll
+/Users/kosalachi/Public/Prince/HRMS/HRMS.API/bin/Debug/net9.0/de/PdfSharpCore.resources.dll
