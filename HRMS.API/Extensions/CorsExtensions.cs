@@ -19,7 +19,8 @@ public static class CorsExtensions
             {
                 builder.WithOrigins("https://localhost:8080")
                     .AllowAnyHeader()
-                    .AllowAnyMethod(); // Only use this if explicit origins are defined
+                    .AllowAnyMethod()
+                    .AllowCredentials(); // Only use this if explicit origins are defined
             });
         });
     }

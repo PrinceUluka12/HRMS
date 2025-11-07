@@ -40,7 +40,26 @@ public static class ServiceCollectionExtensions
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
                     ValidIssuers = configuration.GetSection("JwtSettings:ValidIssuers").Get<string[]>(),
-                    ValidateIssuer = true
+                    ValidateIssuer = true,
+                    ClockSkew = TimeSpan.FromMinutes(120)
+                };
+
+                options.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived =  context =>
+                    {
+                        var accessToken = context.Request.Query["access_token"];
+
+                        // If the request is for our hub endpoint, read the token from the query string
+                        var path = context.HttpContext.Request.Path;
+                        if (!string.IsNullOrEmpty(accessToken) &&
+                            path.StartsWithSegments("/hubs/notifications"))
+                        {
+                            context.Token = accessToken;
+                        }
+
+                        return Task.CompletedTask;
+                    }
                 };
             });
 

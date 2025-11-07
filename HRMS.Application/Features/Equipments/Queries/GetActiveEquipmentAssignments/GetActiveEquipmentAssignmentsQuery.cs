@@ -12,7 +12,8 @@ namespace HRMS.Application.Features.Equipments.Queries.GetActiveEquipmentAssignm
 public sealed record GetActiveEquipmentAssignmentsQuery() : IRequest<BaseResult<IEnumerable<EquipmentDto>>>;
 
 public class GetActiveEquipmentAssignmentsQueryHandler(
-    IEquipmentAssignmentRepository equipmentRepository,
+    IEquipmentAssignmentRepository equipmentAssignmentRepository,
+    IEquipmentRepository equipmentRepository,
     IMapper mapper,
     ILogger<GetActiveEquipmentAssignmentsQueryHandler> logger,
     ITranslator translator) : IRequestHandler<GetActiveEquipmentAssignmentsQuery, BaseResult<IEnumerable<EquipmentDto>>>
@@ -22,9 +23,23 @@ public class GetActiveEquipmentAssignmentsQueryHandler(
     {
         try
         {
-            var equipments = await equipmentRepository.GetActiveEquipmentAsync(cancellationToken);
-            var dto =  mapper.Map<IEnumerable<EquipmentDto>>(equipments);
-            return BaseResult<IEnumerable<EquipmentDto>>.Ok(dto);
+            var result = new List<EquipmentDto>();
+            var equipments = await equipmentAssignmentRepository.GetActiveEquipmentAsync(cancellationToken);
+
+            if (equipments == null || !equipments.Any())
+            {
+                return BaseResult<IEnumerable<EquipmentDto>>.Ok(new List<EquipmentDto>(0));
+            }
+            else
+            {
+                foreach (var equipment in equipments)
+                {
+                    var data = await GetEquipment(equipment.EquipmentId);
+                    result.Add(data);
+                }
+
+            }
+            return BaseResult<IEnumerable<EquipmentDto>>.Ok(result);
         }
         catch (Exception ex)
         {
@@ -33,5 +48,10 @@ public class GetActiveEquipmentAssignmentsQueryHandler(
                 translator.GetString(TranslatorMessages.GeneralMessages.Unexpected_Error(ex.Message))
             ));
         }
+    }
+
+    private async Task<EquipmentDto> GetEquipment(Guid EquipmentId)
+    {
+        return mapper.Map<EquipmentDto>(await equipmentRepository.GetByIdAsync(EquipmentId));
     }
 }

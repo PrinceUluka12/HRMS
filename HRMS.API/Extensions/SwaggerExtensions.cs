@@ -26,6 +26,7 @@ public static class SwaggerExtensions
     /// </summary>
     public static IServiceCollection AddSwaggerWithVersioning(this IServiceCollection services)
     {
+        services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(setup =>
         {
             // Define JWT authentication scheme for Swagger

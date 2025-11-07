@@ -1,4 +1,3 @@
-using System.Text;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using FluentValidation;
@@ -9,12 +8,15 @@ using HRMS.API.Middleware;
 using HRMS.Application;
 using HRMS.Application.Features.Employees.Commands.CreateEmployee;
 using HRMS.Application.Hubs;
+using HRMS.Application.SignalR;
 using HRMS.Infrastructure;
 using HRMS.Infrastructure.Persistence;
 using HRMS.Infrastructure.Resources;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Graph;
 using Serilog;
+using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -58,6 +60,7 @@ builder.Services.AddAzureAdAuthentication(builder.Configuration);
 
 // SignalR
 builder.Services.AddSignalR();
+builder.Services.AddSingleton<IUserIdProvider, EmployeeIdUserIdProvider>();
 
 // Your Key Vault URI
 string keyVaultUrl = "https://hrmscred.vault.azure.net/";
@@ -133,12 +136,14 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+
+
 app.UseConfiguredCors(); // after auth to avoid CORS issues
 app.UseCustomLocalization(); // if culture affects routes or headers
 // Log HTTP requests for diagnostics
 app.UseSerilogRequestLogging();
 app.MapGet("/api/health", () => Results.Ok("HRMS API is up and running."));
-app.MapHub<NotificationHub>("/notificationHub");
+app.MapHub<NotificationHub>("/hubs/notifications");
 app.MapControllers();
 // Map health check endpoint for monitoring tools (e.g., Prometheus, Application Insights)
 app.MapHealthChecks("/healthz");

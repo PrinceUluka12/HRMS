@@ -15,7 +15,7 @@ public class PositionsController(IMediator mediator) : ControllerBase
     /// Get all positions.
     /// </summary>
     [HttpGet]
-    [Authorize(Roles = "Admin, HR.Manager")]
+    [Authorize(Roles = "Admin, HR.Manager,Employee")]
     
     public async Task<IActionResult> GetAll([FromQuery] GetAllPositionsQuery query)
     {

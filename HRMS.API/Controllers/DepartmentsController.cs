@@ -20,7 +20,7 @@ public class DepartmentsController(IMediator mediator) : ControllerBase
     /// </summary>
     /// <returns>A list of departments.</returns>
     [HttpGet]
-    [Authorize(Roles = "Employee")]
+    [Authorize(Roles = "Employee,Admin")]
     public async Task<IActionResult> GetAll([FromQuery] GetAllDepartmentsQuery query)
     {
         var result = await mediator.Send(query);

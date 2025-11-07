@@ -5,5 +5,7 @@ namespace HRMS.Application.Interfaces.Repositories;
 
 public interface INotificationRepository : IGenericRepository<Notification>
 {
-    Task<List<Notification>> GetByEmployeeIdIdAsync(Guid EmployeeId, CancellationToken cancellationToken);
+    Task<IEnumerable<Notification>> GetByEmployeeAsync(Guid employeeId, int take = 50, int skip = 0);
+    Task<int> GetUnreadCountAsync(Guid employeeId);
+    Task<IEnumerable<Notification>> GetUnreadByEmployeeAsync(Guid employeeId, CancellationToken cancellationToken = default);
 }

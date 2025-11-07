@@ -36,13 +36,21 @@ public enum DocumentType
 {
     PDF,
     DOCX,
+    Contract,
+    Policy,
+    Handbook,
+    Form,
+    Other
 }
 
 public enum SignatureStatus
 {
     Pending,
     Signed,
-    Declined
+    Declined,
+        Completed,
+    Expired,
+    Cancelled
 }
 
 public enum EquipmentType
@@ -101,7 +109,11 @@ public enum NotificationType
 {
     Email,
     SMS,
-    Push
+    Push,
+    Info,
+    Warning,
+    Task,
+    System
 }
 
 public enum NotificationTrigger
@@ -115,5 +127,8 @@ public enum NotificationStatus
 {
     Pending,
     Sent,
-    Failed
+    Failed,
+    Unread,
+    Read,
+    Archived
 }

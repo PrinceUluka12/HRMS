@@ -1,33 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure/HRMS.Infrastructure.csproj": {}
+    "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure\\HRMS.Infrastructure.csproj": {}
   },
   "projects": {
-    "/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/HRMS.Application.csproj": {
+    "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/HRMS.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj",
         "projectName": "HRMS.Application",
-        "projectPath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/HRMS.Application.csproj",
-        "packagesPath": "/Users/kosalachi/.nuget/packages/",
-        "outputPath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/obj/",
+        "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj",
+        "packagesPath": "C:\\Users\\Prince\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/kosalachi/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Prince\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/HRMS.Domain.csproj": {
-                "projectPath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/HRMS.Domain.csproj"
+              "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {
+                "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj"
               }
             }
           }
@@ -42,7 +49,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -117,26 +124,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/HRMS.Domain.csproj": {
+    "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/HRMS.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj",
         "projectName": "HRMS.Domain",
-        "projectPath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/HRMS.Domain.csproj",
-        "packagesPath": "/Users/kosalachi/.nuget/packages/",
-        "outputPath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/obj/",
+        "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj",
+        "packagesPath": "C:\\Users\\Prince\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/kosalachi/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Prince\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -155,7 +169,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -186,37 +200,44 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure/HRMS.Infrastructure.csproj": {
+    "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure\\HRMS.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure/HRMS.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure\\HRMS.Infrastructure.csproj",
         "projectName": "HRMS.Infrastructure",
-        "projectPath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure/HRMS.Infrastructure.csproj",
-        "packagesPath": "/Users/kosalachi/.nuget/packages/",
-        "outputPath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Infrastructure/obj/",
+        "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure\\HRMS.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Prince\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/kosalachi/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Prince\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/HRMS.Application.csproj": {
-                "projectPath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Application/HRMS.Application.csproj"
+              "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj": {
+                "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj"
               },
-              "/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/HRMS.Domain.csproj": {
-                "projectPath": "/Users/kosalachi/Public/Prince/HRMS/HRMS.Domain/HRMS.Domain.csproj"
+              "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {
+                "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj"
               }
             }
           }
@@ -231,7 +252,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -306,7 +327,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

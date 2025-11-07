@@ -27,7 +27,7 @@ public class LeaveController(IMediator mediator) : ControllerBase
         var result = await mediator.Send(command);
         return Ok(result);
     }
-    
+
     /// <summary>
     /// cancel a leave request.
     /// </summary>
@@ -37,7 +37,7 @@ public class LeaveController(IMediator mediator) : ControllerBase
         var result = await mediator.Send(command);
         return Ok(result);
     }
-    
+
     /// <summary>
     /// Reject a leave request.
     /// </summary>
@@ -79,7 +79,7 @@ public class LeaveController(IMediator mediator) : ControllerBase
         var result = await mediator.Send(request);
         return Ok(result);
     }
-    
+
 
     /// <summary>
     /// Get leave requests from a manager's team.

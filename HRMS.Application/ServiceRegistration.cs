@@ -1,18 +1,16 @@
-using System.Reflection;
 using FluentValidation;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Application.Common.Mapping;
-using HRMS.Application.Integrations.HyperWallet;
-using HRMS.Application.Integrations.HyperWallet.Models;
-using HRMS.Application.Integrations.Paypal;
 using HRMS.Application.Interfaces;
 using HRMS.Application.Interfaces.Services;
 using HRMS.Application.Interfaces.Services.Contracts;
+using HRMS.Application.SignalR;
 using HRMS.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.Graph;
+using System.Reflection;
 
 namespace HRMS.Application;
 
@@ -36,26 +34,9 @@ public static class ServiceRegistration
         services.AddScoped<ITeamsIntegrationService, TeamsIntegrationService>();
         services.AddScoped<IDefaultStageFactory, DefaultStageFactory>();
         services.AddScoped<IOnboardingService, OnboardingService>();
-        services.AddScoped<INotificationService, NotificationService>();
         services.AddScoped<IAzureBlobStorageService, AzureBlobStorageService>();
-        services.AddHttpClient<IPayPalAuthService, PayPalAuthService>(client =>
-            {
-                client.BaseAddress = new Uri("https://api-m.sandbox.paypal.com/");
-            })
-            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
-            {
-                // Optional: if needed to bypass SSL or handle proxy
-            });
-        services.AddHttpClient<IPayPalService, PayPalService>();
-        
-        services.Configure<HyperwalletConfiguration>(
-            configuration.GetSection("Hyperwallet"));
+        services.AddScoped<INotificationPublisher, NotificationPublisher>();
 
-        services.AddSingleton<IHyperwalletService>(sp =>
-        {
-            var config = sp.GetRequiredService<IOptions<HyperwalletConfiguration>>().Value;
-            return new HyperwalletService(config); // Ensure this implements IHyperwalletService
-        });
 
 
         // Background/hosted services

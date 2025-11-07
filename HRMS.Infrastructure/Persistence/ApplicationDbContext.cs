@@ -39,8 +39,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Candidate> Candidates { get; set; }
     
     public DbSet<HRMS.Domain.Aggregates.RecruitmentAggregates.Application> Applications { get; set; }
-    
-    
+    public DbSet<HRMS.Domain.Aggregates.DigitalSignatureAggregate.DigitalSignature> DigitalSignatures { get; set; }
+
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

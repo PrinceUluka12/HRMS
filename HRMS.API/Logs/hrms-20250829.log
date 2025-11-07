@@ -1,0 +1,53 @@
+2025-08-29 04:04:41.986 -04:00 [INF] User profile is available. Using 'C:\Users\Prince\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-08-29 04:04:42.048 -04:00 [INF] Payroll Processing Service is starting.
+2025-08-29 04:04:42.052 -04:00 [INF] Initial delay until first payroll run: "15:55:17.9485361"
+2025-08-29 04:04:42.179 -04:00 [INF] Creating key {c6da6efe-e9a9-4fcc-83dc-8f14c6236744} with creation date 2025-08-29 08:04:42Z, activation date 2025-08-29 08:04:42Z, and expiration date 2025-11-27 08:04:42Z.
+2025-08-29 04:04:42.192 -04:00 [INF] Writing data to file 'C:\Users\Prince\AppData\Local\ASP.NET\DataProtection-Keys\key-c6da6efe-e9a9-4fcc-83dc-8f14c6236744.xml'.
+2025-08-29 04:04:42.457 -04:00 [INF] Now listening on: https://localhost:5002
+2025-08-29 04:04:42.716 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-29 04:04:42.719 -04:00 [INF] Hosting environment: Development
+2025-08-29 04:04:42.721 -04:00 [INF] Content root path: C:\Users\Prince\source\repos\HRMS\HRMS.API
+2025-08-29 04:04:46.290 -04:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger - null null
+2025-08-29 04:04:46.572 -04:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger - 301 0 null 297.925ms
+2025-08-29 04:04:46.586 -04:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/index.html - null null
+2025-08-29 04:04:46.759 -04:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/index.html - 200 null text/html;charset=utf-8 173.8758ms
+2025-08-29 04:04:46.847 -04:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/swagger-ui.css - null null
+2025-08-29 04:04:46.856 -04:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/index.js - null null
+2025-08-29 04:04:46.848 -04:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/swagger-ui-standalone-preset.js - null null
+2025-08-29 04:04:46.891 -04:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/index.js - 200 null application/javascript;charset=utf-8 41.518ms
+2025-08-29 04:04:46.847 -04:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/index.css - null null
+2025-08-29 04:04:46.847 -04:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/swagger-ui-bundle.js - null null
+2025-08-29 04:04:46.862 -04:00 [INF] Request starting HTTP/2 GET https://localhost:5002/_framework/aspnetcore-browser-refresh.js - null null
+2025-08-29 04:04:46.877 -04:00 [INF] Request starting HTTP/2 GET https://localhost:5002/_vs/browserLink - null null
+2025-08-29 04:04:47.015 -04:00 [INF] Request finished HTTP/2 GET https://localhost:5002/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 153.3477ms
+2025-08-29 04:04:47.031 -04:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/index.css - 200 202 text/css 183.3608ms
+2025-08-29 04:04:47.052 -04:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/swagger-ui.css - 200 155175 text/css 205.1116ms
+2025-08-29 04:04:47.057 -04:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/swagger-ui-standalone-preset.js - 200 229223 text/javascript 209.4602ms
+2025-08-29 04:04:47.103 -04:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/swagger-ui-bundle.js - 200 1485750 text/javascript 255.5188ms
+2025-08-29 04:04:47.161 -04:00 [INF] Request finished HTTP/2 GET https://localhost:5002/_vs/browserLink - 200 null text/javascript; charset=UTF-8 283.6984ms
+2025-08-29 04:04:47.575 -04:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/v1/swagger.json - null null
+2025-08-29 04:04:47.627 -04:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/favicon-32x32.png - null null
+2025-08-29 04:04:47.637 -04:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/favicon-32x32.png - 200 628 image/png 10.2712ms
+2025-08-29 04:04:48.087 -04:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 512.7252ms
+2025-08-29 04:05:29.494 -04:00 [INF] Request starting HTTP/2 POST https://localhost:5002/api/Pdf/upload - multipart/form-data; boundary=----WebKitFormBoundaryzBlEDs1SPU6DqpI6 18407
+2025-08-29 04:05:29.728 -04:00 [INF] CORS policy execution failed.
+2025-08-29 04:05:29.731 -04:00 [INF] Request origin https://localhost:5002 does not have permission to access the resource.
+2025-08-29 04:05:29.749 -04:00 [INF] Executing endpoint 'HRMS.API.Controllers.PdfController.MergeUploadedAsync (HRMS.API)'
+2025-08-29 04:05:29.792 -04:00 [INF] Route matched with {action = "MergeUploaded", controller = "Pdf"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MergeUploadedAsync(MergeFilesRequest) on controller HRMS.API.Controllers.PdfController (HRMS.API).
+2025-08-29 04:05:30.138 -04:00 [WRN] No output formatter was found for content types '["application/pdf","application/pdf"]' to write the response.
+2025-08-29 04:05:30.152 -04:00 [INF] Executed action HRMS.API.Controllers.PdfController.MergeUploadedAsync (HRMS.API) in 349.5261ms
+2025-08-29 04:05:30.155 -04:00 [INF] Executed endpoint 'HRMS.API.Controllers.PdfController.MergeUploadedAsync (HRMS.API)'
+2025-08-29 04:05:30.161 -04:00 [INF] HTTP POST /api/Pdf/upload responded 406 in 412.7132 ms
+2025-08-29 04:05:30.175 -04:00 [WRN] Slow Request {"Method":"POST","Path":{"Value":"/api/Pdf/upload","HasValue":true,"$type":"PathString"},"StatusCode":406,"DurationMs":655.6861,"Query":""}
+2025-08-29 04:05:30.194 -04:00 [INF] Request finished HTTP/2 POST https://localhost:5002/api/Pdf/upload - 406 0 null 699.9159ms
+2025-08-29 04:05:52.272 -04:00 [INF] Request starting HTTP/2 POST https://localhost:5002/api/Pdf/upload - multipart/form-data; boundary=----WebKitFormBoundaryXq9N9RBMqjR2CKlC 6313698
+2025-08-29 04:05:52.330 -04:00 [INF] CORS policy execution failed.
+2025-08-29 04:05:52.332 -04:00 [INF] Request origin https://localhost:5002 does not have permission to access the resource.
+2025-08-29 04:05:52.334 -04:00 [INF] Executing endpoint 'HRMS.API.Controllers.PdfController.MergeUploadedAsync (HRMS.API)'
+2025-08-29 04:05:52.337 -04:00 [INF] Route matched with {action = "MergeUploaded", controller = "Pdf"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MergeUploadedAsync(MergeFilesRequest) on controller HRMS.API.Controllers.PdfController (HRMS.API).
+2025-08-29 04:05:52.770 -04:00 [INF] Executing FileContentResult, sending file with download name 'merged.pdf' ...
+2025-08-29 04:05:52.828 -04:00 [INF] Executed action HRMS.API.Controllers.PdfController.MergeUploadedAsync (HRMS.API) in 486.2043ms
+2025-08-29 04:05:52.832 -04:00 [INF] Executed endpoint 'HRMS.API.Controllers.PdfController.MergeUploadedAsync (HRMS.API)'
+2025-08-29 04:05:52.835 -04:00 [INF] HTTP POST /api/Pdf/upload responded 200 in 500.3264 ms
+2025-08-29 04:05:52.844 -04:00 [WRN] Slow Request {"Method":"POST","Path":{"Value":"/api/Pdf/upload","HasValue":true,"$type":"PathString"},"StatusCode":200,"DurationMs":523.7681,"Query":""}
+2025-08-29 04:05:52.861 -04:00 [INF] Request finished HTTP/2 POST https://localhost:5002/api/Pdf/upload - 200 6308861 application/pdf 588.7524ms

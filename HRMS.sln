@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36623.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.Domain", "HRMS.Domain\HRMS.Domain.csproj", "{259665CE-8682-4AE8-ADE6-770F7B030A1A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.Application", "HRMS.Application\HRMS.Application.csproj", "{1045AE2D-3D3C-4700-B7C7-6E095FB3FED5}"
@@ -9,6 +12,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.API", "HRMS.API\HRMS.API.csproj", "{96C69ACD-3A0B-4B05-91AF-046A5B29FB9A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.Infrastructure.Resources", "HRMS.Infrastructure.Resources\HRMS.Infrastructure.Resources.csproj", "{EA71FB92-FE9C-4C47-975C-5D8BDBD49A30}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +44,8 @@ Global
 		{EA71FB92-FE9C-4C47-975C-5D8BDBD49A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA71FB92-FE9C-4C47-975C-5D8BDBD49A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA71FB92-FE9C-4C47-975C-5D8BDBD49A30}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
