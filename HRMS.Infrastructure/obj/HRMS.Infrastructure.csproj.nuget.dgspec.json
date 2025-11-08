@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure\\HRMS.Infrastructure.csproj": {}
+    "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure\\HRMS.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj": {
+    "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj",
         "projectName": "HRMS.Application",
-        "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj",
+        "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj",
         "packagesPath": "C:\\Users\\Prince\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\obj\\",
         "projectStyle": "PackageReference",
@@ -33,8 +33,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {
-                "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj"
+              "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {
+                "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj"
               }
             }
           }
@@ -128,12 +128,12 @@
         }
       }
     },
-    "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {
+    "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj",
         "projectName": "HRMS.Domain",
-        "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj",
+        "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj",
         "packagesPath": "C:\\Users\\Prince\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\obj\\",
         "projectStyle": "PackageReference",
@@ -204,12 +204,12 @@
         }
       }
     },
-    "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure\\HRMS.Infrastructure.csproj": {
+    "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure\\HRMS.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure\\HRMS.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure\\HRMS.Infrastructure.csproj",
         "projectName": "HRMS.Infrastructure",
-        "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure\\HRMS.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure\\HRMS.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Prince\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
@@ -233,11 +233,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj": {
-                "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj"
+              "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj": {
+                "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj"
               },
-              "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {
-                "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj"
+              "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {
+                "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj"
               }
             }
           }

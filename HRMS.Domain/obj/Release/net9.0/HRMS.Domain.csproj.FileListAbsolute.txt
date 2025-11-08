@@ -1,0 +1,13 @@
+C:\Users\Prince\Source\Repos\HRMS\HRMS.Domain\bin\Release\net9.0\HRMS.Domain.deps.json
+C:\Users\Prince\Source\Repos\HRMS\HRMS.Domain\bin\Release\net9.0\HRMS.Domain.dll
+C:\Users\Prince\Source\Repos\HRMS\HRMS.Domain\bin\Release\net9.0\HRMS.Domain.pdb
+C:\Users\Prince\Source\Repos\HRMS\HRMS.Domain\obj\Release\net9.0\HRMS.Domain.csproj.AssemblyReference.cache
+C:\Users\Prince\Source\Repos\HRMS\HRMS.Domain\obj\Release\net9.0\HRMS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Prince\Source\Repos\HRMS\HRMS.Domain\obj\Release\net9.0\HRMS.Domain.AssemblyInfoInputs.cache
+C:\Users\Prince\Source\Repos\HRMS\HRMS.Domain\obj\Release\net9.0\HRMS.Domain.AssemblyInfo.cs
+C:\Users\Prince\Source\Repos\HRMS\HRMS.Domain\obj\Release\net9.0\HRMS.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Prince\Source\Repos\HRMS\HRMS.Domain\obj\Release\net9.0\HRMS.Domain.sourcelink.json
+C:\Users\Prince\Source\Repos\HRMS\HRMS.Domain\obj\Release\net9.0\HRMS.Domain.dll
+C:\Users\Prince\Source\Repos\HRMS\HRMS.Domain\obj\Release\net9.0\refint\HRMS.Domain.dll
+C:\Users\Prince\Source\Repos\HRMS\HRMS.Domain\obj\Release\net9.0\HRMS.Domain.pdb
+C:\Users\Prince\Source\Repos\HRMS\HRMS.Domain\obj\Release\net9.0\ref\HRMS.Domain.dll

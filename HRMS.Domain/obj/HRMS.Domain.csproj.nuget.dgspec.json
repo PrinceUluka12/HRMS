@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {}
+    "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {
+    "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj",
         "projectName": "HRMS.Domain",
-        "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj",
+        "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Domain\\HRMS.Domain.csproj",
         "packagesPath": "C:\\Users\\Prince\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Domain\\obj\\",
         "projectStyle": "PackageReference",

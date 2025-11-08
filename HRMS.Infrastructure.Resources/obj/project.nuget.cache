@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jEKqyYcR7yE=",
+  "dgSpecHash": "zBgIOdwe8LE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
+  "projectFilePath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Prince\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Prince\\.nuget\\packages\\azure.core\\1.44.1\\azure.core.1.44.1.nupkg.sha512",
@@ -88,9 +88,9 @@
       "code": "NU1608",
       "level": "Warning",
       "message": "Detected package version outside of dependency constraint: MediatR.Extensions.Microsoft.DependencyInjection 11.1.0 requires MediatR (>= 11.0.0 && < 12.0.0) but version MediatR 13.0.0 was resolved.",
-      "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
+      "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
+      "filePath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
       "libraryId": "MediatR",
       "targetGraphs": [
         "net9.0"
@@ -100,9 +100,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'BCrypt 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0'. This package may not be fully compatible with your project.",
-      "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
+      "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
+      "filePath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
       "libraryId": "BCrypt",
       "targetGraphs": [
         "net9.0"

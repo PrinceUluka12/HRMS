@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qSOqvYfnJI4=",
+  "dgSpecHash": "GvecWhCfoAM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.API\\HRMS.API.csproj",
+  "projectFilePath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.API\\HRMS.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Prince\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Prince\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
@@ -98,6 +98,7 @@
     "C:\\Users\\Prince\\.nuget\\packages\\microsoft.kiota.serialization.text\\1.17.1\\microsoft.kiota.serialization.text.1.17.1.nupkg.sha512",
     "C:\\Users\\Prince\\.nuget\\packages\\microsoft.openapi\\1.6.23\\microsoft.openapi.1.6.23.nupkg.sha512",
     "C:\\Users\\Prince\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
+    "C:\\Users\\Prince\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.22.1\\microsoft.visualstudio.azure.containers.tools.targets.1.22.1.nupkg.sha512",
     "C:\\Users\\Prince\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Prince\\.nuget\\packages\\mono.texttemplating\\3.0.0\\mono.texttemplating.3.0.0.nupkg.sha512",
     "C:\\Users\\Prince\\.nuget\\packages\\pdfsharpcore\\1.3.67\\pdfsharpcore.1.3.67.nupkg.sha512",
@@ -161,9 +162,9 @@
       "code": "NU1608",
       "level": "Warning",
       "message": "Detected package version outside of dependency constraint: MediatR.Extensions.Microsoft.DependencyInjection 11.1.0 requires MediatR (>= 11.0.0 && < 12.0.0) but version MediatR 13.0.0 was resolved.",
-      "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.API\\HRMS.API.csproj",
+      "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.API\\HRMS.API.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.API\\HRMS.API.csproj",
+      "filePath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.API\\HRMS.API.csproj",
       "libraryId": "MediatR",
       "targetGraphs": [
         "net9.0"
@@ -173,9 +174,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'BCrypt 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0'. This package may not be fully compatible with your project.",
-      "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.API\\HRMS.API.csproj",
+      "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.API\\HRMS.API.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.API\\HRMS.API.csproj",
+      "filePath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.API\\HRMS.API.csproj",
       "libraryId": "BCrypt",
       "targetGraphs": [
         "net9.0"

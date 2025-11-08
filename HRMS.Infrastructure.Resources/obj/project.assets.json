@@ -3329,9 +3329,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
+      "projectUniqueName": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
       "projectName": "HRMS.Infrastructure.Resources",
-      "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
+      "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
       "packagesPath": "C:\\Users\\Prince\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure.Resources\\obj\\",
       "projectStyle": "PackageReference",
@@ -3355,8 +3355,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj": {
-              "projectPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj"
+            "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj": {
+              "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj"
             }
           }
         }
