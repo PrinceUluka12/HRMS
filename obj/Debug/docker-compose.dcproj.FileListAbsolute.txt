@@ -1,0 +1,2 @@
+C:\Users\Prince\Source\Repos\HRMS\bin\Debug\HRMS.API.dll
+C:\Users\Prince\Source\Repos\HRMS\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache

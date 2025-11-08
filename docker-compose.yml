@@ -1,0 +1,6 @@
+services:
+  hrms.api:
+    image: ${DOCKER_REGISTRY-}hrmsapi
+    build:
+      context: .
+      dockerfile: HRMS.API/Dockerfile
