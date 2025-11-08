@@ -9,4 +9,5 @@ public interface IEmailService
     Task SendPayslipEmailAsync(string recipientEmail, Payroll payroll);
     Task SendWelcomeEmailAsync(string recipientEmail, Employee employee);
     Task SendLeaveApprovalEmailAsync(string recipientEmail, LeaveRequest leaveRequest);
+    Task<bool> TestDB();
 }

@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Graph;
 using Serilog;
+using System;
 using System.Text;
 
 
@@ -122,6 +123,37 @@ builder.Services.Configure<FormOptions>(o =>
     o.MultipartBodyLengthLimit = 1024L * 1024L * 200L; // 200 MB
 });
 var app = builder.Build();
+
+
+
+try
+{
+    using var scope = app.Services.CreateScope(); // Create a scope to get scoped services
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    // This tries to open a connection
+    if (db.Database.CanConnect())
+    {
+        Console.WriteLine("Database connection SUCCESSFUL!");
+    }
+    else
+    {
+        Console.WriteLine("Database connection FAILED!");
+    }
+}
+catch (Exception ex)
+{
+    // Log the exception and optionally stop the app
+    var logger = app.Services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "Database connection test failed at startup!");
+
+    // Optional: stop the app if DB is required
+    // throw;
+}
+
+
+
+
 
 // Configure the HTTP request pipeline
 app.UseSwaggerWithVersioning();

@@ -24,6 +24,8 @@ public class EmployeeRepository(ApplicationDbContext context, IUnitOfWork unitOf
 
     public async Task<List<Employee>> GetListWithDepAndPosAsync(CancellationToken cancellationToken = default)
     {
+      
+
         return await context.Employees
             .Include(e => e.Department)
             .Include(e => e.Position)

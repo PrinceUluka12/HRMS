@@ -12,6 +12,7 @@ namespace HRMS.Application.Interfaces.Services;
 
 public class EmailService(
     GraphServiceClient graphServiceClient,
+  
     ILogger<EmailService> logger)
     : IEmailService
 {
@@ -179,5 +180,10 @@ public class EmailService(
         writer.WriteLine($"Net Salary: {payroll.NetSalary:C}");
         writer.Flush();
         return stream.ToArray();
+    }
+
+    public Task<bool> TestDB()
+    {
+        throw new NotImplementedException();
     }
 }

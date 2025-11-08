@@ -1,0 +1,346 @@
+2025-11-07 20:09:23.013 -05:00 [INF] User profile is available. Using 'C:\Users\Prince\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-07 20:09:23.076 -05:00 [INF] Payroll Processing Service is starting.
+2025-11-07 20:09:23.080 -05:00 [INF] Initial delay until first payroll run: "22:50:36.9201141"
+2025-11-07 20:09:23.477 -05:00 [INF] Now listening on: https://localhost:5002
+2025-11-07 20:09:23.587 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-07 20:09:23.590 -05:00 [INF] Hosting environment: Development
+2025-11-07 20:09:23.592 -05:00 [INF] Content root path: C:\Users\Prince\source\repos\HRMS\HRMS.API
+2025-11-07 20:09:32.827 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/index.html - null null
+2025-11-07 20:09:33.138 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/index.html - 200 null text/html;charset=utf-8 321.0767ms
+2025-11-07 20:09:33.242 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/index.js - null null
+2025-11-07 20:09:33.242 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/index.css - null null
+2025-11-07 20:09:33.242 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/swagger-ui.css - null null
+2025-11-07 20:09:33.242 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-07 20:09:33.242 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/swagger-ui-standalone-preset.js - null null
+2025-11-07 20:09:33.293 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/index.js - 200 null application/javascript;charset=utf-8 65.5731ms
+2025-11-07 20:09:33.254 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/swagger-ui-bundle.js - null null
+2025-11-07 20:09:33.289 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/_vs/browserLink - null null
+2025-11-07 20:09:33.374 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 133.4923ms
+2025-11-07 20:09:33.463 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/index.css - 304 null null 235.2738ms
+2025-11-07 20:09:33.463 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/swagger-ui-standalone-preset.js - 304 null null 221.0424ms
+2025-11-07 20:09:33.463 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/swagger-ui.css - 304 null null 235.2865ms
+2025-11-07 20:09:33.463 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/swagger-ui-bundle.js - 304 null null 208.2934ms
+2025-11-07 20:09:33.566 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/_vs/browserLink - 200 null text/javascript; charset=UTF-8 277.9452ms
+2025-11-07 20:09:34.012 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/v1/swagger.json - null null
+2025-11-07 20:09:34.092 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/favicon-32x32.png - null null
+2025-11-07 20:09:34.134 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/favicon-32x32.png - 304 null null 41.8392ms
+2025-11-07 20:09:34.505 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 493.0735ms
+2025-11-07 20:09:46.010 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/api/Departments - null null
+2025-11-07 20:09:46.375 -05:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Employee|Admin)
+2025-11-07 20:09:46.385 -05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-11-07 20:09:46.397 -05:00 [INF] Request Completed {"Method":"GET","Path":{"Value":"/api/Departments","HasValue":true,"$type":"PathString"},"StatusCode":401,"DurationMs":367.7015,"Query":""}
+2025-11-07 20:09:46.422 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/api/Departments - 401 0 null 411.663ms
+2025-11-07 20:10:12.780 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/api/Employees - null null
+2025-11-07 20:10:12.814 -05:00 [INF] Executing endpoint 'HRMS.API.Controllers.EmployeesController.GetAllEmployees (HRMS.API)'
+2025-11-07 20:10:12.864 -05:00 [INF] Route matched with {action = "GetAllEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployees(HRMS.Application.Features.Employees.Queries.GetEmployeeList.GetEmployeeListQuery) on controller HRMS.API.Controllers.EmployeesController (HRMS.API).
+2025-11-07 20:10:12.875 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-11-07 20:10:15.026 -05:00 [WRN] The property 'LeaveRequest.Attachments' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-11-07 20:10:15.059 -05:00 [WRN] The foreign key property 'LeaveRequest.EmployeeId1' was created in shadow state because a conflicting property with the simple name 'EmployeeId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2025-11-07 20:10:15.154 -05:00 [WRN] No store type was specified for the decimal property 'FullTimeEquivalent' on entity type 'Employee'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:10:15.158 -05:00 [WRN] No store type was specified for the decimal property 'BenefitsDeductions' on entity type 'Payroll'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:10:15.161 -05:00 [WRN] No store type was specified for the decimal property 'GrossSalary' on entity type 'Payroll'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:10:15.164 -05:00 [WRN] No store type was specified for the decimal property 'NetSalary' on entity type 'Payroll'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:10:15.167 -05:00 [WRN] No store type was specified for the decimal property 'TaxDeductions' on entity type 'Payroll'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:10:15.171 -05:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'PayrollItem'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:10:15.175 -05:00 [WRN] No store type was specified for the decimal property 'Progress' on entity type 'PerformanceGoal'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:10:15.177 -05:00 [WRN] No store type was specified for the decimal property 'Rating' on entity type 'ReviewMetric'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:10:15.180 -05:00 [WRN] No store type was specified for the decimal property 'Weight' on entity type 'ReviewMetric'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:10:16.276 -05:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-11-07 20:10:17.423 -05:00 [ERR] Failed executing DbCommand (129ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[AzureAdId], [e].[BaseSalary], [e].[DateOfBirth], [e].[DepartmentId], [e].[EmployeeNumber], [e].[EmploymentType], [e].[FullTimeEquivalent], [e].[Gender], [e].[GovernmentId], [e].[HireDate], [e].[IsFullTime], [e].[JobTitle], [e].[ManagerId], [e].[MaritalStatus], [e].[PayFrequency], [e].[PersonalPhone], [e].[PositionId], [e].[Status], [e].[TaxIdentificationNumber], [e].[TerminationDate], [e].[TerminationReason], [e].[WorkPhone], [d].[Id], [p].[Id], [e0].[Id], [e0].[ClockInTime], [e0].[ClockOutTime], [e0].[Date], [e0].[EmployeeId], [e0].[Notes], [e0].[Status], [e].[BankDetails_AccountNumber], [e].[BankDetails_BankName], [e].[BankDetails_RoutingNumber], [e1].[Id], [e1].[EmployeeId], [e1].[ExpirationDate], [e1].[IssueDate], [e1].[IssuingOrganization], [e1].[Name], [e2].[Id], [e2].[DateOfBirth], [e2].[EmployeeId], [e2].[IsForTaxBenefits], [e2].[Name], [e2].[Relationship], [e3].[Id], [e3].[Degree], [e3].[EmployeeId], [e3].[EndDate], [e3].[FieldOfStudy], [e3].[Institution], [e3].[IsCompleted], [e3].[StartDate], [e].[Email], [e4].[Id], [e4].[Email], [e4].[EmployeeId], [e4].[Name], [e4].[PhoneNumber], [e4].[Relationship], [e].[Name_FirstName], [e].[Name_LastName], [e].[PrimaryAddress_City], [e].[PrimaryAddress_Country], [e].[PrimaryAddress_PostalCode], [e].[PrimaryAddress_State], [e].[PrimaryAddress_Street], [e5].[Id], [e5].[AcquiredDate], [e5].[EmployeeId], [e5].[Level], [e5].[Name], [d].[Code], [d].[Description], [d].[ManagerId], [d].[Name], [p].[BaseSalary], [p].[Code], [p].[DepartmentId], [p].[Description], [p].[Title]
+FROM [Employees] AS [e]
+INNER JOIN [Departments] AS [d] ON [e].[DepartmentId] = [d].[Id]
+INNER JOIN [Positions] AS [p] ON [e].[PositionId] = [p].[Id]
+LEFT JOIN [EmployeeAttendanceRecords] AS [e0] ON [e].[Id] = [e0].[EmployeeId]
+LEFT JOIN [EmployeeCertifications] AS [e1] ON [e].[Id] = [e1].[EmployeeId]
+LEFT JOIN [EmployeeDependents] AS [e2] ON [e].[Id] = [e2].[EmployeeId]
+LEFT JOIN [EmployeeEducationHistory] AS [e3] ON [e].[Id] = [e3].[EmployeeId]
+LEFT JOIN [EmployeeEmergencyContacts] AS [e4] ON [e].[Id] = [e4].[EmployeeId]
+LEFT JOIN [EmployeeSkills] AS [e5] ON [e].[Id] = [e5].[EmployeeId]
+ORDER BY [e].[Id], [d].[Id], [p].[Id], [e0].[Id], [e1].[Id], [e2].[Id], [e3].[Id], [e4].[Id]
+2025-11-07 20:10:17.454 -05:00 [ERR] An exception occurred while iterating over the results of a query for context type 'HRMS.Infrastructure.Persistence.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Employees'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:69f90595-03bc-4c82-9d20-ac52ea7bff61
+Error Number:208,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Employees'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:69f90595-03bc-4c82-9d20-ac52ea7bff61
+Error Number:208,State:1,Class:16
+2025-11-07 20:10:18.184 -05:00 [ERR] Failed to retrieve employee list.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Employees'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at HRMS.Infrastructure.Repositories.EmployeeRepository.GetListWithDepAndPosAsync(CancellationToken cancellationToken) in C:\Users\Prince\source\repos\HRMS\HRMS.Infrastructure\Repositories\EmployeeRepository.cs:line 27
+   at HRMS.Application.Features.Employees.Queries.GetEmployeeList.GetEmployeeListQueryHandler.Handle(GetEmployeeListQuery request, CancellationToken cancellationToken) in C:\Users\Prince\source\repos\HRMS\HRMS.Application\Features\Employees\Queries\GetEmployeeList\GetEmployeeListQuery.cs:line 23
+ClientConnectionId:69f90595-03bc-4c82-9d20-ac52ea7bff61
+Error Number:208,State:1,Class:16
+2025-11-07 20:10:18.245 -05:00 [INF] Executing OkObjectResult, writing value of type 'HRMS.Application.Wrappers.BaseResult`1[[System.Collections.Generic.List`1[[HRMS.Application.Features.Employees.Dtos.EmployeeListDto, HRMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-07 20:10:18.287 -05:00 [INF] Executed action HRMS.API.Controllers.EmployeesController.GetAllEmployees (HRMS.API) in 5413.0691ms
+2025-11-07 20:10:18.292 -05:00 [INF] Executed endpoint 'HRMS.API.Controllers.EmployeesController.GetAllEmployees (HRMS.API)'
+2025-11-07 20:10:18.297 -05:00 [INF] HTTP GET /api/Employees responded 200 in 5482.9413 ms
+2025-11-07 20:10:18.306 -05:00 [WRN] Slow Request {"Method":"GET","Path":{"Value":"/api/Employees","HasValue":true,"$type":"PathString"},"StatusCode":200,"DurationMs":5516.1234,"Query":""}
+2025-11-07 20:10:18.333 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/api/Employees - 200 null application/json; charset=utf-8 5553.3546ms
+2025-11-07 20:11:36.126 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/api/Employees - null null
+2025-11-07 20:11:36.140 -05:00 [INF] Executing endpoint 'HRMS.API.Controllers.EmployeesController.GetAllEmployees (HRMS.API)'
+2025-11-07 20:11:36.143 -05:00 [INF] Route matched with {action = "GetAllEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployees(HRMS.Application.Features.Employees.Queries.GetEmployeeList.GetEmployeeListQuery) on controller HRMS.API.Controllers.EmployeesController (HRMS.API).
+2025-11-07 20:12:16.564 -05:00 [INF] User profile is available. Using 'C:\Users\Prince\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-07 20:12:16.627 -05:00 [INF] Payroll Processing Service is starting.
+2025-11-07 20:12:16.630 -05:00 [INF] Initial delay until first payroll run: "22:47:43.3700221"
+2025-11-07 20:12:16.851 -05:00 [INF] Now listening on: https://localhost:5002
+2025-11-07 20:12:16.942 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-07 20:12:16.944 -05:00 [INF] Hosting environment: Development
+2025-11-07 20:12:16.947 -05:00 [INF] Content root path: C:\Users\Prince\source\repos\HRMS\HRMS.API
+2025-11-07 20:12:18.916 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-07 20:12:19.047 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 147.5976ms
+2025-11-07 20:12:19.343 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/_vs/browserLink - null null
+2025-11-07 20:12:19.552 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/_vs/browserLink - 200 null text/javascript; charset=UTF-8 210.4477ms
+2025-11-07 20:12:20.254 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/v1/swagger.json - null null
+2025-11-07 20:12:20.631 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 377.2324ms
+2025-11-07 20:12:32.172 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/api/Employees - null null
+2025-11-07 20:12:32.371 -05:00 [INF] Executing endpoint 'HRMS.API.Controllers.EmployeesController.GetAllEmployees (HRMS.API)'
+2025-11-07 20:12:32.396 -05:00 [INF] Route matched with {action = "GetAllEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployees(HRMS.Application.Features.Employees.Queries.GetEmployeeList.GetEmployeeListQuery) on controller HRMS.API.Controllers.EmployeesController (HRMS.API).
+2025-11-07 20:12:32.404 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-11-07 20:25:18.914 -05:00 [WRN] The property 'LeaveRequest.Attachments' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-11-07 20:25:19.010 -05:00 [WRN] The foreign key property 'LeaveRequest.EmployeeId1' was created in shadow state because a conflicting property with the simple name 'EmployeeId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2025-11-07 20:25:19.137 -05:00 [WRN] No store type was specified for the decimal property 'FullTimeEquivalent' on entity type 'Employee'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:25:19.141 -05:00 [WRN] No store type was specified for the decimal property 'BenefitsDeductions' on entity type 'Payroll'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:25:19.145 -05:00 [WRN] No store type was specified for the decimal property 'GrossSalary' on entity type 'Payroll'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:25:19.148 -05:00 [WRN] No store type was specified for the decimal property 'NetSalary' on entity type 'Payroll'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:25:19.151 -05:00 [WRN] No store type was specified for the decimal property 'TaxDeductions' on entity type 'Payroll'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:25:19.155 -05:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'PayrollItem'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:25:19.158 -05:00 [WRN] No store type was specified for the decimal property 'Progress' on entity type 'PerformanceGoal'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:25:19.162 -05:00 [WRN] No store type was specified for the decimal property 'Rating' on entity type 'ReviewMetric'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:25:19.165 -05:00 [WRN] No store type was specified for the decimal property 'Weight' on entity type 'ReviewMetric'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:25:20.613 -05:00 [INF] Executed DbCommand (118ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-11-07 20:25:21.067 -05:00 [INF] User profile is available. Using 'C:\Users\Prince\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-07 20:25:21.093 -05:00 [INF] Payroll Processing Service is starting.
+2025-11-07 20:25:21.097 -05:00 [INF] Initial delay until first payroll run: "22:34:38.9035423"
+2025-11-07 20:25:21.438 -05:00 [INF] Now listening on: https://localhost:5002
+2025-11-07 20:25:21.592 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-07 20:25:21.612 -05:00 [INF] Hosting environment: Development
+2025-11-07 20:25:21.615 -05:00 [INF] Content root path: C:\Users\Prince\source\repos\HRMS\HRMS.API
+2025-11-07 20:25:23.561 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-07 20:25:23.639 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 104.937ms
+2025-11-07 20:25:23.935 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/_vs/browserLink - null null
+2025-11-07 20:25:24.071 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/_vs/browserLink - 200 null text/javascript; charset=UTF-8 135.9728ms
+2025-11-07 20:25:24.171 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/v1/swagger.json - null null
+2025-11-07 20:25:24.546 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Employees" for actions - HRMS.API.Controllers.EmployeesController.GetAllEmployees (HRMS.API), HRMS.API.Controllers.EmployeesController.DBTEST (HRMS.API). Actions require a unique method/path combination for Swagger/OpenAPI 2.0 and 3.0. Use ConflictingActionsResolver as a workaround or provide your own implementation of PathGroupSelector.
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.PrepareGenerateOperation(IGrouping`2 group)
+   at System.Linq.Enumerable.IteratorSelectIterator`2.MoveNext()
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperationsAsync(OpenApiDocument document, IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(OpenApiDocument document, IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository, Func`4 operationsGenerator)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(OpenApiDocument document, IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-11-07 20:25:24.564 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 393.5732ms
+2025-11-07 20:26:12.791 -05:00 [WRN] The property 'LeaveRequest.Attachments' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-11-07 20:26:12.848 -05:00 [WRN] The foreign key property 'LeaveRequest.EmployeeId1' was created in shadow state because a conflicting property with the simple name 'EmployeeId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2025-11-07 20:26:12.906 -05:00 [WRN] No store type was specified for the decimal property 'FullTimeEquivalent' on entity type 'Employee'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:26:12.911 -05:00 [WRN] No store type was specified for the decimal property 'BenefitsDeductions' on entity type 'Payroll'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:26:12.915 -05:00 [WRN] No store type was specified for the decimal property 'GrossSalary' on entity type 'Payroll'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:26:12.917 -05:00 [WRN] No store type was specified for the decimal property 'NetSalary' on entity type 'Payroll'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:26:12.919 -05:00 [WRN] No store type was specified for the decimal property 'TaxDeductions' on entity type 'Payroll'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:26:12.922 -05:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'PayrollItem'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:26:12.924 -05:00 [WRN] No store type was specified for the decimal property 'Progress' on entity type 'PerformanceGoal'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:26:12.927 -05:00 [WRN] No store type was specified for the decimal property 'Rating' on entity type 'ReviewMetric'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:26:12.929 -05:00 [WRN] No store type was specified for the decimal property 'Weight' on entity type 'ReviewMetric'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-07 20:26:13.949 -05:00 [INF] Executed DbCommand (94ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-11-07 20:26:14.205 -05:00 [INF] User profile is available. Using 'C:\Users\Prince\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-07 20:26:14.223 -05:00 [INF] Payroll Processing Service is starting.
+2025-11-07 20:26:14.226 -05:00 [INF] Initial delay until first payroll run: "22:33:45.7735400"
+2025-11-07 20:26:14.441 -05:00 [INF] Now listening on: https://localhost:5002
+2025-11-07 20:26:14.550 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-07 20:26:14.552 -05:00 [INF] Hosting environment: Development
+2025-11-07 20:26:14.554 -05:00 [INF] Content root path: C:\Users\Prince\source\repos\HRMS\HRMS.API
+2025-11-07 20:26:15.959 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-07 20:26:16.015 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 69.0643ms
+2025-11-07 20:26:16.302 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/_vs/browserLink - null null
+2025-11-07 20:26:16.403 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/_vs/browserLink - 200 null text/javascript; charset=UTF-8 101.164ms
+2025-11-07 20:26:16.489 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/swagger/v1/swagger.json - null null
+2025-11-07 20:26:16.976 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 487.5224ms
+2025-11-07 20:26:51.887 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/api/Employees - null null
+2025-11-07 20:26:52.304 -05:00 [INF] Executing endpoint 'HRMS.API.Controllers.EmployeesController.GetAllEmployees (HRMS.API)'
+2025-11-07 20:26:52.370 -05:00 [INF] Route matched with {action = "GetAllEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployees(HRMS.Application.Features.Employees.Queries.GetEmployeeList.GetEmployeeListQuery) on controller HRMS.API.Controllers.EmployeesController (HRMS.API).
+2025-11-07 20:26:52.391 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-11-07 20:26:57.334 -05:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-11-07 20:26:57.995 -05:00 [ERR] Failed executing DbCommand (267ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[AzureAdId], [e].[BaseSalary], [e].[DateOfBirth], [e].[DepartmentId], [e].[EmployeeNumber], [e].[EmploymentType], [e].[FullTimeEquivalent], [e].[Gender], [e].[GovernmentId], [e].[HireDate], [e].[IsFullTime], [e].[JobTitle], [e].[ManagerId], [e].[MaritalStatus], [e].[PayFrequency], [e].[PersonalPhone], [e].[PositionId], [e].[Status], [e].[TaxIdentificationNumber], [e].[TerminationDate], [e].[TerminationReason], [e].[WorkPhone], [d].[Id], [p].[Id], [e0].[Id], [e0].[ClockInTime], [e0].[ClockOutTime], [e0].[Date], [e0].[EmployeeId], [e0].[Notes], [e0].[Status], [e].[BankDetails_AccountNumber], [e].[BankDetails_BankName], [e].[BankDetails_RoutingNumber], [e1].[Id], [e1].[EmployeeId], [e1].[ExpirationDate], [e1].[IssueDate], [e1].[IssuingOrganization], [e1].[Name], [e2].[Id], [e2].[DateOfBirth], [e2].[EmployeeId], [e2].[IsForTaxBenefits], [e2].[Name], [e2].[Relationship], [e3].[Id], [e3].[Degree], [e3].[EmployeeId], [e3].[EndDate], [e3].[FieldOfStudy], [e3].[Institution], [e3].[IsCompleted], [e3].[StartDate], [e].[Email], [e4].[Id], [e4].[Email], [e4].[EmployeeId], [e4].[Name], [e4].[PhoneNumber], [e4].[Relationship], [e].[Name_FirstName], [e].[Name_LastName], [e].[PrimaryAddress_City], [e].[PrimaryAddress_Country], [e].[PrimaryAddress_PostalCode], [e].[PrimaryAddress_State], [e].[PrimaryAddress_Street], [e5].[Id], [e5].[AcquiredDate], [e5].[EmployeeId], [e5].[Level], [e5].[Name], [d].[Code], [d].[Description], [d].[ManagerId], [d].[Name], [p].[BaseSalary], [p].[Code], [p].[DepartmentId], [p].[Description], [p].[Title]
+FROM [Employees] AS [e]
+INNER JOIN [Departments] AS [d] ON [e].[DepartmentId] = [d].[Id]
+INNER JOIN [Positions] AS [p] ON [e].[PositionId] = [p].[Id]
+LEFT JOIN [EmployeeAttendanceRecords] AS [e0] ON [e].[Id] = [e0].[EmployeeId]
+LEFT JOIN [EmployeeCertifications] AS [e1] ON [e].[Id] = [e1].[EmployeeId]
+LEFT JOIN [EmployeeDependents] AS [e2] ON [e].[Id] = [e2].[EmployeeId]
+LEFT JOIN [EmployeeEducationHistory] AS [e3] ON [e].[Id] = [e3].[EmployeeId]
+LEFT JOIN [EmployeeEmergencyContacts] AS [e4] ON [e].[Id] = [e4].[EmployeeId]
+LEFT JOIN [EmployeeSkills] AS [e5] ON [e].[Id] = [e5].[EmployeeId]
+ORDER BY [e].[Id], [d].[Id], [p].[Id], [e0].[Id], [e1].[Id], [e2].[Id], [e3].[Id], [e4].[Id]
+2025-11-07 20:26:58.049 -05:00 [ERR] An exception occurred while iterating over the results of a query for context type 'HRMS.Infrastructure.Persistence.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Employees'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:879ef6cc-3c7f-4cd8-8fb6-418f0365d40d
+Error Number:208,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Employees'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:879ef6cc-3c7f-4cd8-8fb6-418f0365d40d
+Error Number:208,State:1,Class:16
+2025-11-07 20:26:58.637 -05:00 [ERR] Failed to retrieve employee list.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Employees'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at HRMS.Infrastructure.Repositories.EmployeeRepository.GetListWithDepAndPosAsync(CancellationToken cancellationToken) in C:\Users\Prince\source\repos\HRMS\HRMS.Infrastructure\Repositories\EmployeeRepository.cs:line 29
+   at HRMS.Application.Features.Employees.Queries.GetEmployeeList.GetEmployeeListQueryHandler.Handle(GetEmployeeListQuery request, CancellationToken cancellationToken) in C:\Users\Prince\source\repos\HRMS\HRMS.Application\Features\Employees\Queries\GetEmployeeList\GetEmployeeListQuery.cs:line 23
+ClientConnectionId:879ef6cc-3c7f-4cd8-8fb6-418f0365d40d
+Error Number:208,State:1,Class:16
+2025-11-07 20:26:58.787 -05:00 [INF] Executing OkObjectResult, writing value of type 'HRMS.Application.Wrappers.BaseResult`1[[System.Collections.Generic.List`1[[HRMS.Application.Features.Employees.Dtos.EmployeeListDto, HRMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-07 20:26:58.867 -05:00 [INF] Executed action HRMS.API.Controllers.EmployeesController.GetAllEmployees (HRMS.API) in 6478.2801ms
+2025-11-07 20:26:58.873 -05:00 [INF] Executed endpoint 'HRMS.API.Controllers.EmployeesController.GetAllEmployees (HRMS.API)'
+2025-11-07 20:26:58.885 -05:00 [INF] HTTP GET /api/Employees responded 200 in 6583.6394 ms
+2025-11-07 20:26:58.906 -05:00 [WRN] Slow Request {"Method":"GET","Path":{"Value":"/api/Employees","HasValue":true,"$type":"PathString"},"StatusCode":200,"DurationMs":6963.4866,"Query":""}
+2025-11-07 20:26:58.943 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/api/Employees - 200 null application/json; charset=utf-8 7055.9506ms
+2025-11-07 20:27:31.774 -05:00 [INF] Request starting HTTP/2 GET https://localhost:5002/api/Employees - null null
+2025-11-07 20:27:31.798 -05:00 [INF] Executing endpoint 'HRMS.API.Controllers.EmployeesController.GetAllEmployees (HRMS.API)'
+2025-11-07 20:27:31.804 -05:00 [INF] Route matched with {action = "GetAllEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployees(HRMS.Application.Features.Employees.Queries.GetEmployeeList.GetEmployeeListQuery) on controller HRMS.API.Controllers.EmployeesController (HRMS.API).
+2025-11-07 20:27:37.249 -05:00 [ERR] Failed executing DbCommand (90ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[AzureAdId], [e].[BaseSalary], [e].[DateOfBirth], [e].[DepartmentId], [e].[EmployeeNumber], [e].[EmploymentType], [e].[FullTimeEquivalent], [e].[Gender], [e].[GovernmentId], [e].[HireDate], [e].[IsFullTime], [e].[JobTitle], [e].[ManagerId], [e].[MaritalStatus], [e].[PayFrequency], [e].[PersonalPhone], [e].[PositionId], [e].[Status], [e].[TaxIdentificationNumber], [e].[TerminationDate], [e].[TerminationReason], [e].[WorkPhone], [d].[Id], [p].[Id], [e0].[Id], [e0].[ClockInTime], [e0].[ClockOutTime], [e0].[Date], [e0].[EmployeeId], [e0].[Notes], [e0].[Status], [e].[BankDetails_AccountNumber], [e].[BankDetails_BankName], [e].[BankDetails_RoutingNumber], [e1].[Id], [e1].[EmployeeId], [e1].[ExpirationDate], [e1].[IssueDate], [e1].[IssuingOrganization], [e1].[Name], [e2].[Id], [e2].[DateOfBirth], [e2].[EmployeeId], [e2].[IsForTaxBenefits], [e2].[Name], [e2].[Relationship], [e3].[Id], [e3].[Degree], [e3].[EmployeeId], [e3].[EndDate], [e3].[FieldOfStudy], [e3].[Institution], [e3].[IsCompleted], [e3].[StartDate], [e].[Email], [e4].[Id], [e4].[Email], [e4].[EmployeeId], [e4].[Name], [e4].[PhoneNumber], [e4].[Relationship], [e].[Name_FirstName], [e].[Name_LastName], [e].[PrimaryAddress_City], [e].[PrimaryAddress_Country], [e].[PrimaryAddress_PostalCode], [e].[PrimaryAddress_State], [e].[PrimaryAddress_Street], [e5].[Id], [e5].[AcquiredDate], [e5].[EmployeeId], [e5].[Level], [e5].[Name], [d].[Code], [d].[Description], [d].[ManagerId], [d].[Name], [p].[BaseSalary], [p].[Code], [p].[DepartmentId], [p].[Description], [p].[Title]
+FROM [Employees] AS [e]
+INNER JOIN [Departments] AS [d] ON [e].[DepartmentId] = [d].[Id]
+INNER JOIN [Positions] AS [p] ON [e].[PositionId] = [p].[Id]
+LEFT JOIN [EmployeeAttendanceRecords] AS [e0] ON [e].[Id] = [e0].[EmployeeId]
+LEFT JOIN [EmployeeCertifications] AS [e1] ON [e].[Id] = [e1].[EmployeeId]
+LEFT JOIN [EmployeeDependents] AS [e2] ON [e].[Id] = [e2].[EmployeeId]
+LEFT JOIN [EmployeeEducationHistory] AS [e3] ON [e].[Id] = [e3].[EmployeeId]
+LEFT JOIN [EmployeeEmergencyContacts] AS [e4] ON [e].[Id] = [e4].[EmployeeId]
+LEFT JOIN [EmployeeSkills] AS [e5] ON [e].[Id] = [e5].[EmployeeId]
+ORDER BY [e].[Id], [d].[Id], [p].[Id], [e0].[Id], [e1].[Id], [e2].[Id], [e3].[Id], [e4].[Id]
+2025-11-07 20:27:37.258 -05:00 [ERR] An exception occurred while iterating over the results of a query for context type 'HRMS.Infrastructure.Persistence.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Employees'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:879ef6cc-3c7f-4cd8-8fb6-418f0365d40d
+Error Number:208,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Employees'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:879ef6cc-3c7f-4cd8-8fb6-418f0365d40d
+Error Number:208,State:1,Class:16
+2025-11-07 20:29:22.995 -05:00 [ERR] Failed to retrieve employee list.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Employees'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at HRMS.Infrastructure.Repositories.EmployeeRepository.GetListWithDepAndPosAsync(CancellationToken cancellationToken) in C:\Users\Prince\source\repos\HRMS\HRMS.Infrastructure\Repositories\EmployeeRepository.cs:line 29
+   at HRMS.Application.Features.Employees.Queries.GetEmployeeList.GetEmployeeListQueryHandler.Handle(GetEmployeeListQuery request, CancellationToken cancellationToken) in C:\Users\Prince\source\repos\HRMS\HRMS.Application\Features\Employees\Queries\GetEmployeeList\GetEmployeeListQuery.cs:line 23
+ClientConnectionId:879ef6cc-3c7f-4cd8-8fb6-418f0365d40d
+Error Number:208,State:1,Class:16
+2025-11-07 20:29:23.023 -05:00 [INF] Executing OkObjectResult, writing value of type 'HRMS.Application.Wrappers.BaseResult`1[[System.Collections.Generic.List`1[[HRMS.Application.Features.Employees.Dtos.EmployeeListDto, HRMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-07 20:29:23.027 -05:00 [INF] Executed action HRMS.API.Controllers.EmployeesController.GetAllEmployees (HRMS.API) in 111212.0437ms
+2025-11-07 20:29:23.030 -05:00 [INF] Executed endpoint 'HRMS.API.Controllers.EmployeesController.GetAllEmployees (HRMS.API)'
+2025-11-07 20:29:23.033 -05:00 [INF] HTTP GET /api/Employees responded 200 in 111234.5136 ms
+2025-11-07 20:29:23.037 -05:00 [WRN] Slow Request {"Method":"GET","Path":{"Value":"/api/Employees","HasValue":true,"$type":"PathString"},"StatusCode":200,"DurationMs":111249.8951,"Query":""}
+2025-11-07 20:29:23.050 -05:00 [INF] Request finished HTTP/2 GET https://localhost:5002/api/Employees - 200 null application/json; charset=utf-8 111276.2235ms

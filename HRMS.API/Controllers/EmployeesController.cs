@@ -10,6 +10,7 @@ using HRMS.Application.Features.Employees.Queries.GetEmployeeDetail;
 using HRMS.Application.Features.Employees.Queries.GetEmployeeList;
 using HRMS.Application.Features.Employees.Queries.GetOnboardingDetailsByEmployee;
 using HRMS.Application.Features.TimeTracking.Dtos;
+using HRMS.Application.Interfaces.Services.Contracts;
 using HRMS.Application.Wrappers;
 using HRMS.Domain.Aggregates.EmployeeAggregate;
 using MediatR;
@@ -101,4 +102,7 @@ public class EmployeesController(IMediator mediator) : ControllerBase
         var  result =  await mediator.Send(request);
         return Ok(result);
     }
+  
+
+
 }
