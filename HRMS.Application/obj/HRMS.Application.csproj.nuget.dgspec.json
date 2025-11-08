@@ -11,7 +11,7 @@
         "projectName": "HRMS.Application",
         "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj",
         "packagesPath": "C:\\Users\\Prince\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\obj\\",
+        "outputPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

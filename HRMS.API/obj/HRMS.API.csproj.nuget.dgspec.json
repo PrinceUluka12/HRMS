@@ -171,7 +171,7 @@
         "projectName": "HRMS.Application",
         "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Application\\HRMS.Application.csproj",
         "packagesPath": "C:\\Users\\Prince\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Application\\obj\\",
+        "outputPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -371,7 +371,7 @@
         "projectName": "HRMS.Infrastructure.Resources",
         "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure.Resources\\HRMS.Infrastructure.Resources.csproj",
         "packagesPath": "C:\\Users\\Prince\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure.Resources\\obj\\",
+        "outputPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure.Resources\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -447,7 +447,7 @@
         "projectName": "HRMS.Infrastructure",
         "projectPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure\\HRMS.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Prince\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Prince\\source\\repos\\HRMS\\HRMS.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\Prince\\Source\\Repos\\HRMS\\HRMS.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
